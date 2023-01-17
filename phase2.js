@@ -34,7 +34,7 @@ var db = firebase.firestore();
 //   });
 // }
 
-$("#submit-step2").on("click", function (e) {
+$("#add_university_button").on("click", function (e) {
   e.preventDefault();
   console.log("hello there");
   // var schoolid = $(".input_addschool_field").attr("data-id");
