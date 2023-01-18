@@ -7,6 +7,7 @@ $("#submit_university_program_button").on("click", function (e) {
   db.collection("States")
     .get()
     .then((querySnapshot) => {
+      console.log(querySnapshot + "querySnapshot");
       querySnapshot.forEach((doc) => {
         userfbdata = doc.data();
 
