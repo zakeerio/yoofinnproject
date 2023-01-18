@@ -342,7 +342,7 @@ function init() {
   });
 }
 
-$("#submit_university_program_button").on("click", function (e) {
-  e.preventDefault();
-  console.log("hello there");
-});
+// $("#submit_university_program_button").on("click", function (e) {
+//   e.preventDefault();
+//   console.log("hello there");
+// });
