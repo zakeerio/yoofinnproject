@@ -10,7 +10,8 @@ $("#submit_university_program_button").on("click", function (e) {
       querySnapshot.forEach((doc) => {
         userfbdata = doc.data();
 
-        console.log(userfbdata + "data");
+        console.log(userfbdata[0] + "data");
+        console.log(userfbdata[1] + "data");
       });
     });
 });
