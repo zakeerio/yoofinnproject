@@ -35,20 +35,20 @@ $("#university_section").on("click", function (e) {
       });
     });
 
-  //   db.collection("Department")
-  //     .get()
-  //     .then((querySnapshot) => {
-  //       querySnapshot.forEach((doc) => {
-  //         statesdata = doc.data();
-  //         console.log(statesdata);
+  db.collection("Department")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        departmentdata = doc.data();
+        console.log(departmentdata);
 
-  //         $("#w-dropdown-list-0").append(
-  //           "<a href='#' class='w-dropdown-link' tabindex='0'>" +
-  //             statesdata.name +
-  //             "</a>"
-  //         );
-  //       });
-  //     });
+        $("#w-dropdown-list-1").append(
+          "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+            departmentdata.name +
+            "</a>"
+        );
+      });
+    });
 });
 
 $(function () {
