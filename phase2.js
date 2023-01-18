@@ -1,7 +1,7 @@
 var db = firebase.firestore();
 
 $(document).ready(function () {
-  $("#registration_screen_10").removeClass("hide");
+  $("#registration_screen_10").addClass("hide");
 });
 
 $("#university_section").on("click", function (e) {
