@@ -2,31 +2,273 @@ var db = firebase.firestore();
 
 $(init);
 
+let classes = [
+  "first",
+  "second",
+  "third",
+  "forth",
+  "fifth",
+  "sixth",
+  "seventh",
+  "eighth",
+  "ninth",
+  "tenth",
+];
+
 function init() {
+  $(".droppable-area1, .droppable-area2")
+    .sortable({
+      connectWith: ".connected-sortable",
+      stack: ".connected-sortable",
+      revert: true,
+      stop: function () {
+        console.log("Dropped");
+        addNumbersDynamicallyUniCon();
+      },
+      update: function () {
+        UpdateNumbersDynamicallyUniCon();
+      },
+    })
+    .disableSelection();
+
+  var classeslist = [];
+  var usedclasses = [];
+
+  function addNumbersDynamicallyUniCon() {
+    console.log("Add box");
+    var universityconcerns = [];
+
+    // $(".droppable-area1.connected-sortable .ui-sortable-handle").removeClass('dropped')
+    var classcounter = 0;
+    $(".droppable-area1.connected-sortable .ui-sortable-handle").each(
+      function () {
+        universityconcerns.push($(this).find(".heading-text").text());
+
+        if ($.inArray("dropeditem" + classcounter, classeslist) == -1) {
+          classeslist.push("dropeditem" + classcounter);
+          $("head").append(
+            "<style>.dropeditem" +
+              classcounter +
+              ':before{ content: "' +
+              (classcounter + 1) +
+              '";}</style>'
+          );
+        }
+
+        for (
+          var i = 0,
+            l = $(
+              ".droppable-area1.connected-sortable .ui-sortable-handle"
+            ).length;
+          i < l;
+          i++
+        ) {
+          var obj = "dropeditem" + i;
+          if ($(this).hasClass(obj)) {
+            $(this).removeClass(obj);
+          }
+        }
+
+        $(this).addClass("dropped");
+        // $(this).addClass(classes[classcounter]);
+        $(this).addClass("dropeditem" + classcounter);
+        classcounter++;
+      }
+    );
+    $("#univrsityconcerns").val(universityconcerns.join(","));
+
+    console.log(classeslist);
+  }
+
+  function UpdateNumbersDynamicallyUniCon() {
+    console.log("update box");
+    var universityconcerns = [];
+
+    for (
+      var i = 0,
+        l = $(".droppable-area1.connected-sortable .ui-sortable-handle").length;
+      i < l;
+      i++
+    ) {
+      var obj = "dropeditem" + i;
+      if ($(this).hasClass(obj)) {
+        $(this).removeClass(obj);
+      }
+    }
+
+    var classcounter = 0;
+    $(".droppable-area1.connected-sortable .ui-sortable-handle").each(
+      function () {
+        universityconcerns.push($(this).find(".heading-text").text());
+
+        $(this).addClass("dropped");
+        if (!$(this).hasClass("dropeditem" + classcounter)) {
+          $(this).addClass("dropeditem" + classcounter);
+        }
+
+        classcounter++;
+      }
+    );
+    $("#univrsityconcerns").val(universityconcerns.join(","));
+  }
+
+  $(".droppable-area-hope, .droppable-area-hope2")
+    .sortable({
+      connectWith: ".connected-sortable",
+      stack: ".connected-sortable",
+      revert: true,
+      stop: function () {
+        console.log("Dropped");
+        addNumbersDynamicallyExcites();
+      },
+      update: function () {
+        UpdateNumbersDynamicallyExcites();
+      },
+    })
+    .disableSelection();
+
+  function addNumbersDynamicallyExcites() {
+    console.log("Add box");
+
+    // $(".droppable-area1.connected-sortable .ui-sortable-handle").removeClass('dropped')
+    var classcounter = 0;
+    var univrsityexcites = [];
+    $(".droppable-area-hope.connected-sortable .ui-sortable-handle").each(
+      function () {
+        univrsityexcites.push($(this).find(".heading-text").text());
+
+        if ($.inArray("dropeditem" + classcounter, classeslist) == -1) {
+          classeslist.push("dropeditem" + classcounter);
+          $("head").append(
+            "<style>.dropeditem" +
+              classcounter +
+              ':before{ content: "' +
+              (classcounter + 1) +
+              '";}</style>'
+          );
+        }
+
+        for (
+          var i = 0,
+            l = $(
+              ".droppable-area-hope.connected-sortable .ui-sortable-handle"
+            ).length;
+          i < l;
+          i++
+        ) {
+          var obj = "dropeditem" + i;
+          if ($(this).hasClass(obj)) {
+            $(this).removeClass(obj);
+          }
+        }
+
+        $(this).addClass("dropped");
+        $(this).addClass("dropeditem" + classcounter);
+
+        classcounter++;
+      }
+    );
+
+    $("#univrsityexcites").val(univrsityexcites.join(","));
+  }
+
+  function UpdateNumbersDynamicallyExcites() {
+    var excitesval = [];
+
+    console.log("update box");
+    for (var i = 0, l = classes.length; i < l; i++) {
+      var obj = classes[i];
+      if (
+        $(
+          ".droppable-area-hope.connected-sortable .ui-sortable-handle"
+        ).hasClass(obj)
+      ) {
+        $(
+          ".droppable-area-hope.connected-sortable .ui-sortable-handle"
+        ).removeClass(obj);
+      }
+    }
+
+    var classcounter = 0;
+    $(".droppable-area-hope.connected-sortable .ui-sortable-handle").each(
+      function () {
+        excitesval.push($(this).find(".heading-text").text());
+
+        $(this).addClass("dropped");
+        $(this).addClass(classes[classcounter]);
+        classcounter++;
+      }
+    );
+    $("#universityconcerns").val(excitesval.join(","));
+  }
+
   $(document).ready(function () {
-    loadstates();
+    loadconcerns();
+    loadhopes();
   });
 
-  function loadstates() {
-    // $(".droppable-area2.connected-sortable1").html("");
+  function loadconcerns() {
+    $(".droppable-area2.connected-sortable1").html("");
 
-    db.collection("States")
+    db.collection("Concerns")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           userfbdata = doc.data();
 
-          console.log(userfbdata + "states data");
+          console.log(userfbdata);
 
-          //   var sample_university_concern = $("#sample-university-concern");
-          //   $(sample_university_concern)
-          //     .find(".heading-text")
-          //     .text(userfbdata.value);
-          //   $(".droppable-area2.connected-sortable1").append(
-          //     sample_university_concern.html()
-          //   );
+          var sample_university_concern = $("#sample-university-concern");
+          $(sample_university_concern)
+            .find(".heading-text")
+            .text(userfbdata.value);
+          $(".droppable-area2.connected-sortable1").append(
+            sample_university_concern.html()
+          );
+        });
+
+        $(".droppable-area1, .droppable-area2")
+          .draggable({
+            cancel: "button", // these elements won't initiate dragging
+            revert: "invalid", // when not dropped, the item will revert back to its initial position
+            containment: "document",
+            helper: "clone",
+            cursor: "move",
+          })
+          .disableSelection();
+      });
+  }
+
+  function loadhopes() {
+    $(".droppable-area-hope2.connected-sortable1").html("");
+
+    db.collection("Hopes")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          userfbdata = doc.data();
+
+          // console.log(userfbdata);
+
+          var sample_university_hope = $("#sample-university-hope");
+          $(sample_university_hope)
+            .find(".heading-text")
+            .text(userfbdata.value);
+          $(".droppable-area-hope2.connected-sortable1").append(
+            sample_university_hope.html()
+          );
         });
       });
+
+    $(".droppable-area-hope, .droppable-area-hope2")
+      .draggable({
+        cancel: "button", // these elements won't initiate dragging
+        revert: "invalid", // when not dropped, the item will revert back to its initial position
+        containment: "document",
+        helper: "clone",
+        cursor: "move",
+      })
+      .disableSelection();
   }
 
   // Listening for auth state changes.
@@ -116,23 +358,6 @@ function init() {
 $("#submit_university_program_button").on("click", function (e) {
   e.preventDefault();
   console.log("hello there");
-  db.collection("States")
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        userfbdata = doc.data();
-
-        console.log(userfbdata + "states data");
-
-        //   var sample_university_concern = $("#sample-university-concern");
-        //   $(sample_university_concern)
-        //     .find(".heading-text")
-        //     .text(userfbdata.value);
-        //   $(".droppable-area2.connected-sortable1").append(
-        //     sample_university_concern.html()
-        //   );
-      });
-    });
   // var schoolid = $(".input_addschool_field").attr("data-id");
   // var start_date = $("#start_date").val();
   // var sibling_attend = $("input[name='sibling_attend']").val();
