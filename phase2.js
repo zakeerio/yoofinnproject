@@ -27,6 +27,7 @@ $(document).ready(function () {
   if (university_section_status === false) {
     $("#university_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
+      console.log(curSrc);
       if (
         curSrc ===
         "https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/62d967e2c3a35703f4eef7ea_check.svg"
