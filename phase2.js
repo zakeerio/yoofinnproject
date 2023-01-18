@@ -1,6 +1,7 @@
 var db = firebase.firestore();
 
 $(document).ready(function () {
+  $("#registration_screen_0").addClass("hide");
   $("#registration_screen_1").addClass("hide");
   $("#registration_screen_2").addClass("hide");
   $("#registration_screen_3").addClass("hide");
