@@ -26,7 +26,12 @@ $(document).ready(function () {
 
   if (university_section_status === false) {
     $("#university_section").text(function () {
-      return $(this).text().replace(tick_image, forward_image);
+      return $(this)
+        .text()
+        .replace(
+          "https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/62d967e2c3a35703f4eef7ea_check.svg",
+          "https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg"
+        );
     });
   }
 });
