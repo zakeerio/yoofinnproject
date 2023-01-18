@@ -32,15 +32,51 @@ $(document).ready(function () {
         $(this).attr("src", forward_image);
       }
     });
-
-    // $("#university_section .dashboard-image").text(function () {
-    //   return $(this)
-    //     .text()
-    //     .attr(
-    //       "src",
-    //       "https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg"
-    //     );
-    // });
+  }
+  if (values_section_status === false) {
+    $("#values_section .dashboard-image").each(function () {
+      var curSrc = $(this).attr("src");
+      console.log(curSrc);
+      if (curSrc === tick_image) {
+        $(this).attr("src", forward_image);
+      }
+    });
+  }
+  if (cost_section_status === false) {
+    $("#cost_section .dashboard-image").each(function () {
+      var curSrc = $(this).attr("src");
+      console.log(curSrc);
+      if (curSrc === tick_image) {
+        $(this).attr("src", forward_image);
+      }
+    });
+  }
+  if (careers_section_status === false) {
+    $("#careers_section .dashboard-image").each(function () {
+      var curSrc = $(this).attr("src");
+      console.log(curSrc);
+      if (curSrc === tick_image) {
+        $(this).attr("src", forward_image);
+      }
+    });
+  }
+  if (school_section_status === false) {
+    $("#school_section .dashboard-image").each(function () {
+      var curSrc = $(this).attr("src");
+      console.log(curSrc);
+      if (curSrc === tick_image) {
+        $(this).attr("src", forward_image);
+      }
+    });
+  }
+  if (sat_section_status === false) {
+    $("#sat_section .dashboard-image").each(function () {
+      var curSrc = $(this).attr("src");
+      console.log(curSrc);
+      if (curSrc === tick_image) {
+        $(this).attr("src", forward_image);
+      }
+    });
   }
 });
 
