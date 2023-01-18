@@ -116,6 +116,23 @@ function init() {
 $("#submit_university_program_button").on("click", function (e) {
   e.preventDefault();
   console.log("hello there");
+  db.collection("States")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        userfbdata = doc.data();
+
+        console.log(userfbdata + "states data");
+
+        //   var sample_university_concern = $("#sample-university-concern");
+        //   $(sample_university_concern)
+        //     .find(".heading-text")
+        //     .text(userfbdata.value);
+        //   $(".droppable-area2.connected-sortable1").append(
+        //     sample_university_concern.html()
+        //   );
+      });
+    });
   // var schoolid = $(".input_addschool_field").attr("data-id");
   // var start_date = $("#start_date").val();
   // var sibling_attend = $("input[name='sibling_attend']").val();
