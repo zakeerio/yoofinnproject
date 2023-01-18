@@ -12,6 +12,12 @@ $("#submit_university_program_button").on("click", function (e) {
         statesdata = doc.data();
         console.log(statesdata);
 
+        $("#w-dropdown-list-0").append(
+          "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+            statesdata.name +
+            "</a>"
+        );
+
         // states_array = statesdata.name;
         // // console.log(userfbdata.name + "data");
         // for (var counter = 0; counter < states_array.length; counter++) {
