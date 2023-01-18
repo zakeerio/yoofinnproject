@@ -1,10 +1,5 @@
 var db = firebase.firestore();
 
-var forward_image =
-  "<img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt='' class='dashboard-image remve'>";
-var tick_image =
-  "<img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/62d967e2c3a35703f4eef7ea_check.svg' loading='lazy' alt='' class='dashboard-image remve'>";
-
 $(document).ready(function () {
   let university_section_status = false;
   let values_section_status = false;
@@ -12,6 +7,11 @@ $(document).ready(function () {
   let careers_section_status = false;
   let school_section_status = false;
   let sat_section_status = false;
+  let forward_image =
+    "https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg";
+  let tick_image =
+    "https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/62d967e2c3a35703f4eef7ea_check.svg";
+
   $("#registration_screen_0").addClass("hide");
   $("#registration_screen_1").addClass("hide");
   $("#registration_screen_2").addClass("hide");
@@ -28,14 +28,8 @@ $(document).ready(function () {
     $("#university_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
-      if (
-        curSrc ===
-        "https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/62d967e2c3a35703f4eef7ea_check.svg"
-      ) {
-        $(this).attr(
-          "src",
-          "https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg"
-        );
+      if (curSrc === tick_image) {
+        $(this).attr("src", forward_image);
       }
     });
 
