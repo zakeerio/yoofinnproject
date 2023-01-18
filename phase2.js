@@ -72,6 +72,7 @@ $("#submit_university_program_button").on("click", function (e) {
   let states_array = [];
   e.preventDefault();
   console.log("hello there");
+  let university_array = [];
 
   db.collection("University")
     .get()
@@ -79,6 +80,8 @@ $("#submit_university_program_button").on("click", function (e) {
       querySnapshot.forEach((doc) => {
         universitydata = doc.data();
         console.log(universitydata + "universitydata");
+        university_array.push(universitydata.university_name);
       });
+      console.log(university_array);
     });
 });
