@@ -1,5 +1,9 @@
 var db = firebase.firestore();
 
+$(document).ready(function () {
+  console.log("ready!");
+});
+
 $("#university_section").on("click", function (e) {
   e.preventDefault();
 
