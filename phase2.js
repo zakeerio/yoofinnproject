@@ -1,6 +1,15 @@
 var db = firebase.firestore();
 
 $(document).ready(function () {
+  $("#registration_screen_1").addClass("hide");
+  $("#registration_screen_2").addClass("hide");
+  $("#registration_screen_3").addClass("hide");
+  $("#registration_screen_4").addClass("hide");
+  $("#registration_screen_5").addClass("hide");
+  $("#registration_screen_6").addClass("hide");
+  $("#registration_screen_7").addClass("hide");
+  $("#registration_screen_8").addClass("hide");
+  $("#registration_screen_9").addClass("hide");
   $("#registration_screen_10").addClass("hide");
 });
 
