@@ -1,9 +1,7 @@
 var db = firebase.firestore();
 
-$("#submit_university_program_button").on("click", function (e) {
-  let states_array = [];
+$("#university_section").on("click", function (e) {
   e.preventDefault();
-  console.log("hello there");
 
   db.collection("States")
     .get()
@@ -17,20 +15,12 @@ $("#submit_university_program_button").on("click", function (e) {
             statesdata.name +
             "</a>"
         );
-
-        // states_array = statesdata.name;
-        // // console.log(userfbdata.name + "data");
-        // for (var counter = 0; counter < states_array.length; counter++) {
-        //   console.log(states_array[counter] + "coutner");
-        // }
-
-        // $("#w-dropdown-list-0").append(
-        //   "<style>.dropeditem" +
-        //     classcounter +
-        //     ':before{ content: "' +
-        //     (classcounter + 1) +
-        //     '";}</style>'
-        // );
       });
     });
+});
+
+$("#submit_university_program_button").on("click", function (e) {
+  let states_array = [];
+  e.preventDefault();
+  console.log("hello there");
 });
