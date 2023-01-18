@@ -1,10 +1,4 @@
 var db = firebase.firestore();
-var university_section_status = false;
-var values_section_status = false;
-var cost_section_status = false;
-var careers_section_status = false;
-var school_section_status = false;
-var sat_section_status = false;
 
 var forward_image =
   "<img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt='' class='dashboard-image remve'>";
@@ -12,6 +6,12 @@ var tick_image =
   "<img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/62d967e2c3a35703f4eef7ea_check.svg' loading='lazy' alt='' class='dashboard-image remve'>";
 
 $(document).ready(function () {
+  let university_section_status = false;
+  let values_section_status = false;
+  let cost_section_status = false;
+  let careers_section_status = false;
+  let school_section_status = false;
+  let sat_section_status = false;
   $("#registration_screen_0").addClass("hide");
   $("#registration_screen_1").addClass("hide");
   $("#registration_screen_2").addClass("hide");
