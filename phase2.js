@@ -10,7 +10,7 @@ $("#submit_university_program_button").on("click", function (e) {
       querySnapshot.forEach((doc) => {
         statesdata = doc.data();
 
-        console.log(userfbdata.name + "data");
+        // console.log(userfbdata.name + "data");
         for (var counter = 0; counter < statesdata.length; counter++) {
           console.log(statesdata[counter] + "coutner");
         }
