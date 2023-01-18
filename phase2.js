@@ -77,8 +77,8 @@ $("#submit_university_program_button").on("click", function (e) {
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        univeistydata = doc.data();
-        console.log(univeistydata);
+        universitydata = doc.data();
+        console.log(universitydata + "universitydata");
       });
     });
 });
