@@ -17,6 +17,9 @@ $(document).ready(function () {
 $("#university_section").on("click", function (e) {
   e.preventDefault();
 
+  $("#registration_splash_screen").addClass("hide");
+  $("#registration_screen_0").removeClass("hide");
+
   db.collection("States")
     .get()
     .then((querySnapshot) => {
@@ -31,6 +34,21 @@ $("#university_section").on("click", function (e) {
         );
       });
     });
+
+  //   db.collection("Department")
+  //     .get()
+  //     .then((querySnapshot) => {
+  //       querySnapshot.forEach((doc) => {
+  //         statesdata = doc.data();
+  //         console.log(statesdata);
+
+  //         $("#w-dropdown-list-0").append(
+  //           "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+  //             statesdata.name +
+  //             "</a>"
+  //         );
+  //       });
+  //     });
 });
 
 $(function () {
