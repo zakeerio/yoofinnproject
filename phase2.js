@@ -1,4 +1,15 @@
 var db = firebase.firestore();
+var university_section_status = false;
+var values_section_status = false;
+var cost_section_status = false;
+var careers_section_status = false;
+var school_section_status = false;
+var sat_section_status = false;
+
+var forward_image =
+  "<img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt='' class='dashboard-image remve'>";
+var tick_image =
+  "<img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/62d967e2c3a35703f4eef7ea_check.svg' loading='lazy' alt='' class='dashboard-image remve'>";
 
 $(document).ready(function () {
   $("#registration_screen_0").addClass("hide");
@@ -12,6 +23,12 @@ $(document).ready(function () {
   $("#registration_screen_8").addClass("hide");
   $("#registration_screen_9").addClass("hide");
   $("#registration_screen_10").addClass("hide");
+
+  if (university_section_status === false) {
+    $("#university_section").text(function () {
+      return $(this).text().replace(tick_image, forward_image);
+    });
+  }
 });
 
 $("#university_section").on("click", function (e) {
