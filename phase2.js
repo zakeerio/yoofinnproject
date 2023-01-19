@@ -105,7 +105,7 @@ $(document).ready(function () {
           if (displayName === null || displayName === undefined) {
             displayname = "John";
           }
-          console.log(displayname + "displayname");
+          console.log(displayName + "displayname");
 
           //   $("#user_name").html().replace("John", displayName);
         });
