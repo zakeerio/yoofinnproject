@@ -108,7 +108,7 @@ $(document).ready(function () {
             displayname = "John";
           }
 
-          $("#user_name").html().replace("John", displayName));
+          $("#user_name").html().replace("John", displayName);
           //   const element = $("#user_name");
           //   const textToReplace = element.text();
           //   console.log(displayName + "displayName");
