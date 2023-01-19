@@ -78,6 +78,48 @@ $(document).ready(function () {
       }
     });
   }
+
+  // Listening for auth state changes.
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      // User is signed in.
+      var displayName = user.displayName;
+      var uid = user.uid;
+      var displayname = "John";
+      if (displayName != null) {
+        displayname = displayName;
+      }
+
+      //   $("#user_name").text(displayname);
+
+      console.log(uid + " TEST");
+
+      db.collection("Users")
+        .doc(uid)
+        .get()
+        .then((querySnapshot) => {
+          var userfbdata = querySnapshot.data();
+
+          console.log(userfbdata);
+
+          var userdatacheck = localStorage.getItem("userfbdata");
+
+          console.log(userdatacheck);
+
+          if (userdatacheck != "undefined") {
+            localStorage.setItem("userfbdata", JSON.stringify(userfbdata));
+          }
+        });
+
+      localStorage.setItem("userdata", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("userdata");
+      localStorage.removeItem("userfbdata");
+
+      // User is signed out.
+      console.log("user logged out!");
+    }
+  });
 });
 
 $("#university_section").on("click", function (e) {
