@@ -138,7 +138,7 @@ $("#university_section").on("click", function (e) {
 
         if (counter_append === 0) {
           $("#w-dropdown-list-0").html(
-            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+            "<a href='#' class='w-dropdown-link' tabindex='0'>ALL</a><a href='#' class='w-dropdown-link' tabindex='0'>" +
               statesdata.name +
               "</a>"
           );
@@ -161,7 +161,7 @@ $("#university_section").on("click", function (e) {
 
         if (country_counter_append === 0) {
           $("#w-dropdown-list-1").html(
-            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+            "<a href='#' class='w-dropdown-link' tabindex='0'>ANY</a><a href='#' class='w-dropdown-link' tabindex='0'>" +
               departmentdata.name +
               "</a>"
           );
