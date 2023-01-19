@@ -205,11 +205,6 @@ $(function () {
   });
 });
 
-$("#submit_university_program_button").on("click", function (e) {
-  let states_array = [];
-  e.preventDefault();
-});
-
 $("#add_university_button").on("click", function (e) {
   e.preventDefault();
   var errors = "";
@@ -218,6 +213,15 @@ $("#add_university_button").on("click", function (e) {
   var state_value = localStorage.getItem("state_value");
   var department_name = localStorage.getItem("department_name");
   var univeristy_name = $("#Type-name-of-University").val();
+  if (!state_value) {
+    state_value = "ALL";
+  }
+  if (!department_name) {
+    department_name = "ANY";
+  }
+  if (!univeristy_name) {
+    univeristy_name = "";
+  }
   let univeristy_object = {
     state_info: state_value,
     department_info: department_name,
@@ -235,6 +239,18 @@ $("#add_university_button").on("click", function (e) {
     "</div></div></div>";
 
   $(".university_list").append(univeristy_div_to_append);
+});
+$("#submit_university_program_button").on("click", function (e) {
+  let states_array = [];
+  e.preventDefault();
+  let useruniversity = univeristy_array;
+  var userdatacheck = localStorage.getItem("userfbdata");
+  db.collection("Users")
+    .doc(userdatacheck.uid)
+    .update(useruniversity)
+    .then(() => {
+      console.log("user successfully updated!");
+    });
 });
 
 function setstatevalue(state_name) {
