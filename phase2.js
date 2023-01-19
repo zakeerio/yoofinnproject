@@ -128,28 +128,28 @@ $("#university_section").on("click", function (e) {
   $("#registration_splash_screen").addClass("hide");
   $("#registration_screen_0").removeClass("hide");
   let counter_append = 0;
+  let country_counter_append = 0;
 
   db.collection("States")
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         statesdata = doc.data();
-        console.log(statesdata);
 
-        // if(counter_append === 0)
-        // {
-
-        // }
-        // else
-        // {
-
-        // }
-
-        $("#w-dropdown-list-0").html(
-          "<a href='#' class='w-dropdown-link' tabindex='0'>" +
-            statesdata.name +
-            "</a>"
-        );
+        if (counter_append === 0) {
+          $("#w-dropdown-list-0").html(
+            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+              statesdata.name +
+              "</a>"
+          );
+        } else {
+          $("#w-dropdown-list-0").append(
+            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+              statesdata.name +
+              "</a>"
+          );
+        }
+        counter_append = counter_append + 1;
       });
     });
 
@@ -158,13 +158,21 @@ $("#university_section").on("click", function (e) {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         departmentdata = doc.data();
-        console.log(departmentdata);
 
-        $("#w-dropdown-list-1").append(
-          "<a href='#' class='w-dropdown-link' tabindex='0'>" +
-            departmentdata.name +
-            "</a>"
-        );
+        if (country_counter_append === 0) {
+          $("#w-dropdown-list-1").html(
+            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+              departmentdata.name +
+              "</a>"
+          );
+        } else {
+          $("#w-dropdown-list-1").append(
+            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+              departmentdata.name +
+              "</a>"
+          );
+        }
+        country_counter_append = country_counter_append + 1;
       });
     });
 });
