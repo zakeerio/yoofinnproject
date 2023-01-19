@@ -108,6 +108,9 @@ $(document).ready(function () {
           console.log(displayName + "displayname");
 
           //   $("#user_name").html().replace("John", displayName);
+
+          let div_content = $("#user_name").text();
+          console.log(div_content + " div content ");
         });
 
       localStorage.setItem("userdata", JSON.stringify(user));
