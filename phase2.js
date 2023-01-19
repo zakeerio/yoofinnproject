@@ -82,17 +82,7 @@ $(document).ready(function () {
   // Listening for auth state changes.
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      // User is signed in.
-      let displayName = user.displayName;
       var uid = user.uid;
-      if (displayName != null) {
-        displayname = displayName;
-      } else {
-        displayname = "John";
-      }
-
-      // $("#user_name").text(displayname);
-
       console.log(uid + " TEST");
 
       db.collection("Users")
@@ -113,6 +103,13 @@ $(document).ready(function () {
         });
 
       localStorage.setItem("userdata", JSON.stringify(user));
+
+      let displayName = user.displayName;
+      if (displayName != null) {
+        displayname = displayName;
+      } else {
+        displayname = "John";
+      }
       const element = $("#user_name");
       const textToReplace = element.text();
       console.log(displayName + "displayName");
