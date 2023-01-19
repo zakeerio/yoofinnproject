@@ -209,7 +209,7 @@ $("#add_university_button").on("click", function (e) {
   //   var email = $("#email").val();
 });
 
-function setstatevalue($state_name) {
+function setstatevalue(state_name) {
   localStorage.setItem("state_value", JSON.stringify(state_name));
-  console.log($state_name);
+  console.log(state_name);
 }
