@@ -211,8 +211,11 @@ $("#submit_university_program_button").on("click", function (e) {
 $("#add_university_button").on("click", function (e) {
   e.preventDefault();
   var errors = "";
-  $("#errors").html("");
+  $("#errors").html("Hello");
+
   //   var email = $("#email").val();
+  var state_value = localStorage.getItem("state_value");
+  var department_name = localStorage.getItem("department_name");
 });
 
 function setstatevalue(state_name) {
