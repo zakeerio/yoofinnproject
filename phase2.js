@@ -210,5 +210,6 @@ $("#add_university_button").on("click", function (e) {
 });
 
 function setstatevalue($state_name) {
-  console.log("function call");
+  localStorage.setItem("state_value", JSON.stringify(state_name));
+  console.log($state_name);
 }
