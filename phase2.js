@@ -102,21 +102,11 @@ $(document).ready(function () {
           }
 
           let displayName = userfbdata.Fname;
-          if (displayName != null) {
-            displayname = displayName;
-          } else {
+          if (displayName === null || displayName === undefined) {
             displayname = "John";
           }
 
           $("#user_name").html().replace("John", displayName);
-          //   const element = $("#user_name");
-          //   const textToReplace = element.text();
-          //   console.log(displayName + "displayName");
-          //   if (displayName != null) {
-          //     console.log("here");
-          //     const newText = textToReplace.replace("John", displayName);
-          //     //    element.text(newText);
-          //   }
         });
 
       localStorage.setItem("userdata", JSON.stringify(user));
