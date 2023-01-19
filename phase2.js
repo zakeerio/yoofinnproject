@@ -1,4 +1,5 @@
 var db = firebase.firestore();
+var univeristy_array = [];
 
 $(document).ready(function () {
   let university_section_status = false;
@@ -211,11 +212,28 @@ $("#submit_university_program_button").on("click", function (e) {
 $("#add_university_button").on("click", function (e) {
   e.preventDefault();
   var errors = "";
-  $("#errors").html("Hello");
+  $("#errors").html("");
 
-  //   var email = $("#email").val();
   var state_value = localStorage.getItem("state_value");
   var department_name = localStorage.getItem("department_name");
+  var univeristy_name = $("# Type-name-of-University").val();
+  let univeristy_object = {
+    state_info: state_value,
+    department_info: department_name,
+    university_info: univeristy_name,
+  };
+  univeristy_array.push(univeristy_object);
+
+  let univeristy_div_to_append =
+    "<div class='UniversityOf'><a href='#' class='anchor-img w-inline-block'><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63c83b23bcdbf2331f6d0cc2_Vector%20(20).svg' loading='lazy' alt=''></a><div class='heading-14'>" +
+    univeristy_name +
+    "</div><div class='tittle-flex'><div class='heading-12'>" +
+    department_name +
+    "</div><div class='heading-12 blod-700'>" +
+    state_value +
+    "</div></div></div>";
+
+  $(".university_list").append(univeristy_div_to_append);
 });
 
 function setstatevalue(state_name) {
