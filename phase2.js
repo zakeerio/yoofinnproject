@@ -100,25 +100,24 @@ $(document).ready(function () {
           if (userdatacheck != "undefined") {
             localStorage.setItem("userfbdata", JSON.stringify(userfbdata));
           }
+
+          let displayName = userfbdata.Fname;
+          if (displayName != null) {
+            displayname = displayName;
+          } else {
+            displayname = "John";
+          }
+          const element = $("#user_name");
+          const textToReplace = element.text();
+          console.log(displayName + "displayName");
+          if (displayName != null) {
+            console.log("here");
+            const newText = textToReplace.replace("John", displayName);
+            element.text(newText);
+          }
         });
 
       localStorage.setItem("userdata", JSON.stringify(user));
-      console.log(user.Fname + "user");
-
-      let displayName = user.Fname;
-      if (displayName != null) {
-        displayname = displayName;
-      } else {
-        displayname = "John";
-      }
-      const element = $("#user_name");
-      const textToReplace = element.text();
-      console.log(displayName + "displayName");
-      if (displayName != null) {
-        console.log("here");
-        const newText = textToReplace.replace("John", displayName);
-        element.text(newText);
-      }
     } else {
       localStorage.removeItem("userdata");
       localStorage.removeItem("userfbdata");
