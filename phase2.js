@@ -165,7 +165,7 @@ $("#university_section").on("click", function (e) {
 
         if (country_counter_append === 0) {
           $("#w-dropdown-list-1").html(
-            "<a href='#' class='w-dropdown-link' tabindex='0'  onclick='setstatevalue(\"ANY\")'>ANY</a><a href='#' class='w-dropdown-link' tabindex='0' onclick='setdepartmentvalue(\"" +
+            "<a href='#' class='w-dropdown-link' tabindex='0'  onclick='setdepartmentvalue(\"ANY\")'>ANY</a><a href='#' class='w-dropdown-link' tabindex='0' onclick='setdepartmentvalue(\"" +
               departmentdata.name +
               "\")'>" +
               departmentdata.name +
