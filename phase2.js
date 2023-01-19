@@ -21,6 +21,7 @@ $(document).ready(function () {
   $("#registration_screen_5").addClass("hide");
   $("#registration_screen_6").addClass("hide");
   $("#registration_screen_seven").addClass("hide");
+  $("#registration_screen_7").addClass("hide");
   $("#registration_screen_8").addClass("hide");
   $("#registration_screen_9").addClass("hide");
   $("#registration_screen_10").addClass("hide");
