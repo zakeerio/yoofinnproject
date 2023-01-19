@@ -107,9 +107,12 @@ $(document).ready(function () {
           }
           console.log(displayName + "displayname");
 
-          $("#student_user_name").html().replace("John", displayName);
+          // $("#student_user_name").html().replace("John", displayName);
 
           //$("#student_user_name").text("displayName");
+
+          let div_content = $("#student_user_name").text();
+          console.log(div_content + " div content ");
         });
 
       localStorage.setItem("userdata", JSON.stringify(user));
