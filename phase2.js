@@ -113,6 +113,14 @@ $(document).ready(function () {
         });
 
       localStorage.setItem("userdata", JSON.stringify(user));
+      const element = $("#user_name");
+      const textToReplace = element.text();
+      console.log(displayName + "displayName");
+      if (displayName != null) {
+        console.log("here");
+        const newText = textToReplace.replace("John", displayName);
+        element.text(newText);
+      }
     } else {
       localStorage.removeItem("userdata");
       localStorage.removeItem("userfbdata");
@@ -121,14 +129,6 @@ $(document).ready(function () {
       console.log("user logged out!");
     }
   });
-  const element = $("#user_name");
-  const textToReplace = element.text();
-  console.log(displayName + "displayName");
-  if (displayName != null) {
-    console.log("here");
-    const newText = textToReplace.replace("John", displayName);
-    element.text(newText);
-  }
 });
 
 $("#university_section").on("click", function (e) {
