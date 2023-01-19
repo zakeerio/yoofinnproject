@@ -253,6 +253,8 @@ $("#submit_university_program_button").on("click", function (e) {
     .then(() => {
       console.log("user successfully updated!");
     });
+  $("#registration_screen_0").addClass("hide");
+  $("#registration_screen_1").removeClass("hide");
 });
 
 function setstatevalue(state_name) {
