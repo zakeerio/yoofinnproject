@@ -278,5 +278,5 @@ function setstatevalue(state_name) {
 
 function setdepartmentvalue(department_name) {
   localStorage.setItem("department_name", JSON.stringify(department_name));
-  $("#department_block_text").html(state_name);
+  $("#department_value_block_text").html(department_name);
 }
