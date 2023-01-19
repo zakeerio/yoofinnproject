@@ -246,7 +246,7 @@ $("#submit_university_program_button").on("click", function (e) {
   let useruniversity = univeristy_array;
   var userdatacheck = localStorage.getItem("userfbdata");
   let userdata = JSON.parse(userdatacheck);
-  console.log(userdata + "userdatacheck.uid");
+  console.log(userdata.ID + "userdatacheck.uid");
   db.collection("Users")
     .doc(userdata.ID)
     .update(useruniversity)
