@@ -135,7 +135,7 @@ $("#university_section").on("click", function (e) {
         statesdata = doc.data();
         console.log(statesdata);
 
-        $("#w-dropdown-list-0").append(
+        $("#w-dropdown-list-0").html(
           "<a href='#' class='w-dropdown-link' tabindex='0'>" +
             statesdata.name +
             "</a>"
