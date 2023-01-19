@@ -103,7 +103,7 @@ $(document).ready(function () {
         });
 
       localStorage.setItem("userdata", JSON.stringify(user));
-      console.log(user + "user");
+      console.log(user.Fname + "user");
 
       let displayName = user.Fname;
       if (displayName != null) {
