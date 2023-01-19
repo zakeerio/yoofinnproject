@@ -127,6 +127,7 @@ $("#university_section").on("click", function (e) {
 
   $("#registration_splash_screen").addClass("hide");
   $("#registration_screen_0").removeClass("hide");
+  let counter_append = 0;
 
   db.collection("States")
     .get()
@@ -134,6 +135,15 @@ $("#university_section").on("click", function (e) {
       querySnapshot.forEach((doc) => {
         statesdata = doc.data();
         console.log(statesdata);
+
+        // if(counter_append === 0)
+        // {
+
+        // }
+        // else
+        // {
+
+        // }
 
         $("#w-dropdown-list-0").html(
           "<a href='#' class='w-dropdown-link' tabindex='0'>" +
