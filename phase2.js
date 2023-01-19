@@ -85,12 +85,12 @@ $(document).ready(function () {
       // User is signed in.
       var displayName = user.displayName;
       var uid = user.uid;
-      var displayname = "John";
+      var displayname = "Hi John";
       if (displayName != null) {
-        displayname = displayName;
+        displayname = "Hi" + displayName;
       }
 
-      //   $("#user_name").text(displayname);
+      $("#user_name").text(displayname);
 
       console.log(uid + " TEST");
 
