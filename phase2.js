@@ -82,6 +82,7 @@ $(document).ready(function () {
   // Listening for auth state changes.
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
+      let student_user_name_div_text;
       var uid = user.uid;
       console.log(uid + " TEST");
 
@@ -103,13 +104,11 @@ $(document).ready(function () {
 
           let displayName = userfbdata.Fname;
           if (displayName === null || displayName === undefined) {
-            displayname = "John";
+            student_user_name_div_text = "👋 Hi John,";
+          } else {
+            student_user_name_div_text = "👋 Hi " + displayName + ",";
           }
-          console.log(displayName + "displayname");
-
-          // $("#student_user_name").html().replace("John", displayName);
-
-          //$("#student_user_name").text("displayName");
+          $("#student_user_name").text(student_user_name_div_text);
 
           let div_content = $("#student_user_name").text();
           console.log(div_content + " div content ");
