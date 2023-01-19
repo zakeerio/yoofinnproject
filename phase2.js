@@ -273,6 +273,7 @@ $("#add_values_button").on("click", function (e) {
 
 function setstatevalue(state_name) {
   localStorage.setItem("state_value", JSON.stringify(state_name));
+  $("#state_value_text_block").html(state_name);
 }
 
 function setdepartmentvalue(department_name) {
