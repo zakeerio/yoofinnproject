@@ -2,7 +2,11 @@ var db = firebase.firestore();
 var univeristy_array = [];
 
 $(document).ready(function () {
-  let university_section_status = false;
+  let university_section_status = localStorage.getItem(
+    "university_section_status"
+  )
+    ? localStorage.getItem("university_section_status")
+    : false;
   let values_section_status = false;
   let cost_section_status = false;
   let careers_section_status = false;
@@ -253,8 +257,10 @@ $("#submit_university_program_button").on("click", function (e) {
     .then(() => {
       console.log("user successfully updated!");
     });
+
   $("#registration_screen_0").addClass("hide");
   $("#registration_screen_1").removeClass("hide");
+  localStorage.setItem("university_section_status", true);
 });
 
 function setstatevalue(state_name) {
