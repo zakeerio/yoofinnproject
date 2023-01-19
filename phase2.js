@@ -90,7 +90,7 @@ $(document).ready(function () {
         displayname = "Hi" + displayName;
       }
 
-      $("#user_name").text(displayname);
+      // $("#user_name").text(displayname);
 
       console.log(uid + " TEST");
 
