@@ -165,13 +165,17 @@ $("#university_section").on("click", function (e) {
 
         if (country_counter_append === 0) {
           $("#w-dropdown-list-1").html(
-            "<a href='#' class='w-dropdown-link' tabindex='0'>ANY</a><a href='#' class='w-dropdown-link' tabindex='0'>" +
+            "<a href='#' class='w-dropdown-link' tabindex='0'  onclick='setstatevalue(\"ANY\")>ANY</a><a href='#' class='w-dropdown-link' tabindex='0' onclick='setdepartmentvalue(\"" +
+              departmentdata.name +
+              "\")'>" +
               departmentdata.name +
               "</a>"
           );
         } else {
           $("#w-dropdown-list-1").append(
-            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+            "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setdepartmentvalue(\"" +
+              departmentdata.name +
+              "\")'>" +
               departmentdata.name +
               "</a>"
           );
@@ -213,4 +217,8 @@ $("#add_university_button").on("click", function (e) {
 
 function setstatevalue(state_name) {
   localStorage.setItem("state_value", JSON.stringify(state_name));
+}
+
+function setdepartmentvalue(department_name) {
+  localStorage.setItem("department_name", JSON.stringify(department_name));
 }
