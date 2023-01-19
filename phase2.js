@@ -138,7 +138,9 @@ $("#university_section").on("click", function (e) {
 
         if (counter_append === 0) {
           $("#w-dropdown-list-0").html(
-            "<a href='#' class='w-dropdown-link' tabindex='0'>ALL</a><a href='#' class='w-dropdown-link' tabindex='0'>" +
+            "<a href='#' class='w-dropdown-link' tabindex='0'>ALL</a><a href='#' class='w-dropdown-link' tabindex='0' onclick='setstatevalue(" +
+              statesdata.name +
+              ");>" +
               statesdata.name +
               "</a>"
           );
@@ -202,5 +204,11 @@ $("#submit_university_program_button").on("click", function (e) {
 
 $("#add_university_button").on("click", function (e) {
   e.preventDefault();
-  console.log("hello there");
+  var errors = "";
+  $("#errors").html("");
+  //   var email = $("#email").val();
 });
+
+function setstatevalue($state_name) {
+  console.log("function call");
+}
