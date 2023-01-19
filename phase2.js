@@ -139,7 +139,7 @@ $("#university_section").on("click", function (e) {
 
         if (counter_append === 0) {
           $("#w-dropdown-list-0").html(
-            "<a href='#' class='w-dropdown-link' tabindex='0'  onclick='setstatevalue(\"ALL\")'>ALL</a><a href='#' class='w-dropdown-link' tabindex='0' onclick='setstatevalue(\"" +
+            "<a href='#' class='w-dropdown-link' tabindex='0'  onclick='setstatevalue(\"ALL\")>ALL</a><a href='#' class='w-dropdown-link' tabindex='0' onclick='setstatevalue(\"" +
               statesdata.name +
               "\")'>" +
               statesdata.name +
@@ -216,7 +216,7 @@ $("#add_university_button").on("click", function (e) {
 
   var state_value = localStorage.getItem("state_value");
   var department_name = localStorage.getItem("department_name");
-  var univeristy_name = $("#Type-name-of-University").val();
+  var univeristy_name = $("# Type-name-of-University").val();
   let univeristy_object = {
     state_info: state_value,
     department_info: department_name,
