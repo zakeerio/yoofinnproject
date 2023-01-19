@@ -122,7 +122,9 @@ $(document).ready(function () {
   });
   const element = $("#user_name");
   const textToReplace = element.text();
+  console.log(displayName + "displayName");
   if (displayName != null) {
+    console.log("here");
     const newText = textToReplace.replace("John", displayName);
     element.text(newText);
   }
