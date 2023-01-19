@@ -198,5 +198,9 @@ $(function () {
 $("#submit_university_program_button").on("click", function (e) {
   let states_array = [];
   e.preventDefault();
+});
+
+$("#add_university_button").on("click", function (e) {
+  e.preventDefault();
   console.log("hello there");
 });
