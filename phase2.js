@@ -243,7 +243,7 @@ $("#add_university_button").on("click", function (e) {
 $("#submit_university_program_button").on("click", function (e) {
   let states_array = [];
   e.preventDefault();
-  let useruniversity = univeristy_array;
+  let useruniversity = { university: univeristy_array };
   var userdatacheck = localStorage.getItem("userfbdata");
   let userdata = JSON.parse(userdatacheck);
   console.log(userdata.ID + "userdatacheck.uid");
