@@ -104,7 +104,7 @@ $(document).ready(function () {
 
       localStorage.setItem("userdata", JSON.stringify(user));
 
-      let displayName = user.displayName;
+      let displayName = user.Fname;
       if (displayName != null) {
         displayname = displayName;
       } else {
