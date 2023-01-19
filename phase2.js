@@ -83,11 +83,12 @@ $(document).ready(function () {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       // User is signed in.
-      var displayName = user.displayName;
+      let displayName = user.displayName;
       var uid = user.uid;
-      var displayname = "John";
       if (displayName != null) {
         displayname = displayName;
+      } else {
+        displayname = "John";
       }
 
       // $("#user_name").text(displayname);
