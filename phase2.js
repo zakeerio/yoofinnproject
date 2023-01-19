@@ -109,6 +109,8 @@ $(document).ready(function () {
 
           //   $("#user_name").html().replace("John", displayName);
 
+          $("#user_name").text("displayName");
+
           let div_content = $("#user_name").text();
           console.log(div_content + " div content ");
         });
