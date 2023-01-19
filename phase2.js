@@ -113,7 +113,7 @@ $(document).ready(function () {
           if (displayName != null) {
             console.log("here");
             const newText = textToReplace.replace("John", displayName);
-            element.text(newText);
+            //    element.text(newText);
           }
         });
 
