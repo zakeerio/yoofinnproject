@@ -245,7 +245,7 @@ $("#submit_university_program_button").on("click", function (e) {
   e.preventDefault();
   let useruniversity = univeristy_array;
   var userdatacheck = localStorage.getItem("userfbdata");
-  //   console.log(userdatacheck.uid + "userdatacheck.uid");
+  console.log(userdatacheck + "userdatacheck.uid");
   db.collection("Users")
     .doc(userdatacheck.ID)
     .update(useruniversity)
