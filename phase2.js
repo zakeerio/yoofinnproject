@@ -109,9 +109,6 @@ $(document).ready(function () {
             student_user_name_div_text = "👋 Hi " + displayName + ",";
           }
           $("#student_user_name").text(student_user_name_div_text);
-
-          let div_content = $("#student_user_name").text();
-          console.log(div_content + " div content ");
         });
 
       localStorage.setItem("userdata", JSON.stringify(user));
