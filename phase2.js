@@ -85,9 +85,9 @@ $(document).ready(function () {
       // User is signed in.
       var displayName = user.displayName;
       var uid = user.uid;
-      var displayname = "Hi John";
+      var displayname = "John";
       if (displayName != null) {
-        displayname = "Hi" + displayName;
+        displayname = displayName;
       }
 
       // $("#user_name").text(displayname);
@@ -120,6 +120,12 @@ $(document).ready(function () {
       console.log("user logged out!");
     }
   });
+  const element = $("#user_name");
+  const textToReplace = element.text();
+  if (displayName != null) {
+    const newText = textToReplace.replace("John", displayName);
+    element.text(newText);
+  }
 });
 
 $("#university_section").on("click", function (e) {
