@@ -263,6 +263,14 @@ $("#submit_university_program_button").on("click", function (e) {
   localStorage.setItem("university_section_status", true);
 });
 
+$("#add_values_button").on("click", function (e) {
+  let states_array = [];
+  e.preventDefault();
+
+  let rotc_values = $('input[name="radio"]:checked').val();
+  console.log(rotc_values + "rotc_values");
+});
+
 function setstatevalue(state_name) {
   localStorage.setItem("state_value", JSON.stringify(state_name));
 }
