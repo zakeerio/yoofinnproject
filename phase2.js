@@ -289,7 +289,6 @@ $("#submit_university_program_button").on("click", function (e) {
           );
         }
         abortion_access_counter_append = abortion_access_counter_append + 1;
-        // console.log(abortionaccessdata + "abortionaccessdata");
       });
     });
 
@@ -302,7 +301,9 @@ $("#submit_university_program_button").on("click", function (e) {
         let result = text.toLowerCase();
         if (ethnicity_counter_append === 0) {
           $("#w-dropdown-list-2").html(
-            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+            "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setethnicityvalue(\"" +
+              result +
+              "\")'>" +
               ethnicitydata.ethnicity_type +
               "</a>"
           );
@@ -368,4 +369,9 @@ function setstatevalue(state_name) {
 function setdepartmentvalue(department_name) {
   localStorage.setItem("department_name", JSON.stringify(department_name));
   $("#department_value_block_text").html(department_name);
+}
+
+function setethnicityvalue(ethnicity_type) {
+  localStorage.setItem("ethnicity_type", JSON.stringify(ethnicity_type));
+  //$("#state_value_text_block").html(state_name);
 }
