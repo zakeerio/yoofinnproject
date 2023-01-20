@@ -267,7 +267,7 @@ $("#submit_university_program_button").on("click", function (e) {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         abortionaccessdata = doc.data();
-        console.log(abortionaccessdata + "abortionaccessdata");
+        console.log(abortionaccessdata.type + "abortionaccessdata");
       });
     });
 });
