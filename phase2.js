@@ -290,6 +290,17 @@ $("#submit_university_program_button").on("click", function (e) {
         // console.log(abortionaccessdata + "abortionaccessdata");
       });
     });
+
+  db.collection("Ethnicity")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        ethnicitydata = doc.data();
+        console.log(ethnicitydata + "ethnicitydata");
+        let text = ethnicitydata.ethnicity_type;
+        let result = text.toLowerCase();
+      });
+    });
 });
 
 $("#add_values_button").on("click", function (e) {
