@@ -268,17 +268,26 @@ $("#submit_university_program_button").on("click", function (e) {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         abortionaccessdata = doc.data();
-        // if (abortion_access_counter_append === 0) {
-        //   $("#abortion_access_parent_div").html(
-        //     "<label class='radio-button-field-3 w-radio'><input type='radio' data-name='Radio 3' id='radio-3' name='radio-3' value='" +
-        //       abortionaccessdata.ID +
-        //       "' class='w-form-formradioinput radio-button-4 w-radio-input'><span class='radio-btn-text w-form-label' for='radio-3'>" +
-        //       abortionaccessdata.type +
-        //       "</span></label>"
-        //   );
-        // } else {
-        // }
-        console.log(JSON.stringify(abortionaccessdata) + "abortionaccessdata");
+        let text = abortionaccessdata.type;
+        let result = text.toLowerCase();
+        if (abortion_access_counter_append === 0) {
+          $("#abortion_access_parent_div").html(
+            "<label class='radio-button-field-3 w-radio'><input type='radio' data-name='Radio 3' id='radio-3' name='radio-3' value='" +
+              result +
+              "' class='w-form-formradioinput radio-button-4 w-radio-input'><span class='radio-btn-text w-form-label' for='radio-3'>" +
+              abortionaccessdata.type +
+              "</span></label>"
+          );
+        } else {
+          $("#abortion_access_parent_div").append(
+            "<label class='radio-btn-no w-radio'><input type='radio' data-name='Radio 3' id='radio-3' name='radio-3' value='" +
+              result +
+              "' class='w-form-formradioinput radio-button-4 w-radio-input'><span class='radio-btn-text w-form-label' for='radio-3'>" +
+              abortionaccessdata.type +
+              "</span></label>"
+          );
+        }
+        // console.log(abortionaccessdata + "abortionaccessdata");
       });
     });
 });
