@@ -246,6 +246,7 @@ $("#add_university_button").on("click", function (e) {
 });
 $("#submit_university_program_button").on("click", function (e) {
   let states_array = [];
+  let abortion_access_counter_append = 0;
   e.preventDefault();
   let useruniversity = { university: univeristy_array };
   var userdatacheck = localStorage.getItem("userfbdata");
@@ -267,7 +268,17 @@ $("#submit_university_program_button").on("click", function (e) {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         abortionaccessdata = doc.data();
-        console.log(abortionaccessdata.type + "abortionaccessdata");
+        // if (abortion_access_counter_append === 0) {
+        //   $("#abortion_access_parent_div").html(
+        //     "<label class='radio-button-field-3 w-radio'><input type='radio' data-name='Radio 3' id='radio-3' name='radio-3' value='" +
+        //       abortionaccessdata.ID +
+        //       "' class='w-form-formradioinput radio-button-4 w-radio-input'><span class='radio-btn-text w-form-label' for='radio-3'>" +
+        //       abortionaccessdata.type +
+        //       "</span></label>"
+        //   );
+        // } else {
+        // }
+        console.log(abortionaccessdata.ID + "abortionaccessdata");
       });
     });
 });
