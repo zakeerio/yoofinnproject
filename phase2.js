@@ -304,6 +304,10 @@ $(document).on("input change", "#ethnicity_range", function () {
   console.log("value changed");
   localStorage.setItem("ethnicity_range", $(this).val());
 });
+$(document).on("input change", "#religion_range", function () {
+  console.log("value changed religion_range");
+  localStorage.setItem("religion_range", $(this).val());
+});
 
 function setstatevalue(state_name) {
   localStorage.setItem("state_value", JSON.stringify(state_name));
