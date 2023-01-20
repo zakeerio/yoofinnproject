@@ -214,8 +214,8 @@ $("#add_university_button").on("click", function (e) {
   var errors = "";
   $("#errors").html("");
 
-  var state_value = localStorage.getItem("state_value");
-  var department_name = localStorage.getItem("department_name");
+  var state_value = JSON.parse(localStorage.getItem("state_value"));
+  var department_name = JSON.parse(localStorage.getItem("department_name"));
   var univeristy_name = $("#Type-name-of-University").val();
   if (!state_value) {
     state_value = "ALL";
@@ -233,18 +233,7 @@ $("#add_university_button").on("click", function (e) {
   };
   univeristy_array.push(univeristy_object);
 
-  // let univeristy_div_to_append =
-  //   "<div class='university_list'><a href='#' class='anchor-img w-inline-block'><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63c83b23bcdbf2331f6d0cc2_Vector%20(20).svg' loading='lazy' alt=''></a><div class='heading-14'>" +
-  //   univeristy_name +
-  //   "</div><div class='tittle-flex'><div class='heading-12'>" +
-  //   department_name +
-  //   "</div><div class='heading-12 blod-700'>" +
-  //   state_value +
-  //   "</div></div></div>";
-
-  console.log(univeristy_name + "univeristy_name");
-
-  $("#univeristy_lissting").html(
+  $("#univeristy_lissting").append(
     "<div class='university_list'><a href='#' class='anchor-img w-inline-block'><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63c83b23bcdbf2331f6d0cc2_Vector%20(20).svg' loading='lazy' alt=''></a><div class='heading-14'>" +
       univeristy_name +
       "</div><div class='tittle-flex'><div class='heading-12'>" +
