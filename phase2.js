@@ -309,7 +309,9 @@ $("#submit_university_program_button").on("click", function (e) {
           );
         } else {
           $("#w-dropdown-list-2").append(
-            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+            "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setethnicityvalue(\"" +
+              result +
+              "\")'>" +
               ethnicitydata.ethnicity_type +
               "</a>"
           );
@@ -323,18 +325,22 @@ $("#submit_university_program_button").on("click", function (e) {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         religiondata = doc.data();
-        let text = religiondata.name;
-        let result = text.toLowerCase();
+        let text1 = religiondata.name;
+        let result1 = text1.toLowerCase();
 
         if (religion_counter_append === 0) {
           $("#w-dropdown-list-3").html(
-            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+            "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setreligionvalue(\"" +
+              result1 +
+              "\")'>" +
               religiondata.name +
               "</a>"
           );
         } else {
           $("#w-dropdown-list-3").append(
-            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+            "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setreligionvalue(\"" +
+              result1 +
+              "\")'>" +
               religiondata.name +
               "</a>"
           );
@@ -374,4 +380,9 @@ function setdepartmentvalue(department_name) {
 function setethnicityvalue(ethnicity_type) {
   localStorage.setItem("ethnicity_type", JSON.stringify(ethnicity_type));
   $("#ethnicity_value_text_block").html(ethnicity_type);
+}
+
+function setreligionvalue(religion_name) {
+  localStorage.setItem("religion_name", JSON.stringify(religion_name));
+  $("#religion_value_text_block").html(religion_name);
 }
