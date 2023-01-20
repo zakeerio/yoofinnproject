@@ -261,6 +261,15 @@ $("#submit_university_program_button").on("click", function (e) {
   $("#registration_screen_0").addClass("hide");
   $("#registration_screen_1").removeClass("hide");
   localStorage.setItem("university_section_status", true);
+
+  db.collection("AbortionAccess")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        abortionaccessdata = doc.data();
+        console.log(abortionaccessdata + "abortionaccessdata");
+      });
+    });
 });
 
 $("#add_values_button").on("click", function (e) {
