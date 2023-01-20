@@ -278,7 +278,7 @@ $("#submit_university_program_button").on("click", function (e) {
         //   );
         // } else {
         // }
-        console.log(abortionaccessdata.ID + "abortionaccessdata");
+        console.log(abortionaccessdata + "abortionaccessdata");
       });
     });
 });
