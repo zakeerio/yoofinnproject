@@ -248,6 +248,7 @@ $("#submit_university_program_button").on("click", function (e) {
   let states_array = [];
   let abortion_access_counter_append = 0;
   let ethnicity_counter_append = 0;
+  let religion_counter_append = 0;
   e.preventDefault();
   let useruniversity = { university: univeristy_array };
   var userdatacheck = localStorage.getItem("userfbdata");
@@ -314,6 +315,31 @@ $("#submit_university_program_button").on("click", function (e) {
           );
         }
         ethnicity_counter_append = ethnicity_counter_append + 1;
+      });
+    });
+
+  db.collection("Religion")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        religiondata = doc.data();
+        let text = religiondata.name;
+        let result = text.toLowerCase();
+
+        if (religion_counter_append === 0) {
+          $("#w-dropdown-list-3").html(
+            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+              religiondata.name +
+              "</a>"
+          );
+        } else {
+          $("#w-dropdown-list-3").append(
+            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+              religiondata.name +
+              "</a>"
+          );
+        }
+        religion_counter_append = religion_counter_append + 1;
       });
     });
 });
