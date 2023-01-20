@@ -247,6 +247,7 @@ $("#add_university_button").on("click", function (e) {
 $("#submit_university_program_button").on("click", function (e) {
   let states_array = [];
   let abortion_access_counter_append = 0;
+  let ethnicity_counter_append = 0;
   e.preventDefault();
   let useruniversity = { university: univeristy_array };
   var userdatacheck = localStorage.getItem("userfbdata");
@@ -287,6 +288,7 @@ $("#submit_university_program_button").on("click", function (e) {
               "</span></label>"
           );
         }
+        abortion_access_counter_append = abortion_access_counter_append + 1;
         // console.log(abortionaccessdata + "abortionaccessdata");
       });
     });
@@ -296,9 +298,21 @@ $("#submit_university_program_button").on("click", function (e) {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         ethnicitydata = doc.data();
-        console.log(ethnicitydata + "ethnicitydata");
         let text = ethnicitydata.ethnicity_type;
         let result = text.toLowerCase();
+        if (ethnicity_counter_append === 0) {
+          $("#w-dropdown-list-2").html(
+            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+              ethnicitydata.ethnicity_type +
+              "</a>"
+          );
+        } else {
+          $("#w-dropdown-list-2").append(
+            "<a href='#' class='w-dropdown-link' tabindex='0'>" +
+              ethnicitydata.ethnicity_type +
+              "</a>"
+          );
+        }
       });
     });
 });
