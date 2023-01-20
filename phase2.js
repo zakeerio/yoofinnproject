@@ -313,6 +313,7 @@ $("#submit_university_program_button").on("click", function (e) {
               "</a>"
           );
         }
+        ethnicity_counter_append = ethnicity_counter_append + 1;
       });
     });
 });
