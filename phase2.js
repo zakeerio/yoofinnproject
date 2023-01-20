@@ -297,7 +297,11 @@ $("#add_values_button").on("click", function (e) {
   e.preventDefault();
 
   let rotc_values = $('input[name="radio"]:checked').val();
-  console.log(rotc_values + "rotc_values");
+  let access_abortion_values = $('input[name="radio-3"]:checked').val();
+});
+
+$(document).on("input change", "#ethnicity_range", function () {
+  localStorage.setItem("ethnicity_range", $(this).val());
 });
 
 function setstatevalue(state_name) {
