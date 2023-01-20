@@ -373,5 +373,5 @@ function setdepartmentvalue(department_name) {
 
 function setethnicityvalue(ethnicity_type) {
   localStorage.setItem("ethnicity_type", JSON.stringify(ethnicity_type));
-  $("#ethnicity_value_text_block").html(state_name);
+  $("#ethnicity_value_text_block").html(ethnicity_type);
 }
