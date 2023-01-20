@@ -234,7 +234,7 @@ $("#add_university_button").on("click", function (e) {
   univeristy_array.push(univeristy_object);
 
   let univeristy_div_to_append =
-    "<div class='UniversityOf mt-4'><a href='#' class='anchor-img w-inline-block'><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63c83b23bcdbf2331f6d0cc2_Vector%20(20).svg' loading='lazy' alt=''></a><div class='heading-14'>" +
+    "<div class='university_list'><a href='#' class='anchor-img w-inline-block'><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63c83b23bcdbf2331f6d0cc2_Vector%20(20).svg' loading='lazy' alt=''></a><div class='heading-14'>" +
     univeristy_name +
     "</div><div class='tittle-flex'><div class='heading-12'>" +
     department_name +
@@ -242,7 +242,7 @@ $("#add_university_button").on("click", function (e) {
     state_value +
     "</div></div></div>";
 
-  $(".university_list").append(univeristy_div_to_append);
+  $(".univeristy_list_parent").append(univeristy_div_to_append);
 });
 $("#submit_university_program_button").on("click", function (e) {
   let states_array = [];
