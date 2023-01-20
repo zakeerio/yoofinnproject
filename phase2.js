@@ -378,6 +378,9 @@ $("#add_values_button").on("click", function (e) {
     .then(() => {
       console.log("user successfully updated!");
     });
+
+  $("#registration_screen_1").addClass("hide");
+  $("#registration_screen_2").removeClass("hide");
 });
 
 $(document).on("input change", "#ethnicity_range", function () {
