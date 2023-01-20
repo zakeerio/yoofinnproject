@@ -351,11 +351,33 @@ $("#submit_university_program_button").on("click", function (e) {
 });
 
 $("#add_values_button").on("click", function (e) {
-  let states_array = [];
   e.preventDefault();
 
   let rotc_values = $('input[name="radio"]:checked').val();
+  var ethnicity_type = JSON.parse(localStorage.getItem("ethnicity_type"));
+  var ethnicity_range = JSON.parse(localStorage.getItem("ethnicity_range"));
+  var religion_name = JSON.parse(localStorage.getItem("religion_name"));
+  var religion_range = JSON.parse(localStorage.getItem("religion_range"));
   let access_abortion_values = $('input[name="radio-3"]:checked').val();
+
+  let values_object = {
+    rotc_info: rotc_values,
+    ethnicity_type: ethnicity_type,
+    ethnicity_range: ethnicity_range,
+    religion_name: religion_name,
+    religion_range: religion_range,
+    access_abortion_info: access_abortion_values,
+  };
+
+  let uservalues = { values: values_object };
+  var userdatacheck = localStorage.getItem("userfbdata");
+  let userdata = JSON.parse(userdatacheck);
+  db.collection("Users")
+    .doc(userdata.ID)
+    .update(uservalues)
+    .then(() => {
+      console.log("user successfully updated!");
+    });
 });
 
 $(document).on("input change", "#ethnicity_range", function () {
