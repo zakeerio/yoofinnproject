@@ -301,6 +301,7 @@ $("#add_values_button").on("click", function (e) {
 });
 
 $(document).on("input change", "#ethnicity_range", function () {
+  console.log("value changed");
   localStorage.setItem("ethnicity_range", $(this).val());
 });
 
