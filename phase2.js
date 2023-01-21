@@ -1,5 +1,6 @@
 var db = firebase.firestore();
 var univeristy_array = [];
+var univeristy_counter = 0;
 
 $(document).ready(function () {
   let university_section_status = localStorage.getItem(
@@ -234,7 +235,9 @@ $("#add_university_button").on("click", function (e) {
   univeristy_array.push(univeristy_object);
 
   $("#univeristy_lissting").append(
-    "<div class='university_list'><a href='#' class='anchor-img w-inline-block'><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63c83b23bcdbf2331f6d0cc2_Vector%20(20).svg' loading='lazy' alt=''></a><div class='heading-14'>" +
+    "<div class='university_list'><a href='#' class='anchor-img w-inline-block' onclick='closeuniversitypanel(" +
+      univeristy_counter +
+      ")'><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63c83b23bcdbf2331f6d0cc2_Vector%20(20).svg' loading='lazy' alt=''></a><div class='heading-14'>" +
       univeristy_name +
       "</div><div class='tittle-flex'><div class='heading-12'>" +
       department_name +
@@ -242,6 +245,7 @@ $("#add_university_button").on("click", function (e) {
       state_value +
       "</div></div></div>"
   );
+  univeristy_counter = univeristy_counter + 1;
 });
 $("#submit_university_program_button").on("click", function (e) {
   let states_array = [];
@@ -434,4 +438,8 @@ function setethnicityvalue(ethnicity_type) {
 function setreligionvalue(religion_name) {
   localStorage.setItem("religion_name", JSON.stringify(religion_name));
   $("#religion_value_text_block").html(religion_name);
+}
+
+function closeuniversitypanel(panel_id) {
+  console.log("close command");
 }
