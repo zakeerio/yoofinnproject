@@ -382,6 +382,30 @@ $("#add_values_button").on("click", function (e) {
   $("#registration_screen_1").addClass("hide");
   $("#registration_screen_2").removeClass("hide");
 });
+$("#add_school_setting").on("click", function (e) {
+  e.preventDefault();
+
+  let school_size = $('input[name="school_size"]:checked').val();
+  let school_area = $('input[name="school_area"]:checked').val();
+
+  let school_setting_object = {
+    school_size: school_size,
+    school_area: school_area,
+  };
+
+  let schoolsettingvalues = { school_setting: school_setting_object };
+  var userdatacheck = localStorage.getItem("userfbdata");
+  let userdata = JSON.parse(userdatacheck);
+  db.collection("Users")
+    .doc(userdata.ID)
+    .update(schoolsettingvalues)
+    .then(() => {
+      console.log("user successfully updated!");
+    });
+
+  $("#registration_screen_2").addClass("hide");
+  $("#registration_screen_1").removeClass("hide");
+});
 
 $(document).on("input change", "#ethnicity_range", function () {
   console.log("value changed");
