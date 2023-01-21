@@ -404,7 +404,7 @@ $("#add_school_setting").on("click", function (e) {
     });
 
   $("#registration_screen_2").addClass("hide");
-  $("#registration_screen_1").removeClass("hide");
+  $("#registration_screen_3").removeClass("hide");
 });
 
 $(document).on("input change", "#ethnicity_range", function () {
