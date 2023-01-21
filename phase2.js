@@ -132,64 +132,66 @@ $(document).ready(function () {
 $("#university_section").on("click", function (e) {
   e.preventDefault();
 
-  $("#registration_splash_screen").addClass("hide");
-  $("#registration_screen_0").removeClass("hide");
-  let counter_append = 0;
-  let country_counter_append = 0;
+  if (university_section_status === false) {
+    $("#registration_splash_screen").addClass("hide");
+    $("#registration_screen_0").removeClass("hide");
+    let counter_append = 0;
+    let country_counter_append = 0;
 
-  db.collection("States")
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        statesdata = doc.data();
+    db.collection("States")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          statesdata = doc.data();
 
-        if (counter_append === 0) {
-          $("#w-dropdown-list-0").html(
-            "<a href='#' class='w-dropdown-link' tabindex='0'  onclick='setstatevalue(\"ALL\")>ALL</a><a href='#' class='w-dropdown-link' tabindex='0' onclick='setstatevalue(\"" +
-              statesdata.name +
-              "\")'>" +
-              statesdata.name +
-              "</a>"
-          );
-        } else {
-          $("#w-dropdown-list-0").append(
-            "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setstatevalue(\"" +
-              statesdata.name +
-              "\")'>" +
-              statesdata.name +
-              "</a>"
-          );
-        }
-        counter_append = counter_append + 1;
+          if (counter_append === 0) {
+            $("#w-dropdown-list-0").html(
+              "<a href='#' class='w-dropdown-link' tabindex='0'  onclick='setstatevalue(\"ALL\")>ALL</a><a href='#' class='w-dropdown-link' tabindex='0' onclick='setstatevalue(\"" +
+                statesdata.name +
+                "\")'>" +
+                statesdata.name +
+                "</a>"
+            );
+          } else {
+            $("#w-dropdown-list-0").append(
+              "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setstatevalue(\"" +
+                statesdata.name +
+                "\")'>" +
+                statesdata.name +
+                "</a>"
+            );
+          }
+          counter_append = counter_append + 1;
+        });
       });
-    });
 
-  db.collection("Department")
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        departmentdata = doc.data();
+    db.collection("Department")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          departmentdata = doc.data();
 
-        if (country_counter_append === 0) {
-          $("#w-dropdown-list-1").html(
-            "<a href='#' class='w-dropdown-link' tabindex='0'  onclick='setdepartmentvalue(\"ANY\")'>ANY</a><a href='#' class='w-dropdown-link' tabindex='0' onclick='setdepartmentvalue(\"" +
-              departmentdata.name +
-              "\")'>" +
-              departmentdata.name +
-              "</a>"
-          );
-        } else {
-          $("#w-dropdown-list-1").append(
-            "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setdepartmentvalue(\"" +
-              departmentdata.name +
-              "\")'>" +
-              departmentdata.name +
-              "</a>"
-          );
-        }
-        country_counter_append = country_counter_append + 1;
+          if (country_counter_append === 0) {
+            $("#w-dropdown-list-1").html(
+              "<a href='#' class='w-dropdown-link' tabindex='0'  onclick='setdepartmentvalue(\"ANY\")'>ANY</a><a href='#' class='w-dropdown-link' tabindex='0' onclick='setdepartmentvalue(\"" +
+                departmentdata.name +
+                "\")'>" +
+                departmentdata.name +
+                "</a>"
+            );
+          } else {
+            $("#w-dropdown-list-1").append(
+              "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setdepartmentvalue(\"" +
+                departmentdata.name +
+                "\")'>" +
+                departmentdata.name +
+                "</a>"
+            );
+          }
+          country_counter_append = country_counter_append + 1;
+        });
       });
-    });
+  }
 });
 
 $(function () {
