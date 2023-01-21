@@ -235,7 +235,9 @@ $("#add_university_button").on("click", function (e) {
   univeristy_array.push(univeristy_object);
 
   $("#univeristy_lissting").append(
-    "<div class='university_list'><a href='#' class='anchor-img w-inline-block' onclick='closeuniversitypanel(" +
+    "<div class='university_list' id='univeristy_" +
+      univeristy_counter +
+      "'><a href='#' class='anchor-img w-inline-block' onclick='closeuniversitypanel(" +
       univeristy_counter +
       ")'><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63c83b23bcdbf2331f6d0cc2_Vector%20(20).svg' loading='lazy' alt=''></a><div class='heading-14'>" +
       univeristy_name +
@@ -441,5 +443,5 @@ function setreligionvalue(religion_name) {
 }
 
 function closeuniversitypanel(panel_id) {
-  console.log("close command");
+  console.log(panel_id);
 }
