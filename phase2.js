@@ -446,5 +446,5 @@ function closeuniversitypanel(panel_id) {
   let panel_div_id = "univeristy_" + panel_id;
   console.log(panel_div_id);
   // $(panel_div_id).addClass("hide");
-  $("#univeristy_" + panel_id).addClass("hide");
+  $("#univeristy_0").addClass("hide");
 }
