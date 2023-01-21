@@ -443,5 +443,6 @@ function setreligionvalue(religion_name) {
 }
 
 function closeuniversitypanel(panel_id) {
-  console.log(panel_id);
+  let panel_div_id = "univeristy_" + panel_id;
+  $(panel_div_id).hide();
 }
