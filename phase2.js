@@ -131,6 +131,9 @@ $(document).ready(function () {
 
 $("#university_section").on("click", function (e) {
   e.preventDefault();
+  let university_section_status = localStorage.getItem(
+    "university_section_status"
+  );
 
   if (university_section_status === false) {
     $("#registration_splash_screen").addClass("hide");
