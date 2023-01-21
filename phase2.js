@@ -136,7 +136,10 @@ $("#university_section").on("click", function (e) {
   );
   console.log(university_section_status + "university_section_status");
 
-  if (university_section_status === false) {
+  if (
+    university_section_status === false ||
+    university_section_status === null
+  ) {
     $("#registration_splash_screen").addClass("hide");
     $("#registration_screen_0").removeClass("hide");
   }
