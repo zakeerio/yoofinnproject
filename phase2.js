@@ -443,8 +443,6 @@ function setreligionvalue(religion_name) {
 }
 
 function closeuniversitypanel(panel_id) {
-  let panel_div_id = "univeristy_" + panel_id;
-  console.log(panel_div_id);
-  // $(panel_div_id).addClass("hide");
-  $("#univeristy_0").css("display", "none");
+  // let panel_div_id = "univeristy_" + panel_id;
+  $("#univeristy_" + panel_id).css("display", "none");
 }
