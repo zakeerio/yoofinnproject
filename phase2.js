@@ -248,6 +248,8 @@ $("#add_university_button").on("click", function (e) {
       univeristy_counter +
       "'><a href='#' class='anchor-img w-inline-block' onclick='closeuniversitypanel(" +
       univeristy_counter +
+      "_" +
+      univeristy_name +
       ")'><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63c83b23bcdbf2331f6d0cc2_Vector%20(20).svg' loading='lazy' alt=''></a><div class='heading-14'>" +
       univeristy_name +
       "</div><div class='tittle-flex'><div class='heading-12'>" +
@@ -452,6 +454,17 @@ function setreligionvalue(religion_name) {
 }
 
 function closeuniversitypanel(panel_id) {
+  console.log(panel_id);
   // let panel_div_id = "univeristy_" + panel_id;
-  $("#univeristy_" + panel_id).css("display", "none");
+  // $("#univeristy_" + panel_id).css("display", "none");
+
+  // const index = univeristy_array.findIndex(
+  //   (item) => item._id.toString() === template_configuration_id
+
+  // );
+
+  // if (index > -1) {
+  //   // only splice array when item is found
+  //   template_array.splice(index, 1); // 2nd parameter means remove one item only
+  // }
 }
