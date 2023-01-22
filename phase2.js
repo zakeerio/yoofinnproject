@@ -247,8 +247,6 @@ $("#add_university_button").on("click", function (e) {
     "<div class='university_list' id='univeristy_" +
       univeristy_counter +
       "'><a href='#' class='anchor-img w-inline-block' onclick='closeuniversitypanel(" +
-      univeristy_name +
-      "_" +
       univeristy_counter +
       +")'><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63c83b23bcdbf2331f6d0cc2_Vector%20(20).svg' loading='lazy' alt=''></a><div class='heading-14'>" +
       univeristy_name +
