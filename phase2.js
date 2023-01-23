@@ -511,7 +511,7 @@ function get_the_data(career, salary, growth) {
     career = "";
   }
   if (salary === undefined) {
-    salary = "";
+    salary = "average";
   }
   if (growth === undefined) {
     growth = true;
@@ -551,6 +551,7 @@ function get_the_data(career, salary, growth) {
 
         career_counter = career_counter + 1;
       });
+      career_array = [];
     });
 }
 
