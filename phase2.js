@@ -499,7 +499,7 @@ function get_the_data(career, salary, growth) {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         careerdata = doc.data();
-        console.log(careerdata + "universitydata");
+        console.log(careerdata.title + "universitydata");
         // career_array.push(careerdata.title);
       });
       // console.log(career_array);
@@ -512,4 +512,18 @@ $("#Type-name-of-University-2").on("change", function () {
   let growth_button = $('input[name="growth_button"]:checked').val();
 
   get_the_data(career_text, Salary_button, growth_button);
+});
+
+$("input[type=radio][name=Salary_button]").change(function () {
+  var career_text_1 = $("#Type-name-of-University-2").val();
+  let Salary_button_1 = $(this).val();
+  let growth_button_1 = $('input[name="growth_button"]:checked').val();
+  get_the_data(career_text_1, Salary_button_1, growth_button_1);
+});
+
+$("input[type=radio][name=growth_button]").change(function () {
+  var career_text_2 = $("#Type-name-of-University-2").val();
+  let Salary_button_2 = $('input[name="Salary_button"]:checked').val();
+  let growth_button_2 = $(this).val();
+  get_the_data(career_text_2, Salary_button_2, growth_button_2);
 });
