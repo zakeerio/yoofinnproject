@@ -493,7 +493,17 @@ function closeuniversitypanel(panel_id) {
 }
 
 function get_the_data(career, salary, growth) {
-  console.log("here");
+  db.collection("Career")
+    .where("title", "==", career)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        careerdata = doc.data();
+        console.log(careerdata + "universitydata");
+        // career_array.push(careerdata.title);
+      });
+      // console.log(career_array);
+    });
 }
 
 $("#Type-name-of-University-2").on("change", function () {
