@@ -457,18 +457,17 @@ function setreligionvalue(religion_name) {
 
 function closeuniversitypanel(panel_id) {
   // let panel_div_id = "univeristy_" + panel_id;
-  console.log(panel_id);
+
   let [university_key, panelid] = panel_id.split("-");
-  console.log(university_key);
   const replaced = university_key.replaceAll("_", " ");
-  console.log(replaced);
+
   $("#univeristy_" + panelid).css("display", "none");
 
-  // const index = univeristy_array.findIndex(
-  //   (item) => item._id.toString() === template_configuration_id
+  const index = univeristy_array.findIndex(
+    (item) => item.university_info === replaced
+  );
 
-  // );
-
+  console.log(index);
   // if (index > -1) {
   //   // only splice array when item is found
   //   template_array.splice(index, 1); // 2nd parameter means remove one item only
