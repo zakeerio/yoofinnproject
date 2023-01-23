@@ -465,6 +465,8 @@ function setstatevalue(state_name) {
 function setdepartmentvalue(department_name) {
   localStorage.setItem("department_name", JSON.stringify(department_name));
   $("#department_value_block_text").html(department_name);
+  $("#w-dropdown-toggle-1").removeClass("w--open");
+  $("#w-dropdown-list-1").removeClass("w--open");
 }
 
 function setethnicityvalue(ethnicity_type) {
