@@ -506,6 +506,17 @@ function get_the_data(career, salary, growth) {
   console.log(career + "career");
   console.log(salary + "Salary");
   console.log(growth + "growth");
+
+  if (career === undefined) {
+    career = "";
+  }
+  if (salary === undefined) {
+    salary = "";
+  }
+  if (growth === undefined) {
+    growth = true;
+  }
+
   db.collection("Career")
     .where("title", "==", career)
     .where("salary", "==", salary)
@@ -524,6 +535,7 @@ function get_the_data(career, salary, growth) {
           : "";
 
         var index_of_career = career_array.indexOf(career_title);
+        console.log(career_array);
 
         if (index_of_career > -1) {
         } else {
