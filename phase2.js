@@ -452,6 +452,11 @@ $(document).on("input change", "#religion_range", function () {
   console.log("value changed religion_range");
   localStorage.setItem("religion_range", $(this).val());
 });
+$("#Type-name-of-University-2").on("change", function () {
+  var value = $(this).val();
+  //Demo(value); //pass the value as paramter
+  console.log("the value chanee is here");
+});
 
 function setstatevalue(state_name) {
   localStorage.setItem("state_value", JSON.stringify(state_name));
@@ -490,4 +495,8 @@ function closeuniversitypanel(panel_id) {
     univeristy_array.splice(index, 1); // 2nd parameter means remove one item only
   }
   console.log(univeristy_array + "after");
+}
+
+function get_the_data(career, salary, growth) {
+  console.log("here");
 }
