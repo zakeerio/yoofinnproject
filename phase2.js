@@ -1,5 +1,6 @@
 var db = firebase.firestore();
 var univeristy_array = [];
+let career_array = [];
 var univeristy_counter = 0;
 var career_counter = 0;
 
@@ -500,7 +501,6 @@ function get_the_data(career, salary, growth) {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         careerdata = doc.data();
-        console.log(careerdata.title + "universitydata");
         let career_title = careerdata.title;
         let career_name_with_space = career_title.split(" ");
         let half_name = career_name_with_space[0]
@@ -510,13 +510,20 @@ function get_the_data(career, salary, growth) {
           ? career_name_with_space[1]
           : "";
 
-        $("#career_parent_list").append(
-          "<div class='training flex'><div class='results'><div class='social-heading16 mb'><span class='light-sky-blue'>" +
-            half_name +
-            "</span>" +
-            last_name +
-            "</div></div><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt=''></div>"
-        );
+        var index_of_career = career_array.indexOf(career_title);
+
+        if (index_of_career > -1) {
+        } else {
+          $("#career_parent_list").append(
+            "<div class='training flex'><div class='results'><div class='social-heading16 mb'><span class='light-sky-blue'>" +
+              half_name +
+              "</span>" +
+              last_name +
+              "</div></div><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt=''></div>"
+          );
+          career_array.push(career_title);
+        }
+
         career_counter = career_counter + 1;
       });
     });
