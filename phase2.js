@@ -467,9 +467,10 @@ function closeuniversitypanel(panel_id) {
     (item) => item.university_info === replaced
   );
 
-  console.log(index);
-  // if (index > -1) {
-  //   // only splice array when item is found
-  //   template_array.splice(index, 1); // 2nd parameter means remove one item only
-  // }
+  console.log(univeristy_array + "before");
+  if (index > -1) {
+    // only splice array when item is found
+    univeristy_array.splice(index, 1); // 2nd parameter means remove one item only
+  }
+  console.log(univeristy_array + "after");
 }
