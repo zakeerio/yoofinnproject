@@ -452,11 +452,6 @@ $(document).on("input change", "#religion_range", function () {
   console.log("value changed religion_range");
   localStorage.setItem("religion_range", $(this).val());
 });
-$("#Type-name-of-University-2").on("change", function () {
-  var value = $(this).val();
-  //Demo(value); //pass the value as paramter
-  console.log("the value chanee is here");
-});
 
 function setstatevalue(state_name) {
   localStorage.setItem("state_value", JSON.stringify(state_name));
@@ -500,3 +495,11 @@ function closeuniversitypanel(panel_id) {
 function get_the_data(career, salary, growth) {
   console.log("here");
 }
+
+$("#Type-name-of-University-2").on("change", function () {
+  var career_text = $(this).val();
+  let Salary_button = $('input[name="Salary_button"]:checked').val();
+  let growth_button = $('input[name="growth_button"]:checked').val();
+
+  get_the_data(career_text, Salary_button, growth_button);
+});
