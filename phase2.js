@@ -502,13 +502,19 @@ function get_the_data(career, salary, growth) {
         careerdata = doc.data();
         console.log(careerdata.title + "universitydata");
         let career_title = careerdata.title;
-        let career_name_with_space = career_title.split("-");
+        let career_name_with_space = career_title.split(" ");
+        let half_name = career_name_with_space[0]
+          ? career_name_with_space[0]
+          : "";
+        let last_name = career_name_with_space[1]
+          ? career_name_with_space[1]
+          : "";
 
         $("#career_parent_list").append(
           "<div class='training flex'><div class='results'><div class='social-heading16 mb'><span class='light-sky-blue'>" +
-            career_name_with_space[0] +
+            half_name +
             "</span>" +
-            career_name_with_space[1] +
+            last_name +
             "</div></div><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt=''></div>"
         );
         career_counter = career_counter + 1;
