@@ -460,8 +460,9 @@ function closeuniversitypanel(panel_id) {
   console.log(panel_id);
   let [university_key, panelid] = panel_id.split("-");
   console.log(university_key);
-  console.log(panelid);
-  $("#univeristy_" + panel_id).css("display", "none");
+  const replaced = university_key.replaceAll("_", " ");
+  console.log(replaced);
+  $("#univeristy_" + panelid).css("display", "none");
 
   // const index = univeristy_array.findIndex(
   //   (item) => item._id.toString() === template_configuration_id
