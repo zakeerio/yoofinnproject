@@ -458,6 +458,8 @@ $(document).on("input change", "#religion_range", function () {
 function setstatevalue(state_name) {
   localStorage.setItem("state_value", JSON.stringify(state_name));
   $("#state_value_text_block").html(state_name);
+  $("#w-dropdown-toggle-0").removeClass("w--open");
+  $("#w-dropdown-list-0").removeClass("w--open");
 }
 
 function setdepartmentvalue(department_name) {
