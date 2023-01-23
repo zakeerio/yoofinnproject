@@ -472,11 +472,15 @@ function setdepartmentvalue(department_name) {
 function setethnicityvalue(ethnicity_type) {
   localStorage.setItem("ethnicity_type", JSON.stringify(ethnicity_type));
   $("#ethnicity_value_text_block").html(ethnicity_type);
+  $("#w-dropdown-toggle-2").removeClass("w--open");
+  $("#w-dropdown-list-2").removeClass("w--open");
 }
 
 function setreligionvalue(religion_name) {
   localStorage.setItem("religion_name", JSON.stringify(religion_name));
   $("#religion_value_text_block").html(religion_name);
+  $("#w-dropdown-toggle-3").removeClass("w--open");
+  $("#w-dropdown-list-3").removeClass("w--open");
 }
 
 function closeuniversitypanel(panel_id) {
