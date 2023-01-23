@@ -503,6 +503,9 @@ function closeuniversitypanel(panel_id) {
 }
 
 function get_the_data(career, salary, growth) {
+  console.log(career + "career");
+  console.log(salary + "Salary");
+  console.log(growth + "growth");
   db.collection("Career")
     .where("title", "==", career)
     .where("salary", "==", salary)
