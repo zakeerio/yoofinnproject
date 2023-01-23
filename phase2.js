@@ -402,6 +402,7 @@ $("#add_values_button").on("click", function (e) {
   $("#registration_screen_2").removeClass("hide");
 });
 $("#add_school_setting").on("click", function (e) {
+  let career_array = [];
   e.preventDefault();
 
   let school_size = $('input[name="school_size"]:checked').val();
@@ -421,6 +422,21 @@ $("#add_school_setting").on("click", function (e) {
     .then(() => {
       console.log("user successfully updated!");
     });
+
+  db.collection("Career")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        careerdata = doc.data();
+        console.log(careerdata + "universitydata");
+        career_array.push(careerdata.title);
+      });
+      console.log(career_array);
+    });
+
+  $("#Type-name-of-University-2").autocomplete({
+    source: career_array,
+  });
 
   $("#registration_screen_2").addClass("hide");
   $("#registration_screen_3").removeClass("hide");
@@ -466,7 +482,6 @@ function closeuniversitypanel(panel_id) {
   const index = univeristy_array.findIndex(
     (item) => item.university_info === replaced
   );
-
   console.log(univeristy_array + "before");
   if (index > -1) {
     // only splice array when item is found
