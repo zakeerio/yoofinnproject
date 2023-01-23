@@ -1,6 +1,7 @@
 var db = firebase.firestore();
 var univeristy_array = [];
 var univeristy_counter = 0;
+var career_counter = 0;
 
 $(document).ready(function () {
   let university_section_status = localStorage.getItem(
@@ -500,9 +501,18 @@ function get_the_data(career, salary, growth) {
       querySnapshot.forEach((doc) => {
         careerdata = doc.data();
         console.log(careerdata.title + "universitydata");
-        // career_array.push(careerdata.title);
+        let career_title = careerdata.title;
+        let career_name_with_space = career_title.split("-");
+
+        $("#career_parent_list").append(
+          "<div class='training flex'><div class='results'><div class='social-heading16 mb'><span class='light-sky-blue'>" +
+            career_name_with_space[0] +
+            "</span>" +
+            career_name_with_space[1] +
+            "</div></div><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt=''></div>"
+        );
+        career_counter = career_counter + 1;
       });
-      // console.log(career_array);
     });
 }
 
