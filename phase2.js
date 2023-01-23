@@ -458,7 +458,7 @@ function setreligionvalue(religion_name) {
 function closeuniversitypanel(panel_id) {
   // let panel_div_id = "univeristy_" + panel_id;
   console.log(panel_id);
-  let [university_key, panelid] = input.split("-");
+  let [university_key, panelid] = panel_id.split("-");
   console.log(university_key);
   console.log(panelid);
   $("#univeristy_" + panel_id).css("display", "none");
