@@ -502,6 +502,10 @@ function closeuniversitypanel(panel_id) {
   console.log(univeristy_array + "after");
 }
 
+function postcareerselection(career_selection_text) {
+  console.log(career_selection_text + "career_selection_text");
+}
+
 function get_the_data(career, salary, growth) {
   console.log(career + "career");
   console.log(salary + "Salary");
@@ -535,7 +539,8 @@ function get_the_data(career, salary, growth) {
           : "";
 
         var index_of_career = career_array.indexOf(career_title);
-        console.log(career_array);
+
+        const replaced = career_title.replaceAll(" ", "_");
 
         if (index_of_career > -1) {
         } else {
@@ -544,7 +549,13 @@ function get_the_data(career, salary, growth) {
               half_name +
               "</span>" +
               last_name +
-              "</div></div><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt=''></div>"
+              "</div></div><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt='' onclick='postcareerselection(\"" +
+              replaced +
+              "-" +
+              salary +
+              +"-" +
+              growth +
+              "\")' ></div>"
           );
           career_array.push(career_title);
         }
