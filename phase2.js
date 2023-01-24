@@ -449,13 +449,19 @@ $("#add_school_setting").on("click", function (e) {
 $("#add_career_button").on("click", function (e) {
   e.preventDefault();
 
-  var career_info = JSON.parse(localStorage.getItem("career_info"));
-  var salary_info = JSON.parse(localStorage.getItem("salary_info"));
-  var growth_info = JSON.parse(localStorage.getItem("growth_info"));
+  var career_info = JSON.parse(
+    JSON.stringify(localStorage.getItem("career_info"))
+  );
+  var salary_info = JSON.parse(
+    JSON.stringify(localStorage.getItem("salary_info"))
+  );
+  var growth_info = JSON.parse(
+    JSON.stringify(localStorage.getItem("growth_info"))
+  );
 
-  console.log(career_info + "career_info storage");
-  console.log(salary_info + "salary_info storage");
-  console.log(growth_info + "growth_info storage");
+  // console.log(career_info + "career_info storage");
+  // console.log(salary_info + "salary_info storage");
+  // console.log(growth_info + "growth_info storage");
 
   if (career_info === undefined || career_info === "undefined") {
     career_info = "";
