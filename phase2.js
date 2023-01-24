@@ -568,8 +568,8 @@ function get_the_data(career, salary, growth) {
 
   db.collection("Career")
     .where("title", "==", career)
-    .where("salary", "==", salary)
-    .where("growth_careers", "==", growth)
+    .where("salary", "==", salary_Value)
+    .where("growth_careers", "==", growth_value)
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
