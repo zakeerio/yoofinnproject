@@ -594,6 +594,9 @@ function postcareerselection(career_selection_text) {
 function get_the_data(career, salary, growth) {
   let growth_value;
   let salary_Value;
+  console.log(career);
+  console.log(salary);
+  console.log(growth);
   let q = db.collection("Career");
 
   if (career && career !== undefined && career !== "undefined") {
