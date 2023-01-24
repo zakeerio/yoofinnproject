@@ -493,6 +493,7 @@ $("#add_career_button").on("click", function (e) {
 
 $("#splash_help_button").on("click", function (e) {
   e.preventDefault();
+  console.log("here to the splash help");
 
   $("#registration_screen_0").addClass("hide");
   $("#help_page").removeClass("hide");
