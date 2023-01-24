@@ -453,6 +453,16 @@ $("#add_career_button").on("click", function (e) {
   var salary_info = JSON.parse(localStorage.getItem("salary_info"));
   var growth_info = JSON.parse(localStorage.getItem("growth_info"));
 
+  if (career_info === undefined) {
+    career_info = "";
+  }
+  if (salary_info === undefined) {
+    salary_info = "";
+  }
+  if (growth_info === undefined) {
+    growth_info = "";
+  }
+
   let career_object = {
     career_info: career_info,
     salary_info: salary_info,
