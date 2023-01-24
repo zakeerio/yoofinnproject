@@ -495,7 +495,7 @@ $("#splash_help_button").on("click", function (e) {
   e.preventDefault();
   console.log("here to the splash help");
 
-  $("#registration_screen_0").addClass("hide");
+  $("#registration_splash_screen").addClass("hide");
   $("#help_page").removeClass("hide");
   localStorage.setItem("help_call", JSON.stringify("splash"));
 });
