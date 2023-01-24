@@ -598,16 +598,16 @@ function get_the_data(career, salary, growth) {
 
   let growth_value;
   let salary_Value;
-  if (career === undefined) {
+  if (career === undefined || career === "undefined") {
     career = "";
   }
-  if (salary === undefined) {
-    salary_Value = "average";
+  if (salary === undefined || salary === "undefined") {
+    salary_Value = " ";
   } else {
     salary_Value = salary;
   }
-  if (growth === undefined) {
-    growth_value = true;
+  if (growth === undefined || growth === "undefined") {
+    growth_value = " ";
   } else {
     growth_value = growth;
   }
