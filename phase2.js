@@ -508,14 +508,14 @@ function postcareerselection(career_selection_text) {
   let career_info = career_name_with_space[0];
   let salary_info = career_name_with_space[1];
   let growth_info = career_name_with_space[2];
-  if (career_info === NAN) {
+  if (career_info === "NAN") {
     career_info = "";
   }
-  if (salary_info === NAN) {
-    salary_info = "average";
+  if (salary_info === "NAN") {
+    salary_info = " ";
   }
-  if (growth_ifo === NAN) {
-    growth_info = true;
+  if (growth_ifo === "NAN") {
+    growth_info = false;
   }
 
   console.log(career_info + "career_info");
