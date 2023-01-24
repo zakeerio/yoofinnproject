@@ -448,15 +448,9 @@ $("#add_school_setting").on("click", function (e) {
 $("#add_career_button").on("click", function (e) {
   e.preventDefault();
 
-  var career_info = JSON.parse(
-    JSON.stringify(localStorage.getItem("career_info"))
-  );
-  var salary_info = JSON.parse(
-    JSON.stringify(localStorage.getItem("salary_info"))
-  );
-  var growth_info = JSON.parse(
-    JSON.stringify(localStorage.getItem("growth_info"))
-  );
+  var career_info = localStorage.getItem("career_info");
+  var salary_info = localStorage.getItem("salary_info");
+  var growth_info = localStorage.getItem("growth_info");
 
   // console.log(career_info + "career_info storage");
   // console.log(salary_info + "salary_info storage");
@@ -594,59 +588,63 @@ function postcareerselection(career_selection_text) {
 function get_the_data(career, salary, growth) {
   let growth_value;
   let salary_Value;
-  console.log(career);
-  console.log(salary);
-  console.log(growth);
-  let q = db.collection("Career");
-
-  if (career && career !== undefined && career !== "undefined") {
-    q.where("title", "==", career);
+  if (career === undefined) {
+    career = "";
   }
-  if (salary && salary !== undefined && salary !== "undefined") {
-    q.where("salary", "==", salary_Value);
+  if (salary === undefined) {
+    salary_Value = "average";
+  } else {
+    salary_Value = salary;
   }
-  if (growth && growth !== undefined && growth !== "undefined") {
-    q.where("salary", "==", salary_Value);
+  if (growth === undefined) {
+    growth_value = true;
+  } else {
+    growth_value = growth;
   }
 
-  q.get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      careerdata = doc.data();
-      let career_title = careerdata.title;
-      let career_name_with_space = career_title.split(" ");
-      let half_name = career_name_with_space[0]
-        ? career_name_with_space[0]
-        : "";
-      let last_name = career_name_with_space[1]
-        ? career_name_with_space[1]
-        : "";
+  db.collection("Career")
+    .where("title", "==", career)
+    .where("salary", "==", salary_Value)
+    .where("growth_careers", "==", growth_value)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        careerdata = doc.data();
+        let career_title = careerdata.title;
+        let career_name_with_space = career_title.split(" ");
+        let half_name = career_name_with_space[0]
+          ? career_name_with_space[0]
+          : "";
+        let last_name = career_name_with_space[1]
+          ? career_name_with_space[1]
+          : "";
 
-      var index_of_career = career_array.indexOf(career_title);
+        var index_of_career = career_array.indexOf(career_title);
 
-      const replaced = career_title.replaceAll(" ", "_");
+        const replaced = career_title.replaceAll(" ", "_");
 
-      if (index_of_career > -1) {
-      } else {
-        $("#career_parent_list").append(
-          "<div class='training flex'><div class='results'><div class='social-heading16 mb'><span class='light-sky-blue'>" +
-            half_name +
-            "</span>" +
-            last_name +
-            "</div></div><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt='' onclick='postcareerselection(\"" +
-            replaced +
-            "-" +
-            salary_Value +
-            +"-" +
-            growth_value +
-            "\")' ></div>"
-        );
-        career_array.push(career_title);
-      }
+        if (index_of_career > -1) {
+        } else {
+          $("#career_parent_list").append(
+            "<div class='training flex'><div class='results'><div class='social-heading16 mb'><span class='light-sky-blue'>" +
+              half_name +
+              "</span>" +
+              last_name +
+              "</div></div><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt='' onclick='postcareerselection(\"" +
+              replaced +
+              "-" +
+              salary_Value +
+              +"-" +
+              growth_value +
+              "\")' ></div>"
+          );
+          career_array.push(career_title);
+        }
 
-      career_counter = career_counter + 1;
+        career_counter = career_counter + 1;
+      });
+      career_array = [];
     });
-    career_array = [];
-  });
 }
 
 $("#Type-name-of-University-2").on("change", function () {
