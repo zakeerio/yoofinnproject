@@ -592,22 +592,18 @@ function postcareerselection(career_selection_text) {
 }
 
 function get_the_data(career, salary, growth) {
-  console.log(career + "career");
-  console.log(salary + "Salary");
-  console.log(growth + "growth");
-
   let growth_value;
   let salary_Value;
-  if (career === undefined || career === "undefined") {
+  if (career === undefined) {
     career = "";
   }
-  if (salary === undefined || salary === "undefined") {
-    salary_Value = " ";
+  if (salary === undefined) {
+    salary_Value = "average";
   } else {
     salary_Value = salary;
   }
-  if (growth === undefined || growth === "undefined") {
-    growth_value = " ";
+  if (growth === undefined) {
+    growth_value = true;
   } else {
     growth_value = growth;
   }
@@ -659,8 +655,12 @@ function get_the_data(career, salary, growth) {
 
 $("#Type-name-of-University-2").on("change", function () {
   var career_text = $(this).val();
-  let Salary_button = $('input[name="Salary_button"]:checked').val();
-  let growth_button = $('input[name="growth_button"]:checked').val();
+  let Salary_button = $('input[name="Salary_button"]:checked').val()
+    ? $('input[name="Salary_button"]:checked').val()
+    : "";
+  let growth_button = $('input[name="growth_button"]:checked').val()
+    ? $('input[name="growth_button"]:checked').val()
+    : "";
 
   get_the_data(career_text, Salary_button, growth_button);
 });
