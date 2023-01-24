@@ -500,6 +500,16 @@ $("#splash_help_button").on("click", function (e) {
   localStorage.setItem("help_call", JSON.stringify("splash"));
 });
 
+$("#accept_help_button").on("click", function (e) {
+  e.preventDefault();
+  var help_call = JSON.parse(localStorage.getItem("help_call"));
+
+  if (help_call === "splash") {
+    $("#help_page").addClass("hide");
+    $("#registration_splash_screen").removeClass("hide");
+  }
+});
+
 $(document).on("input change", "#ethnicity_range", function () {
   console.log("value changed");
   localStorage.setItem("ethnicity_range", $(this).val());
