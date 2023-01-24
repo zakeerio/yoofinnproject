@@ -504,6 +504,37 @@ function closeuniversitypanel(panel_id) {
 
 function postcareerselection(career_selection_text) {
   console.log(career_selection_text + "career_selection_text");
+  let career_name_with_space = career_selection_text.split("-");
+  let career_info = career_name_with_space[0];
+  let salary_info = career_name_with_space[1];
+  let growth_ifo = career_name_with_space[2];
+  if (career_info === NAN) {
+    career_info = "";
+  }
+  if (salary_info === NAN) {
+    salary_info = "average";
+  }
+  if (growth_ifo === NAN) {
+    growth_ifo = true;
+  }
+
+  let career_object = {
+    career_info: career_info,
+    salary_info: salary_info,
+    growth_ifo: growth_ifo,
+  };
+  let careersettingvalues = { career: career_object };
+  var userdatacheck = localStorage.getItem("userfbdata");
+  let userdata = JSON.parse(userdatacheck);
+  db.collection("Users")
+    .doc(userdata.ID)
+    .update(careersettingvalues)
+    .then(() => {
+      console.log("user successfully updated!");
+    });
+
+  $("#registration_screen_3").addClass("hide");
+  $("#registration_screen_4").removeClass("hide");
 }
 
 function get_the_data(career, salary, growth) {
