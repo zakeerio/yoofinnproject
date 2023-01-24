@@ -514,7 +514,7 @@ function postcareerselection(career_selection_text) {
   if (salary_info === "NAN") {
     salary_info = " ";
   }
-  if (growth_ifo === "NAN") {
+  if (growth_info === "NAN") {
     growth_info = false;
   }
 
