@@ -32,6 +32,7 @@ $(document).ready(function () {
   $("#registration_screen_8").addClass("hide");
   $("#registration_screen_9").addClass("hide");
   $("#registration_screen_10").addClass("hide");
+  $("#help_page").addClass("hide");
 
   if (university_section_status === false) {
     $("#university_section .dashboard-image").each(function () {
@@ -372,7 +373,6 @@ $("#submit_university_program_button").on("click", function (e) {
       });
     });
 });
-
 $("#add_values_button").on("click", function (e) {
   e.preventDefault();
 
@@ -445,7 +445,6 @@ $("#add_school_setting").on("click", function (e) {
   $("#registration_screen_2").addClass("hide");
   $("#registration_screen_3").removeClass("hide");
 });
-
 $("#add_career_button").on("click", function (e) {
   e.preventDefault();
 
@@ -490,6 +489,14 @@ $("#add_career_button").on("click", function (e) {
 
   $("#registration_screen_3").addClass("hide");
   $("#registration_screen_4").removeClass("hide");
+});
+
+$("#splash_help_button").on("click", function (e) {
+  e.preventDefault();
+
+  $("#registration_screen_0").addClass("hide");
+  $("#help_page").removeClass("hide");
+  localStorage.setItem("help_call", JSON.stringify("splash"));
 });
 
 $(document).on("input change", "#ethnicity_range", function () {
