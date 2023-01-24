@@ -446,7 +446,7 @@ $("#add_school_setting").on("click", function (e) {
   $("#registration_screen_3").removeClass("hide");
 });
 
-$("#add_career_button;").on("click", function (e) {
+$("#add_career_button").on("click", function (e) {
   e.preventDefault();
 
   var career_info = JSON.parse(localStorage.getItem("career_info"));
