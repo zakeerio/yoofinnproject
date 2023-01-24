@@ -545,14 +545,20 @@ function get_the_data(career, salary, growth) {
   console.log(salary + "Salary");
   console.log(growth + "growth");
 
+  let growth_value;
+  let salary_Value;
   if (career === undefined) {
     career = "";
   }
   if (salary === undefined) {
-    salary = "average";
+    salary_Value = "average";
+  } else {
+    salary_Value = salary;
   }
   if (growth === undefined) {
-    growth = true;
+    growth_value = true;
+  } else {
+    growth_value = growth;
   }
 
   db.collection("Career")
@@ -586,9 +592,9 @@ function get_the_data(career, salary, growth) {
               "</div></div><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt='' onclick='postcareerselection(\"" +
               replaced +
               "-" +
-              salary +
+              salary_Value +
               +"-" +
-              growth +
+              growth_value +
               "\")' ></div>"
           );
           career_array.push(career_title);
