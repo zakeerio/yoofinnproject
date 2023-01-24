@@ -521,6 +521,11 @@ function postcareerselection(career_selection_text) {
   console.log(career_info + "career_info");
   console.log(salary_info + "salary_info");
   console.log(growth_info + "growth_info");
+
+  localStorage.setItem("career_info", JSON.stringify(career_info));
+  localStorage.setItem("salary_info", JSON.stringify(salary_info));
+  localStorage.setItem("growth_info", JSON.stringify(growth_info));
+
   // let career_object = {
   //   career_info: career_info,
   //   salary_info: salary_info,
