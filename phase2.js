@@ -453,6 +453,10 @@ $("#add_career_button").on("click", function (e) {
   var salary_info = JSON.parse(localStorage.getItem("salary_info"));
   var growth_info = JSON.parse(localStorage.getItem("growth_info"));
 
+  console.log(career_info + "career_info storage");
+  console.log(salary_info + "salary_info storage");
+  console.log(growth_info + "growth_info storage");
+
   if (career_info === undefined || career_info === "undefined") {
     career_info = "";
   }
