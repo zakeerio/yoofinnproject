@@ -645,6 +645,7 @@ $("input[type=radio][name=Salary_button]").change(function () {
 });
 
 $("input[type=radio][name=growth_button]").change(function () {
+  console.log("call");
   var career_text_2 = $("#Type-name-of-University-2").val();
   let Salary_button_2 = $('input[name="Salary_button"]:checked').val();
   let growth_button_2 = $(this).val();
