@@ -446,6 +446,32 @@ $("#add_school_setting").on("click", function (e) {
   $("#registration_screen_3").removeClass("hide");
 });
 
+$("#add_career_button;").on("click", function (e) {
+  e.preventDefault();
+
+  var career_info = JSON.parse(localStorage.getItem("career_info"));
+  var salary_info = JSON.parse(localStorage.getItem("salary_info"));
+  var growth_info = JSON.parse(localStorage.getItem("growth_info"));
+
+  let career_object = {
+    career_info: career_info,
+    salary_info: salary_info,
+    growth_info: growth_info,
+  };
+  let careersettingvalues = { career: career_object };
+  var userdatacheck = localStorage.getItem("userfbdata");
+  let userdata = JSON.parse(userdatacheck);
+  db.collection("Users")
+    .doc(userdata.ID)
+    .update(careersettingvalues)
+    .then(() => {
+      console.log("user successfully updated!");
+    });
+
+  $("#registration_screen_3").addClass("hide");
+  $("#registration_screen_4").removeClass("hide");
+});
+
 $(document).on("input change", "#ethnicity_range", function () {
   console.log("value changed");
   localStorage.setItem("ethnicity_range", $(this).val());
@@ -525,24 +551,6 @@ function postcareerselection(career_selection_text) {
   localStorage.setItem("career_info", JSON.stringify(career_info));
   localStorage.setItem("salary_info", JSON.stringify(salary_info));
   localStorage.setItem("growth_info", JSON.stringify(growth_info));
-
-  // let career_object = {
-  //   career_info: career_info,
-  //   salary_info: salary_info,
-  //   growth_ifo: growth_ifo,
-  // };
-  // let careersettingvalues = { career: career_object };
-  // var userdatacheck = localStorage.getItem("userfbdata");
-  // let userdata = JSON.parse(userdatacheck);
-  // db.collection("Users")
-  //   .doc(userdata.ID)
-  //   .update(careersettingvalues)
-  //   .then(() => {
-  //     console.log("user successfully updated!");
-  //   });
-
-  // $("#registration_screen_3").addClass("hide");
-  // $("#registration_screen_4").removeClass("hide");
 }
 
 function get_the_data(career, salary, growth) {
