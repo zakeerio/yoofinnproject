@@ -493,7 +493,7 @@ $("#add_career_button").on("click", function (e) {
   $("#registration_screen_4").removeClass("hide");
 });
 
-$("#splash_help_button").on("click", function (e) {
+$(".continye-image").on("click", function (e) {
   e.preventDefault();
 
   console.log("call to action");
