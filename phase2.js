@@ -655,9 +655,9 @@ function get_the_data(career, salary, growth) {
                 "</div></div><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt='' onclick='postcareerselection(\"" +
                 replaced +
                 "-" +
-                salary_Value +
+                careerdata.salary +
                 +"-" +
-                growth_value +
+                careerdata.growth_careers +
                 "\")' ></div>"
             );
             career_array.push(career_title);
