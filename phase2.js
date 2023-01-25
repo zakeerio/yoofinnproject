@@ -642,6 +642,7 @@ function get_the_data(career, salary, growth) {
             : "";
 
           var index_of_career = career_array.indexOf(career_title);
+          console.log(index_of_career + "index of career");
 
           const replaced = career_title.replaceAll(" ", "_");
 
