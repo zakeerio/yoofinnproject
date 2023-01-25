@@ -622,62 +622,49 @@ function postcareerselection(career_selection_text) {
 }
 
 function get_the_data(career, salary, growth) {
-  let growth_value;
-  let salary_Value;
-  if (career === undefined) {
-    career = "";
-  }
-  if (salary === undefined) {
-    salary_Value = "average";
-  } else {
-    salary_Value = salary;
-  }
-  if (growth === undefined) {
-    growth_value = true;
-  } else {
-    growth_value = growth;
-  }
-
   db.collection("Career")
-    .where("title", "==", career)
-    .where("salary", "==", salary_Value)
-    .where("growth_careers", "==", growth_value)
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         careerdata = doc.data();
-        let career_title = careerdata.title;
-        let career_name_with_space = career_title.split(" ");
-        let half_name = career_name_with_space[0]
-          ? career_name_with_space[0]
-          : "";
-        let last_name = career_name_with_space[1]
-          ? career_name_with_space[1]
-          : "";
+        if (
+          careerdata.title === career ||
+          careerdata.salary === salary ||
+          careerdata.growth_careers === growth
+        ) {
+          let career_title = careerdata.title;
+          let career_name_with_space = career_title.split(" ");
+          let half_name = career_name_with_space[0]
+            ? career_name_with_space[0]
+            : "";
+          let last_name = career_name_with_space[1]
+            ? career_name_with_space[1]
+            : "";
 
-        var index_of_career = career_array.indexOf(career_title);
+          var index_of_career = career_array.indexOf(career_title);
 
-        const replaced = career_title.replaceAll(" ", "_");
+          const replaced = career_title.replaceAll(" ", "_");
 
-        if (index_of_career > -1) {
-        } else {
-          $("#career_parent_list").append(
-            "<div class='training flex'><div class='results'><div class='social-heading16 mb'><span class='light-sky-blue'>" +
-              half_name +
-              "</span>" +
-              last_name +
-              "</div></div><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt='' onclick='postcareerselection(\"" +
-              replaced +
-              "-" +
-              salary_Value +
-              +"-" +
-              growth_value +
-              "\")' ></div>"
-          );
-          career_array.push(career_title);
+          if (index_of_career > -1) {
+          } else {
+            $("#career_parent_list").append(
+              "<div class='training flex'><div class='results'><div class='social-heading16 mb'><span class='light-sky-blue'>" +
+                half_name +
+                "</span>" +
+                last_name +
+                "</div></div><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt='' onclick='postcareerselection(\"" +
+                replaced +
+                "-" +
+                salary_Value +
+                +"-" +
+                growth_value +
+                "\")' ></div>"
+            );
+            career_array.push(career_title);
+          }
+
+          career_counter = career_counter + 1;
         }
-
-        career_counter = career_counter + 1;
       });
       career_array = [];
     });
@@ -685,12 +672,8 @@ function get_the_data(career, salary, growth) {
 
 $("#Type-name-of-University-2").on("change", function () {
   var career_text = $(this).val();
-  let Salary_button = $('input[name="Salary_button"]:checked').val()
-    ? $('input[name="Salary_button"]:checked').val()
-    : "";
-  let growth_button = $('input[name="growth_button"]:checked').val()
-    ? $('input[name="growth_button"]:checked').val()
-    : "";
+  let Salary_button = $('input[name="Salary_button"]:checked').val();
+  let growth_button = $('input[name="growth_button"]:checked').val();
 
   get_the_data(career_text, Salary_button, growth_button);
 });
