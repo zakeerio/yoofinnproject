@@ -496,6 +496,7 @@ $("#add_career_button").on("click", function (e) {
 $("#splash_help_button").on("click", function (e) {
   e.preventDefault();
 
+  console.log("call to action");
   var help_call = JSON.parse(localStorage.getItem("help_call"));
 
   if (help_call === "splash") {
