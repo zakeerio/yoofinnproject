@@ -34,6 +34,8 @@ $(document).ready(function () {
   $("#registration_screen_10").addClass("hide");
   $("#help_page").addClass("hide");
 
+  localStorage.setItem("help_call", JSON.stringify("splash"));
+
   if (university_section_status === false) {
     $("#university_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
@@ -137,7 +139,6 @@ $("#university_section").on("click", function (e) {
   let university_section_status = localStorage.getItem(
     "university_section_status"
   );
-  console.log(university_section_status + "university_section_status");
 
   if (
     university_section_status === false ||
@@ -146,6 +147,9 @@ $("#university_section").on("click", function (e) {
     $("#registration_splash_screen").addClass("hide");
     $("#registration_screen_0").removeClass("hide");
   }
+
+  localStorage.setItem("help_call", JSON.stringify("university_section"));
+
   let counter_append = 0;
   let country_counter_append = 0;
 
@@ -276,7 +280,6 @@ $("#submit_university_program_button").on("click", function (e) {
   let useruniversity = { university: univeristy_array };
   var userdatacheck = localStorage.getItem("userfbdata");
   let userdata = JSON.parse(userdatacheck);
-  console.log(userdata.ID + "userdatacheck.uid");
   db.collection("Users")
     .doc(userdata.ID)
     .update(useruniversity)
@@ -287,6 +290,7 @@ $("#submit_university_program_button").on("click", function (e) {
   $("#registration_screen_0").addClass("hide");
   $("#registration_screen_1").removeClass("hide");
   localStorage.setItem("university_section_status", true);
+  localStorage.setItem("help_call", JSON.stringify("values_section"));
 
   db.collection("AbortionAccess")
     .get()
@@ -404,6 +408,8 @@ $("#add_values_button").on("click", function (e) {
 
   $("#registration_screen_1").addClass("hide");
   $("#registration_screen_2").removeClass("hide");
+
+  localStorage.setItem("help_call", JSON.stringify("school_section"));
 });
 $("#add_school_setting").on("click", function (e) {
   let career_array = [];
@@ -444,6 +450,8 @@ $("#add_school_setting").on("click", function (e) {
 
   $("#registration_screen_2").addClass("hide");
   $("#registration_screen_3").removeClass("hide");
+
+  localStorage.setItem("help_call", JSON.stringify("career_section"));
 });
 $("#add_career_button").on("click", function (e) {
   e.preventDefault();
@@ -487,20 +495,47 @@ $("#add_career_button").on("click", function (e) {
 
 $("#splash_help_button").on("click", function (e) {
   e.preventDefault();
-  console.log("here to the splash help");
 
-  $("#registration_splash_screen").addClass("hide");
-  $("#help_page").removeClass("hide");
-  localStorage.setItem("help_call", JSON.stringify("splash"));
+  var help_call = JSON.parse(localStorage.getItem("help_call"));
+
+  if (help_call === "splash") {
+    $("#registration_splash_screen").addClass("hide");
+    $("#help_page").removeClass("hide");
+  } else if (help_call === "university_section") {
+    $("#registration_screen_0").addClass("hide");
+    $("#help_page").removeClass("hide");
+  } else if (help_call === "values_section") {
+    $("#registration_screen_1").addClass("hide");
+    $("#help_page").removeClass("hide");
+  } else if (help_call === "school_section") {
+    $("#registration_screen_2").addClass("hide");
+    $("#help_page").removeClass("hide");
+  } else if (help_call === "career_section") {
+    $("#registration_screen_3").addClass("hide");
+    $("#help_page").removeClass("hide");
+  }
 });
 
 $("#accept_help_button").on("click", function (e) {
   e.preventDefault();
+
   var help_call = JSON.parse(localStorage.getItem("help_call"));
 
   if (help_call === "splash") {
-    $("#help_page").addClass("hide");
     $("#registration_splash_screen").removeClass("hide");
+    $("#help_page").addClass("hide");
+  } else if (help_call === "university_section") {
+    $("#registration_screen_0").removeClass("hide");
+    $("#help_page").addClass("hide");
+  } else if (help_call === "values_section") {
+    $("#registration_screen_1").removeClass("hide");
+    $("#help_page").addClass("hide");
+  } else if (help_call === "school_section") {
+    $("#registration_screen_2").removeClass("hide");
+    $("#help_page").addClass("hide");
+  } else if (help_call === "career_section") {
+    $("#registration_screen_3").removeClass("hide");
+    $("#help_page").addClass("hide");
   }
 });
 
