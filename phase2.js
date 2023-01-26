@@ -569,26 +569,32 @@ $("#accept_help_button").on("click", function (e) {
 });
 $("#univeristy_exit_button").on("click", function (e) {
   e.preventDefault();
+  localStorage.setItem("exit_call", JSON.stringify("university_section"));
   logout();
 });
 $("#values_exit_button").on("click", function (e) {
   e.preventDefault();
+  localStorage.setItem("exit_call", JSON.stringify("values_section"));
   logout();
 });
 $("#school_exit_button").on("click", function (e) {
   e.preventDefault();
+  localStorage.setItem("exit_call", JSON.stringify("school_section"));
   logout();
 });
 $("#career_exit_button").on("click", function (e) {
   e.preventDefault();
+  localStorage.setItem("exit_call", JSON.stringify("career_section"));
   logout();
 });
 $("#cost_exit_button").on("click", function (e) {
   e.preventDefault();
+  localStorage.setItem("exit_call", JSON.stringify("cost_section"));
   logout();
 });
 $("#review_exit_button").on("click", function (e) {
   e.preventDefault();
+  localStorage.setItem("exit_call", JSON.stringify("review_section"));
   logout();
 });
 
@@ -613,10 +619,27 @@ function setstatevalue(state_name) {
 function logout() {
   localStorage.removeItem("userdata");
   localStorage.removeItem("userfbdata");
+  var help_call = JSON.parse(localStorage.getItem("exit_call"));
 
-  setTimeout(function () {
+  if (help_call === "university_section") {
+    $("#registration_screen_0").addClass("hide");
     $("#registration_splash_screen").removeClass("hide");
-  }, 2500);
+  } else if (help_call === "values_section") {
+    $("#registration_screen_1").addClass("hide");
+    $("#registration_splash_screen").removeClass("hide");
+  } else if (help_call === "school_section") {
+    $("#registration_screen_2").addClass("hide");
+    $("#registration_splash_screen").removeClass("hide");
+  } else if (help_call === "career_section") {
+    $("#registration_screen_3").addClass("hide");
+    $("#registration_splash_screen").removeClass("hide");
+  } else if (help_call === "cost_section") {
+    $("#registration_screen_4").addClass("hide");
+    $("#registration_splash_screen").removeClass("hide");
+  } else if (help_call === "review_section") {
+    $("#registration_screen_5").addClass("hide");
+    $("#registration_splash_screen").removeClass("hide");
+  }
   // User is signed out.
   console.log("user logged out!");
 }
