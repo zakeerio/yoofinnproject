@@ -492,6 +492,35 @@ $("#add_career_button").on("click", function (e) {
   $("#registration_screen_3").addClass("hide");
   $("#registration_screen_4").removeClass("hide");
 });
+$("#add_cost_factor").on("click", function (e) {
+  e.preventDefault();
+
+  let scholarship_status = $('input[name="scholarship_status"]:checked').val();
+  var concern_tracker = localStorage.getItem("concern_tracker");
+  let cost_status = $('input[name="cost_status"]:checked').val();
+  let university_place = $('input[name="university_place"]:checked').val();
+  let living_status = $('input[name="living_status"]:checked').val();
+
+  let cost_object = {
+    scholarship_info: scholarship_status,
+    concern_info: concern_tracker,
+    cost_info: cost_status,
+    university_info: university_place,
+    living_info: living_status,
+  };
+  let costsettingvalues = { cost: cost_object };
+  var userdatacheck = localStorage.getItem("userfbdata");
+  let userdata = JSON.parse(userdatacheck);
+  db.collection("Users")
+    .doc(userdata.ID)
+    .update(costsettingvalues)
+    .then(() => {
+      console.log("user successfully updated!");
+    });
+
+  $("#registration_screen_4").addClass("hide");
+  $("#registration_screen_5").removeClass("hide");
+});
 
 $(".continye-image").on("click", function (e) {
   e.preventDefault();
@@ -516,7 +545,6 @@ $(".continye-image").on("click", function (e) {
     $("#help_page").removeClass("hide");
   }
 });
-
 $("#accept_help_button").on("click", function (e) {
   e.preventDefault();
 
@@ -547,6 +575,9 @@ $(document).on("input change", "#ethnicity_range", function () {
 $(document).on("input change", "#religion_range", function () {
   console.log("value changed religion_range");
   localStorage.setItem("religion_range", $(this).val());
+});
+$(document).on("input change", "#concern_tracker", function () {
+  localStorage.setItem("concern_tracker", $(this).val());
 });
 
 function setstatevalue(state_name) {
@@ -642,7 +673,6 @@ function get_the_data(career, salary, growth) {
             : "";
 
           var index_of_career = career_array.indexOf(career_title);
-          console.log(index_of_career + "index of career");
 
           const replaced = career_title.replaceAll(" ", "_");
 
