@@ -568,10 +568,10 @@ $("#accept_help_button").on("click", function (e) {
   }
 });
 
-$("#dialog").dialog({ autoOpen: false, modal: true, height: 590, width: 1005 });
-
+// Attach Button click event listener
 $("#values_section").click(function () {
-  $("#dialog").dialog("open");
+  // show Modal
+  $("#myModal").modal("show");
 });
 
 $(document).on("input change", "#ethnicity_range", function () {
