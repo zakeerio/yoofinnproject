@@ -567,15 +567,11 @@ $("#accept_help_button").on("click", function (e) {
     $("#help_page").addClass("hide");
   }
 });
+
+$("#dialog").dialog({ autoOpen: false, modal: true, height: 590, width: 1005 });
+
 $("#values_section").click(function () {
-  //$("#dialog").dialog({modal: true, height: 590, width: 1005 });
-  var w = window.open(
-    "",
-    "popupWindow",
-    "width=600, height=400, scrollbars=yes"
-  );
-  var $w = $(w.document.body);
-  $w.html("<textarea></textarea>");
+  $("#dialog").dialog("open");
 });
 
 $(document).on("input change", "#ethnicity_range", function () {
