@@ -615,7 +615,7 @@ function logout() {
   localStorage.removeItem("userfbdata");
 
   setTimeout(function () {
-    $("#reg-step1").removeClass("hide");
+    $("#registration_splash_screen").removeClass("hide");
   }, 2500);
   // User is signed out.
   console.log("user logged out!");
