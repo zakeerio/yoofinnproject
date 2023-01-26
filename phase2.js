@@ -567,7 +567,7 @@ $("#accept_help_button").on("click", function (e) {
     $("#help_page").addClass("hide");
   }
 });
-$(".submit-button-4").click(function () {
+$("#values_section").click(function () {
   //$("#dialog").dialog({modal: true, height: 590, width: 1005 });
   var w = window.open(
     "",
