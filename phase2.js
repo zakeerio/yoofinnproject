@@ -567,11 +567,29 @@ $("#accept_help_button").on("click", function (e) {
     $("#help_page").addClass("hide");
   }
 });
-
-// Attach Button click event listener
-$("#values_section").click(function () {
-  // show Modal
-  $("#myModal").modal("show");
+$("#univeristy_exit_button").on("click", function (e) {
+  e.preventDefault();
+  logout();
+});
+$("#values_exit_button").on("click", function (e) {
+  e.preventDefault();
+  logout();
+});
+$("#school_exit_button").on("click", function (e) {
+  e.preventDefault();
+  logout();
+});
+$("#career_exit_button").on("click", function (e) {
+  e.preventDefault();
+  logout();
+});
+$("#cost_exit_button").on("click", function (e) {
+  e.preventDefault();
+  logout();
+});
+$("#review_exit_button").on("click", function (e) {
+  e.preventDefault();
+  logout();
 });
 
 $(document).on("input change", "#ethnicity_range", function () {
@@ -592,7 +610,16 @@ function setstatevalue(state_name) {
   $("#w-dropdown-toggle-0").removeClass("w--open");
   $("#w-dropdown-list-0").removeClass("w--open");
 }
+function logout() {
+  localStorage.removeItem("userdata");
+  localStorage.removeItem("userfbdata");
 
+  setTimeout(function () {
+    $("#reg-step1").removeClass("hide");
+  }, 2500);
+  // User is signed out.
+  console.log("user logged out!");
+}
 function setdepartmentvalue(department_name) {
   localStorage.setItem("department_name", JSON.stringify(department_name));
   $("#department_value_block_text").html(department_name);
