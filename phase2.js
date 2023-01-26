@@ -567,6 +567,16 @@ $("#accept_help_button").on("click", function (e) {
     $("#help_page").addClass("hide");
   }
 });
+$(".submit-button-4").click(function () {
+  //$("#dialog").dialog({modal: true, height: 590, width: 1005 });
+  var w = window.open(
+    "",
+    "popupWindow",
+    "width=600, height=400, scrollbars=yes"
+  );
+  var $w = $(w.document.body);
+  $w.html("<textarea></textarea>");
+});
 
 $(document).on("input change", "#ethnicity_range", function () {
   console.log("value changed");
