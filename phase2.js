@@ -14,8 +14,9 @@ $(document).ready(function () {
   let value_section_status = localStorage.getItem("value_section_status")
     ? localStorage.getItem("value_section_status")
     : false;
-  let values_section_status = false;
-  let cost_section_status = false;
+  let cost_section_status = localStorage.getItem("cost_section_status")
+    ? localStorage.getItem("cost_section_status")
+    : false;
   let careers_section_status = false;
   let school_section_status = false;
   let sat_section_status = false;
@@ -635,6 +636,7 @@ $("#add_cost_factor").on("click", function (e) {
 
   $("#registration_screen_4").addClass("hide");
   $("#registration_screen_5").removeClass("hide");
+  localStorage.setItem("cost_section_status", true);
 });
 
 $(".continye-image").on("click", function (e) {
