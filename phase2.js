@@ -21,6 +21,7 @@ $(document).ready(function () {
   let career_section_status = localStorage.getItem("career_section_status")
     ? localStorage.getItem("career_section_status")
     : false;
+
   let school_section_status = false;
   let sat_section_status = false;
   let forward_image =
@@ -71,12 +72,13 @@ $(document).ready(function () {
       }
     });
   }
+
   if (career_section_status === false) {
     $("#careers_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
-      if (curSrc === tick_image) {
-        $(this).attr("src", forward_image);
+      if (curSrc === forward_image) {
+        $(this).attr("src", tick_image);
       }
     });
   }
@@ -84,8 +86,8 @@ $(document).ready(function () {
     $("#school_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
-      if (curSrc === tick_image) {
-        $(this).attr("src", forward_image);
+      if (curSrc === forward_image) {
+        $(this).attr("src", tick_image);
       }
     });
   }
@@ -93,8 +95,8 @@ $(document).ready(function () {
     $("#sat_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
-      if (curSrc === tick_image) {
-        $(this).attr("src", forward_image);
+      if (curSrc === forward_image) {
+        $(this).attr("src", tick_image);
       }
     });
   }
