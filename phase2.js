@@ -209,6 +209,105 @@ $("#university_section").on("click", function (e) {
       });
     });
 });
+$("#values_section").on("click", function (e) {
+  let abortion_access_counter_append = 0;
+  let ethnicity_counter_append = 0;
+  let religion_counter_append = 0;
+  e.preventDefault();
+  let value_section_status = localStorage.getItem("value_section_status");
+
+  if (value_section_status === false || value_section_status === null) {
+    $("#registration_splash_screen").addClass("hide");
+    $("#registration_screen_1").removeClass("hide");
+  }
+
+  localStorage.setItem("help_call", JSON.stringify("values_section"));
+
+  db.collection("AbortionAccess")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        abortionaccessdata = doc.data();
+        let text = abortionaccessdata.type;
+        let result = text.toLowerCase();
+        if (abortion_access_counter_append === 0) {
+          $("#abortion_access_parent_div").html(
+            "<label class='radio-button-field-3 w-radio'><input type='radio' data-name='Radio 3' id='radio-3' name='radio-3' value='" +
+              result +
+              "' class='w-form-formradioinput radio-button-4 w-radio-input'><span class='radio-btn-text w-form-label' for='radio-3'>" +
+              abortionaccessdata.type +
+              "</span></label>"
+          );
+        } else {
+          $("#abortion_access_parent_div").append(
+            "<label class='radio-btn-no w-radio'><input type='radio' data-name='Radio 3' id='radio-3' name='radio-3' value='" +
+              result +
+              "' class='w-form-formradioinput radio-button-4 w-radio-input'><span class='radio-btn-text w-form-label' for='radio-3'>" +
+              abortionaccessdata.type +
+              "</span></label>"
+          );
+        }
+        abortion_access_counter_append = abortion_access_counter_append + 1;
+      });
+    });
+
+  db.collection("Ethnicity")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        ethnicitydata = doc.data();
+        let text = ethnicitydata.ethnicity_type;
+        let result = text.toLowerCase();
+        if (ethnicity_counter_append === 0) {
+          $("#w-dropdown-list-2").html(
+            "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setethnicityvalue(\"" +
+              result +
+              "\")'>" +
+              ethnicitydata.ethnicity_type +
+              "</a>"
+          );
+        } else {
+          $("#w-dropdown-list-2").append(
+            "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setethnicityvalue(\"" +
+              result +
+              "\")'>" +
+              ethnicitydata.ethnicity_type +
+              "</a>"
+          );
+        }
+        ethnicity_counter_append = ethnicity_counter_append + 1;
+      });
+    });
+
+  db.collection("Religion")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        religiondata = doc.data();
+        let text1 = religiondata.name;
+        let result1 = text1.toLowerCase();
+
+        if (religion_counter_append === 0) {
+          $("#w-dropdown-list-3").html(
+            "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setreligionvalue(\"" +
+              result1 +
+              "\")'>" +
+              religiondata.name +
+              "</a>"
+          );
+        } else {
+          $("#w-dropdown-list-3").append(
+            "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setreligionvalue(\"" +
+              result1 +
+              "\")'>" +
+              religiondata.name +
+              "</a>"
+          );
+        }
+        religion_counter_append = religion_counter_append + 1;
+      });
+    });
+});
 
 $(function () {
   let university_array = [];
@@ -408,7 +507,7 @@ $("#add_values_button").on("click", function (e) {
 
   $("#registration_screen_1").addClass("hide");
   $("#registration_screen_2").removeClass("hide");
-
+  localStorage.setItem("value_section_status", true);
   localStorage.setItem("help_call", JSON.stringify("school_section"));
 });
 $("#add_school_setting").on("click", function (e) {
