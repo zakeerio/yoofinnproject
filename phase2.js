@@ -17,7 +17,10 @@ $(document).ready(function () {
   let cost_section_status = localStorage.getItem("cost_section_status")
     ? localStorage.getItem("cost_section_status")
     : false;
-  let careers_section_status = false;
+
+  let career_section_status = localStorage.getItem("career_section_status")
+    ? localStorage.getItem("career_section_status")
+    : false;
   let school_section_status = false;
   let sat_section_status = false;
   let forward_image =
@@ -68,7 +71,7 @@ $(document).ready(function () {
       }
     });
   }
-  if (careers_section_status === false) {
+  if (career_section_status === false) {
     $("#careers_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
@@ -324,6 +327,33 @@ $("#cost_section").on("click", function (e) {
 
   localStorage.setItem("help_call", JSON.stringify("cost_section"));
 });
+$("#careers_section").on("click", function (e) {
+  let career_array = [];
+  e.preventDefault();
+  let career_section_status = localStorage.getItem("career_section_status");
+
+  if (career_section_status === false || career_section_status === null) {
+    $("#registration_splash_screen").addClass("hide");
+    $("#registration_screen_3").removeClass("hide");
+  }
+
+  localStorage.setItem("help_call", JSON.stringify("career_section"));
+
+  db.collection("Career")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        careerdata = doc.data();
+        console.log(careerdata + "universitydata");
+        career_array.push(careerdata.title);
+      });
+      console.log(career_array);
+    });
+
+  $("#Type-name-of-University-2").autocomplete({
+    source: career_array,
+  });
+});
 
 $(function () {
   let university_array = [];
@@ -575,10 +605,6 @@ $("#add_career_button").on("click", function (e) {
   var salary_info = localStorage.getItem("salary_info");
   var growth_info = localStorage.getItem("growth_info");
 
-  // console.log(career_info + "career_info storage");
-  // console.log(salary_info + "salary_info storage");
-  // console.log(growth_info + "growth_info storage");
-
   if (career_info === undefined || career_info === "undefined") {
     career_info = "";
   }
@@ -605,6 +631,7 @@ $("#add_career_button").on("click", function (e) {
     });
 
   localStorage.setItem("help_call", JSON.stringify("cost_section"));
+  localStorage.setItem("career_section_status", true);
   $("#registration_screen_3").addClass("hide");
   $("#registration_screen_4").removeClass("hide");
 });
