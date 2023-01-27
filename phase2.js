@@ -10,6 +10,10 @@ $(document).ready(function () {
   )
     ? localStorage.getItem("university_section_status")
     : false;
+
+  let value_section_status = localStorage.getItem("value_section_status")
+    ? localStorage.getItem("value_section_status")
+    : false;
   let values_section_status = false;
   let cost_section_status = false;
   let careers_section_status = false;
@@ -45,7 +49,7 @@ $(document).ready(function () {
       }
     });
   }
-  if (values_section_status === false) {
+  if (value_section_status === false) {
     $("#values_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
