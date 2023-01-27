@@ -376,11 +376,8 @@ $("#school_section").on("click", function (e) {
 $("#sat_section").on("click", function (e) {
   let career_array = [];
   e.preventDefault();
-
-  if (career_section_status === false || career_section_status === null) {
-    $("#registration_splash_screen").addClass("hide");
-    $("#registration_screen_5").removeClass("hide");
-  }
+  $("#registration_splash_screen").addClass("hide");
+  $("#registration_screen_5").removeClass("hide");
 
   localStorage.setItem("help_call", JSON.stringify("sat_section"));
 });
