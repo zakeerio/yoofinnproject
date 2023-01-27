@@ -73,11 +73,10 @@ $(document).ready(function () {
     });
   }
 
-  console.log(career_section_status + "career_section_status");
   if (career_section_status === true) {
     $("#careers_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
-      console.log(curSrc);
+      console.log(curSrc + "cursc");
       if (curSrc === forward_image) {
         $(this).attr("src", tick_image);
       }
