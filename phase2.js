@@ -312,6 +312,17 @@ $("#values_section").on("click", function (e) {
       });
     });
 });
+$("#cost_section").on("click", function (e) {
+  e.preventDefault();
+  let cost_section_status = localStorage.getItem("cost_section_status");
+
+  if (cost_section_status === false || cost_section_status === null) {
+    $("#registration_splash_screen").addClass("hide");
+    $("#registration_screen_4").removeClass("hide");
+  }
+
+  localStorage.setItem("help_call", JSON.stringify("cost_section"));
+});
 
 $(function () {
   let university_array = [];
@@ -592,6 +603,7 @@ $("#add_career_button").on("click", function (e) {
       console.log("user successfully updated!");
     });
 
+  localStorage.setItem("help_call", JSON.stringify("cost_section"));
   $("#registration_screen_3").addClass("hide");
   $("#registration_screen_4").removeClass("hide");
 });
@@ -646,6 +658,9 @@ $(".continye-image").on("click", function (e) {
   } else if (help_call === "career_section") {
     $("#registration_screen_3").addClass("hide");
     $("#help_page").removeClass("hide");
+  } else if (help_call === "cost_section") {
+    $("#registration_screen_4").addClass("hide");
+    $("#help_page").removeClass("hide");
   }
 });
 $("#accept_help_button").on("click", function (e) {
@@ -667,6 +682,9 @@ $("#accept_help_button").on("click", function (e) {
     $("#help_page").addClass("hide");
   } else if (help_call === "career_section") {
     $("#registration_screen_3").removeClass("hide");
+    $("#help_page").addClass("hide");
+  } else if (help_call === "cost_section") {
+    $("#registration_screen_4").removeClass("hide");
     $("#help_page").addClass("hide");
   }
 });
