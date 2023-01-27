@@ -73,7 +73,7 @@ $(document).ready(function () {
     });
   }
 
-  if (career_section_status === false) {
+  if (career_section_status === true) {
     $("#careers_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
@@ -82,7 +82,7 @@ $(document).ready(function () {
       }
     });
   }
-  if (school_section_status === false) {
+  if (school_section_status === true) {
     $("#school_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
@@ -91,7 +91,7 @@ $(document).ready(function () {
       }
     });
   }
-  if (sat_section_status === false) {
+  if (sat_section_status === true) {
     $("#sat_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
