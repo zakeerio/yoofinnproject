@@ -22,7 +22,10 @@ $(document).ready(function () {
     ? localStorage.getItem("career_section_status")
     : false;
 
-  let school_section_status = false;
+  let school_section_status = localStorage.getItem("school_section_status")
+    ? localStorage.getItem("school_section_status")
+    : false;
+
   let sat_section_status = false;
   let forward_image =
     "https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg";
@@ -73,19 +76,18 @@ $(document).ready(function () {
     });
   }
 
-  console.log("career_section" + career_section_status + "status");
-  console.log("type off" + typeof career_section_status + "status");
+  // console.log("career_section" + career_section_status + "status");
+  // console.log("type off" + typeof career_section_status + "status");
   if (career_section_status === "true") {
-    console.log("here");
     $("#careers_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
-      console.log(curSrc + "cursc");
+      // console.log(curSrc + "cursc");
       if (curSrc === forward_image) {
         $(this).attr("src", tick_image);
       }
     });
   }
-  if (school_section_status === true) {
+  if (school_section_status === "true") {
     $("#school_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
@@ -359,6 +361,18 @@ $("#careers_section").on("click", function (e) {
     source: career_array,
   });
 });
+$("#school_section").on("click", function (e) {
+  let career_array = [];
+  e.preventDefault();
+  let career_section_status = localStorage.getItem("school_section_status");
+
+  if (career_section_status === false || career_section_status === null) {
+    $("#registration_splash_screen").addClass("hide");
+    $("#registration_screen_2").removeClass("hide");
+  }
+
+  localStorage.setItem("help_call", JSON.stringify("school_section"));
+});
 
 $(function () {
   let university_array = [];
@@ -602,6 +616,7 @@ $("#add_school_setting").on("click", function (e) {
   $("#registration_screen_3").removeClass("hide");
 
   localStorage.setItem("help_call", JSON.stringify("career_section"));
+  localStorage.setItem("school_section_status", true);
 });
 $("#add_career_button").on("click", function (e) {
   e.preventDefault();
