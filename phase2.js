@@ -75,7 +75,7 @@ $(document).ready(function () {
 
   console.log("career_section" + career_section_status + "status");
   console.log("type off" + typeof career_section_status + "status");
-  if (career_section_status === true) {
+  if (career_section_status === "true") {
     console.log("here");
     $("#careers_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
