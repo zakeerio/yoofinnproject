@@ -373,6 +373,17 @@ $("#school_section").on("click", function (e) {
 
   localStorage.setItem("help_call", JSON.stringify("school_section"));
 });
+$("#sat_section").on("click", function (e) {
+  let career_array = [];
+  e.preventDefault();
+
+  if (career_section_status === false || career_section_status === null) {
+    $("#registration_splash_screen").addClass("hide");
+    $("#registration_screen_5").removeClass("hide");
+  }
+
+  localStorage.setItem("help_call", JSON.stringify("sat_section"));
+});
 
 $(function () {
   let university_array = [];
@@ -684,6 +695,7 @@ $("#add_cost_factor").on("click", function (e) {
   $("#registration_screen_4").addClass("hide");
   $("#registration_screen_5").removeClass("hide");
   localStorage.setItem("cost_section_status", true);
+  localStorage.setItem("help_call", JSON.stringify("sat_section"));
 });
 
 $(".continye-image").on("click", function (e) {
@@ -710,6 +722,9 @@ $(".continye-image").on("click", function (e) {
   } else if (help_call === "cost_section") {
     $("#registration_screen_4").addClass("hide");
     $("#help_page").removeClass("hide");
+  } else if (help_call === "sat_section") {
+    $("#registration_screen_5").addClass("hide");
+    $("#help_page").removeClass("hide");
   }
 });
 $("#accept_help_button").on("click", function (e) {
@@ -734,6 +749,9 @@ $("#accept_help_button").on("click", function (e) {
     $("#help_page").addClass("hide");
   } else if (help_call === "cost_section") {
     $("#registration_screen_4").removeClass("hide");
+    $("#help_page").addClass("hide");
+  } else if (help_call === "sat_section") {
+    $("#registration_screen_5").removeClass("hide");
     $("#help_page").addClass("hide");
   }
 });
