@@ -789,6 +789,21 @@ $("#book_a_meeting_univeristy").on("click", function (e) {
   $("#registration_screen_0").addClass("hide");
   $("#registration_screen_6").removeClass("hide");
 });
+$("#book_a_meeting_values").on("click", function (e) {
+  e.preventDefault();
+  $("#registration_screen_1").addClass("hide");
+  $("#registration_screen_6").removeClass("hide");
+});
+$("#book_a_meeting_school").on("click", function (e) {
+  e.preventDefault();
+  $("#registration_screen_2").addClass("hide");
+  $("#registration_screen_6").removeClass("hide");
+});
+$("#book_a_meeting_cost").on("click", function (e) {
+  e.preventDefault();
+  $("#registration_screen_4").addClass("hide");
+  $("#registration_screen_6").removeClass("hide");
+});
 
 $(document).on("input change", "#ethnicity_range", function () {
   console.log("value changed");
