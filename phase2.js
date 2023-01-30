@@ -823,6 +823,36 @@ $("#close_book_a_meeting").on("click", function (e) {
     $("#registration_screen_6").addClass("hide");
   }
 });
+$("#add_expert").on("click", function (e) {
+  e.preventDefault();
+
+  var help_call = JSON.parse(localStorage.getItem("help_call"));
+  let expert_selection = $('input[name="expert_selection"]:checked').val();
+
+  let userexpert = { expert: expert_selection };
+  var userdatacheck = localStorage.getItem("userfbdata");
+  let userdata = JSON.parse(userdatacheck);
+  db.collection("Users")
+    .doc(userdata.ID)
+    .update(userexpert)
+    .then(() => {
+      console.log("user successfully updated!");
+    });
+
+  if (help_call === "university_section") {
+    $("#registration_screen_0").removeClass("hide");
+    $("#registration_screen_6").addClass("hide");
+  } else if (help_call === "values_section") {
+    $("#registration_screen_1").removeClass("hide");
+    $("#registration_screen_6").addClass("hide");
+  } else if (help_call === "school_section") {
+    $("#registration_screen_2").removeClass("hide");
+    $("#registration_screen_6").addClass("hide");
+  } else if (help_call === "cost_section") {
+    $("#registration_screen_4").removeClass("hide");
+    $("#registration_screen_6").addClass("hide");
+  }
+});
 
 $(document).on("input change", "#ethnicity_range", function () {
   console.log("value changed");
