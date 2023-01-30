@@ -784,6 +784,12 @@ $("#review_exit_button").on("click", function (e) {
   logout();
 });
 
+$("#book_a_meeting_univeristy").on("click", function (e) {
+  e.preventDefault();
+  $("#registration_screen_0").addClass("hide");
+  $("#registration_screen_6").removeClass("hide");
+});
+
 $(document).on("input change", "#ethnicity_range", function () {
   console.log("value changed");
   localStorage.setItem("ethnicity_range", $(this).val());
