@@ -804,6 +804,25 @@ $("#book_a_meeting_cost").on("click", function (e) {
   $("#registration_screen_4").addClass("hide");
   $("#registration_screen_6").removeClass("hide");
 });
+$("#close_book_a_meeting").on("click", function (e) {
+  e.preventDefault();
+
+  var help_call = JSON.parse(localStorage.getItem("help_call"));
+
+  if (help_call === "university_section") {
+    $("#registration_screen_0").removeClass("hide");
+    $("#registration_screen_6").addClass("hide");
+  } else if (help_call === "values_section") {
+    $("#registration_screen_1").removeClass("hide");
+    $("#registration_screen_6").addClass("hide");
+  } else if (help_call === "school_section") {
+    $("#registration_screen_2").removeClass("hide");
+    $("#registration_screen_6").addClass("hide");
+  } else if (help_call === "cost_section") {
+    $("#registration_screen_4").removeClass("hide");
+    $("#registration_screen_6").addClass("hide");
+  }
+});
 
 $(document).on("input change", "#ethnicity_range", function () {
   console.log("value changed");
