@@ -726,7 +726,7 @@ $(".continye-image").on("click", function (e) {
   }
 });
 
-$(".career_forward").on("click", function (e) {
+$("#career_forward").on("click", function (e) {
   e.preventDefault();
 
   console.log("call to action");
