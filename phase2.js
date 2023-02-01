@@ -978,8 +978,11 @@ function get_the_data(career, salary, growth) {
   db.collection("Career")
     .get()
     .then((querySnapshot) => {
+      console.log(querySnapshot + "querySnapshot");
       querySnapshot.forEach((doc) => {
         careerdata = doc.data();
+
+        console.log(careerdata + "careerdata");
         if (
           careerdata.title === career ||
           careerdata.salary === salary ||
