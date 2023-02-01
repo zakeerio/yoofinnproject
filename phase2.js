@@ -803,6 +803,16 @@ $("#book_a_meeting_univeristy").on("click", function (e) {
   $("#registration_screen_0").addClass("hide");
   $("#registration_screen_6").removeClass("hide");
 });
+$("#Book_now").on("click", function (e) {
+  e.preventDefault();
+  $("#registration_screen_0").addClass("hide");
+  $("#registration_screen_6").removeClass("hide");
+});
+$("#coming_career_path").on("click", function (e) {
+  e.preventDefault();
+  $("#registration_splash_screen").addClass("hide");
+  $("#help_page").removeClass("hide");
+});
 $("#book_a_meeting_values").on("click", function (e) {
   e.preventDefault();
   $("#registration_screen_1").addClass("hide");
