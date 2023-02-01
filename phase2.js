@@ -877,7 +877,7 @@ $("#add_expert").on("click", function (e) {
     $("#registration_screen_6").addClass("hide");
   } else if (help_call === "splash") {
     $("#registration_splash_screen").removeClass("hide");
-    $("#help_page").addClass("hide");
+    $("#registration_screen_6").addClass("hide");
   }
 });
 
