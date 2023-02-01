@@ -983,7 +983,7 @@ function get_the_data(career, salary, growth) {
         careerdata = doc.data();
         localStorage.setItem("career_Test", JSON.stringify(careerdata));
 
-        console.log(doc.ID + "careerdata");
+        console.log(careerdata.ID + "careerdata");
         if (
           careerdata.title === career ||
           careerdata.salary === salary ||
