@@ -981,6 +981,7 @@ function get_the_data(career, salary, growth) {
       console.log(querySnapshot + "querySnapshot");
       querySnapshot.forEach((doc) => {
         careerdata = doc.data();
+        localStorage.setItem("career_Test", JSON.stringify(careerdata));
 
         console.log(careerdata + "careerdata");
         if (
