@@ -556,9 +556,13 @@ $("#add_values_button").on("click", function (e) {
 
   let rotc_values = $('input[name="radio"]:checked').val();
   var ethnicity_type = JSON.parse(localStorage.getItem("ethnicity_type"));
-  var ethnicity_range = JSON.parse(localStorage.getItem("ethnicity_range"));
+  var ethnicity_range = JSON.parse(localStorage.getItem("ethnicity_range"))
+    ? JSON.parse(localStorage.getItem("ethnicity_range"))
+    : 5;
   var religion_name = JSON.parse(localStorage.getItem("religion_name"));
-  var religion_range = JSON.parse(localStorage.getItem("religion_range"));
+  var religion_range = JSON.parse(localStorage.getItem("religion_range"))
+    ? JSON.parse(localStorage.getItem("religion_range"))
+    : 5;
   let access_abortion_values = $('input[name="radio-3"]:checked').val();
 
   let values_object = {
