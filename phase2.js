@@ -805,7 +805,7 @@ $("#book_a_meeting_univeristy").on("click", function (e) {
 });
 $("#Book_now").on("click", function (e) {
   e.preventDefault();
-  $("#registration_screen_0").addClass("hide");
+  $("#registration_splash_screen").addClass("hide");
   $("#registration_screen_6").removeClass("hide");
 });
 $("#coming_career_path").on("click", function (e) {
