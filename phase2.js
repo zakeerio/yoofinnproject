@@ -45,6 +45,7 @@ $(document).ready(function () {
   $("#registration_screen_9").addClass("hide");
   $("#registration_screen_10").addClass("hide");
   $("#default_univerisity_item").css("display", "none");
+  $("#default_career_item").css("display", "none");
   $("#help_page").addClass("hide");
 
   localStorage.setItem("help_call", JSON.stringify("splash"));
