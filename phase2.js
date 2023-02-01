@@ -701,6 +701,13 @@ $("#add_cost_factor").on("click", function (e) {
   localStorage.setItem("help_call", JSON.stringify("sat_section"));
 });
 
+$("#review_submit").on("click", function (e) {
+  e.preventDefault();
+
+  $("#registration_screen_5").addClass("hide");
+  $("#registration_screen_9").removeClass("hide");
+});
+
 $(".continye-image").on("click", function (e) {
   e.preventDefault();
 
