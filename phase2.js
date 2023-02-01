@@ -997,7 +997,7 @@ function get_the_data(career, salary, growth) {
 
           const replaced = career_title.replaceAll(" ", "_");
 
-          if (index_of_career < 0) {
+          if (index_of_career > -1) {
           } else {
             $("#career_parent_list").append(
               "<div class='training flex'><div class='results'><div class='social-heading16 mb'><span class='light-sky-blue'>" +
