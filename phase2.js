@@ -995,6 +995,8 @@ function get_the_data(career, salary, growth) {
 
           var index_of_career = career_array.indexOf(career_title);
 
+          console.log(career_array + "career_array");
+
           const replaced = career_title.replaceAll(" ", "_");
 
           if (index_of_career > -1) {
