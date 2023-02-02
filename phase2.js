@@ -777,7 +777,7 @@ $("#accept_help_button").on("click", function (e) {
     $("#help_page").addClass("hide");
   }
 });
-$(".tiles-image").on("click", function (e) {
+$("#tiles_section").on("click", function (e) {
   e.preventDefault();
 
   var help_call = JSON.parse(localStorage.getItem("help_call"));
