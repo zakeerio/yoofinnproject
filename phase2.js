@@ -166,7 +166,7 @@ $("#university_section").on("click", function (e) {
   ) {
     var userdatacheck = localStorage.getItem("userfbdata");
     let userdata = JSON.parse(userdatacheck);
-    if (userdata) {
+    if (userdata !== null) {
       $("#registration_splash_screen").addClass("hide");
       $("#registration_screen_0").removeClass("hide");
     }
