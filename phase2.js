@@ -160,6 +160,7 @@ $("#university_section").on("click", function (e) {
     "university_section_status"
   );
 
+  console.log(university_section_status + "university_section_status");
   if (
     university_section_status === false ||
     university_section_status === null
