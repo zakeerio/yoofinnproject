@@ -52,7 +52,10 @@ $(document).ready(function () {
 
   console.log(university_section_status);
 
-  if (university_section_status === false) {
+  if (
+    university_section_status === "false" ||
+    university_section_status === false
+  ) {
     $("#university_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
@@ -61,7 +64,7 @@ $(document).ready(function () {
       }
     });
   }
-  if (value_section_status === false) {
+  if (value_section_status === "false" || value_section_status === false) {
     $("#values_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
@@ -70,7 +73,7 @@ $(document).ready(function () {
       }
     });
   }
-  if (cost_section_status === false) {
+  if (cost_section_status === "false" || cost_section_status === false) {
     $("#cost_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
@@ -82,7 +85,7 @@ $(document).ready(function () {
 
   // console.log("career_section" + career_section_status + "status");
   // console.log("type off" + typeof career_section_status + "status");
-  if (career_section_status === "true") {
+  if (career_section_status === "true" || career_section_status === true) {
     $("#careers_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       // console.log(curSrc + "cursc");
@@ -91,7 +94,7 @@ $(document).ready(function () {
       }
     });
   }
-  if (school_section_status === "true") {
+  if (school_section_status === "true" || school_section_status === true) {
     $("#school_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
@@ -100,7 +103,7 @@ $(document).ready(function () {
       }
     });
   }
-  if (sat_section_status === true) {
+  if (sat_section_status === true || sat_section_status === "true") {
     $("#sat_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
