@@ -52,10 +52,7 @@ $(document).ready(function () {
 
   console.log(university_section_status);
 
-  if (
-    university_section_status === "false" ||
-    university_section_status === false
-  ) {
+  if (university_section_status === "false") {
     console.log("here");
     $("#university_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
