@@ -56,6 +56,7 @@ $(document).ready(function () {
     university_section_status === "false" ||
     university_section_status === false
   ) {
+    console.log("here");
     $("#university_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
       console.log(curSrc);
