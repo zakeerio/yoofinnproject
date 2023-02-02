@@ -50,6 +50,8 @@ $(document).ready(function () {
 
   localStorage.setItem("help_call", JSON.stringify("splash"));
 
+  console.log(university_section_status);
+
   if (university_section_status === false) {
     $("#university_section .dashboard-image").each(function () {
       var curSrc = $(this).attr("src");
