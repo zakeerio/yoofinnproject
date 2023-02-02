@@ -780,6 +780,7 @@ $(".tiles-image").on("click", function (e) {
   var help_call = JSON.parse(localStorage.getItem("help_call"));
 
   if (help_call === "splash") {
+    $("#registration_splash_screen").addClass("hide");
     $("#registration_screen_7").removeClass("hide");
   } else if (help_call === "university_section") {
     $("#registration_screen_0").addClass("hide");
