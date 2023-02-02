@@ -164,8 +164,12 @@ $("#university_section").on("click", function (e) {
     university_section_status === false ||
     university_section_status === null
   ) {
-    $("#registration_splash_screen").addClass("hide");
-    $("#registration_screen_0").removeClass("hide");
+    var userdatacheck = localStorage.getItem("userfbdata");
+    let userdata = JSON.parse(userdatacheck);
+    if (userdata) {
+      $("#registration_splash_screen").addClass("hide");
+      $("#registration_screen_0").removeClass("hide");
+    }
   }
 
   localStorage.setItem("help_call", JSON.stringify("university_section"));
@@ -237,8 +241,12 @@ $("#values_section").on("click", function (e) {
   let value_section_status = localStorage.getItem("value_section_status");
 
   if (value_section_status === false || value_section_status === null) {
-    $("#registration_splash_screen").addClass("hide");
-    $("#registration_screen_1").removeClass("hide");
+    var userdatacheck = localStorage.getItem("userfbdata");
+    let userdata = JSON.parse(userdatacheck);
+    if (userdata) {
+      $("#registration_splash_screen").addClass("hide");
+      $("#registration_screen_1").removeClass("hide");
+    }
   }
 
   localStorage.setItem("help_call", JSON.stringify("values_section"));
@@ -333,8 +341,12 @@ $("#cost_section").on("click", function (e) {
   let cost_section_status = localStorage.getItem("cost_section_status");
 
   if (cost_section_status === false || cost_section_status === null) {
-    $("#registration_splash_screen").addClass("hide");
-    $("#registration_screen_4").removeClass("hide");
+    var userdatacheck = localStorage.getItem("userfbdata");
+    let userdata = JSON.parse(userdatacheck);
+    if (userdata) {
+      $("#registration_splash_screen").addClass("hide");
+      $("#registration_screen_4").removeClass("hide");
+    }
   }
 
   localStorage.setItem("help_call", JSON.stringify("cost_section"));
@@ -345,8 +357,12 @@ $("#careers_section").on("click", function (e) {
   let career_section_status = localStorage.getItem("career_section_status");
 
   if (career_section_status === false || career_section_status === null) {
-    $("#registration_splash_screen").addClass("hide");
-    $("#registration_screen_3").removeClass("hide");
+    var userdatacheck = localStorage.getItem("userfbdata");
+    let userdata = JSON.parse(userdatacheck);
+    if (userdata) {
+      $("#registration_splash_screen").addClass("hide");
+      $("#registration_screen_3").removeClass("hide");
+    }
   }
 
   localStorage.setItem("help_call", JSON.stringify("career_section"));
@@ -372,8 +388,12 @@ $("#school_section").on("click", function (e) {
   let career_section_status = localStorage.getItem("school_section_status");
 
   if (career_section_status === false || career_section_status === null) {
-    $("#registration_splash_screen").addClass("hide");
-    $("#registration_screen_2").removeClass("hide");
+    var userdatacheck = localStorage.getItem("userfbdata");
+    let userdata = JSON.parse(userdatacheck);
+    if (userdata) {
+      $("#registration_splash_screen").addClass("hide");
+      $("#registration_screen_2").removeClass("hide");
+    }
   }
 
   localStorage.setItem("help_call", JSON.stringify("school_section"));
@@ -381,8 +401,13 @@ $("#school_section").on("click", function (e) {
 $("#sat_section").on("click", function (e) {
   let career_array = [];
   e.preventDefault();
-  $("#registration_splash_screen").addClass("hide");
-  $("#registration_screen_5").removeClass("hide");
+
+  var userdatacheck = localStorage.getItem("userfbdata");
+  let userdata = JSON.parse(userdatacheck);
+  if (userdata) {
+    $("#registration_splash_screen").addClass("hide");
+    $("#registration_screen_5").removeClass("hide");
+  }
 
   localStorage.setItem("help_call", JSON.stringify("sat_section"));
 });
@@ -812,25 +837,25 @@ $("#about_section").on("click", function (e) {
 
   if (help_call === "splash") {
     $("#registration_splash_screen").addClass("hide");
-    $("#registration_screen_8").removeClass("hide");
+    $("#registration_screen_10").removeClass("hide");
   } else if (help_call === "university_section") {
     $("#registration_screen_0").addClass("hide");
-    $("#registration_screen_8").removeClass("hide");
+    $("#registration_screen_10").removeClass("hide");
   } else if (help_call === "values_section") {
     $("#registration_screen_1").addClass("hide");
-    $("#registration_screen_8").removeClass("hide");
+    $("#registration_screen_10").removeClass("hide");
   } else if (help_call === "school_section") {
     $("#registration_screen_2").addClass("hide");
-    $("#registration_screen_8").removeClass("hide");
+    $("#registration_screen_10").removeClass("hide");
   } else if (help_call === "career_section") {
     $("#registration_screen_3").addClass("hide");
-    $("#registration_screen_8").removeClass("hide");
+    $("#registration_screen_10").removeClass("hide");
   } else if (help_call === "cost_section") {
     $("#registration_screen_4").addClass("hide");
-    $("#registration_screen_8").removeClass("hide");
+    $("#registration_screen_10").removeClass("hide");
   } else if (help_call === "sat_section") {
     $("#registration_screen_5").addClass("hide");
-    $("#registration_screen_8").removeClass("hide");
+    $("#registration_screen_10").removeClass("hide");
   }
 });
 $("#univeristy_exit_button").on("click", function (e) {
