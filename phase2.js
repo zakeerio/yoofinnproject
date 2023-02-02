@@ -163,6 +163,7 @@ $("#university_section").on("click", function (e) {
   console.log(university_section_status + "university_section_status");
   if (
     university_section_status === false ||
+    university_section_status === "false" ||
     university_section_status === null
   ) {
     var userdatacheck = localStorage.getItem("userfbdata");
@@ -242,7 +243,11 @@ $("#values_section").on("click", function (e) {
   e.preventDefault();
   let value_section_status = localStorage.getItem("value_section_status");
 
-  if (value_section_status === false || value_section_status === null) {
+  if (
+    value_section_status === false ||
+    value_section_status === "false" ||
+    value_section_status === null
+  ) {
     var userdatacheck = localStorage.getItem("userfbdata");
     let userdata = JSON.parse(userdatacheck);
     if (userdata) {
@@ -342,7 +347,11 @@ $("#cost_section").on("click", function (e) {
   e.preventDefault();
   let cost_section_status = localStorage.getItem("cost_section_status");
 
-  if (cost_section_status === false || cost_section_status === null) {
+  if (
+    cost_section_status === false ||
+    cost_section_status === null ||
+    cost_section_status === "false"
+  ) {
     var userdatacheck = localStorage.getItem("userfbdata");
     let userdata = JSON.parse(userdatacheck);
     if (userdata) {
@@ -358,7 +367,11 @@ $("#careers_section").on("click", function (e) {
   e.preventDefault();
   let career_section_status = localStorage.getItem("career_section_status");
 
-  if (career_section_status === false || career_section_status === null) {
+  if (
+    career_section_status === false ||
+    career_section_status === null ||
+    career_section_status === "false"
+  ) {
     var userdatacheck = localStorage.getItem("userfbdata");
     let userdata = JSON.parse(userdatacheck);
     if (userdata) {
@@ -389,7 +402,11 @@ $("#school_section").on("click", function (e) {
   e.preventDefault();
   let career_section_status = localStorage.getItem("school_section_status");
 
-  if (career_section_status === false || career_section_status === null) {
+  if (
+    career_section_status === false ||
+    career_section_status === null ||
+    career_section_status === "false"
+  ) {
     var userdatacheck = localStorage.getItem("userfbdata");
     let userdata = JSON.parse(userdatacheck);
     if (userdata) {
