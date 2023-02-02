@@ -774,34 +774,6 @@ $("#accept_help_button").on("click", function (e) {
     $("#help_page").addClass("hide");
   }
 });
-$(".tiles-image").on("click", function (e) {
-  e.preventDefault();
-
-  var help_call = JSON.parse(localStorage.getItem("help_call"));
-
-  if (help_call === "splash") {
-    $("#registration_splash_screen").addClass("hide");
-    $("#registration_screen_7").removeClass("hide");
-  } else if (help_call === "university_section") {
-    $("#registration_screen_0").addClass("hide");
-    $("#registration_screen_7").removeClass("hide");
-  } else if (help_call === "values_section") {
-    $("#registration_screen_1").addClass("hide");
-    $("#registration_screen_7").removeClass("hide");
-  } else if (help_call === "school_section") {
-    $("#registration_screen_2").addClass("hide");
-    $("#registration_screen_7").removeClass("hide");
-  } else if (help_call === "career_section") {
-    $("#registration_screen_3").addClass("hide");
-    $("#registration_screen_7").removeClass("hide");
-  } else if (help_call === "cost_section") {
-    $("#registration_screen_4").addClass("hide");
-    $("#registration_screen_7").removeClass("hide");
-  } else if (help_call === "sat_section") {
-    $("#registration_screen_5").addClass("hide");
-    $("#registration_screen_7").removeClass("hide");
-  }
-});
 $("#univeristy_exit_button").on("click", function (e) {
   e.preventDefault();
   localStorage.setItem("exit_call", JSON.stringify("university_section"));
