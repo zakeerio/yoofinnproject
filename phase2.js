@@ -1139,7 +1139,7 @@ function get_the_data(career, salary, growth) {
           console.log(index_of_career + "index_of_career");
           if (index_of_career > -1) {
           } else {
-            $("#career_parent_list").append(
+            $("#career_parent_list").html(
               "<div class='training flex'><div class='results'><div class='social-heading16 mb'><span class='light-sky-blue'>" +
                 half_name +
                 "</span>" +
