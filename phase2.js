@@ -1111,16 +1111,16 @@ function get_the_data(career, salary, growth) {
         careerdata = doc.data();
         localStorage.setItem("career_Test", JSON.stringify(careerdata));
 
-        console.log(doc.id + "careerdata");
-        console.log(careerdata.title + "careerdata.title");
-        console.log(careerdata.salary + " careerdata.salary ");
-        console.log(careerdata.growth_careers + "careerdata.growth_careers");
+        // console.log(doc.id + "careerdata");
+        // console.log(careerdata.title + "careerdata.title");
+        // console.log(careerdata.salary + " careerdata.salary ");
+        // console.log(careerdata.growth_careers + "careerdata.growth_careers");
         if (
           careerdata.title === career ||
           careerdata.salary === salary ||
           careerdata.growth_careers === growth
         ) {
-          console.log("in it ");
+          // console.log("in it ");
           let career_title = careerdata.title;
           let career_name_with_space = career_title.split(" ");
           let half_name = career_name_with_space[0]
@@ -1135,6 +1135,7 @@ function get_the_data(career, salary, growth) {
 
           const replaced = career_title.replaceAll(" ", "_");
 
+          console.log(index_of_career + "index_of_career");
           if (index_of_career > -1) {
           } else {
             $("#career_parent_list").append(
