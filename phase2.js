@@ -1120,6 +1120,7 @@ function get_the_data(career, salary, growth) {
           careerdata.salary === salary ||
           careerdata.growth_careers === growth
         ) {
+          console.log(careerdata.title + "careerdata.title");
           // console.log("in it ");
           let career_title = careerdata.title;
           let career_name_with_space = career_title.split(" ");
