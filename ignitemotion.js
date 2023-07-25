@@ -1,20 +1,28 @@
-
+var total = 0;
 $('.next-step').on('click', function(){
-    $('.w-slider-arrow-right').trigger('click');
+    $('.w-slider-arrow-right').trigger('click', function(){
+        console.log('this clicked');
+    });
 })
 $('.step-1').on('click', function(){
+    console.log('this step-1');
    $('.duration-price').text($(this).children('input[data-price]').attr('data-price'));
+   total = $(this).children('input[data-price]').attr('data-price');
+   console.log(total);
 })
 
 // step 2 code
 var step2ClickProcessed = false;
 $(document).on('click', '.step-2', function(event) {
+    console.log('this step-2');
+
     if (!step2ClickProcessed) {
         step2ClickProcessed = true;
         var x = 0;
         var the = $(this);
         setTimeout(function() {
             x = $('.step-2 .radio-button.w--redirected-checked').length;
+            console.log(x)+" -- ";
             if (x === 2) {
                 var val = parseInt(the.parents('.duration').children().find('.duration-price').text());
                 val = val + 247;
@@ -31,6 +39,7 @@ $(document).on('click', '.step-2', function(event) {
 
 // step 3
 $(document).on('click', '.step-3', function() {
+    console.log('this step-3');
     var isClicked = $(this).data('clicked');
     if (!isClicked) {
         $(this).data('clicked', true);
@@ -43,6 +52,7 @@ $(document).on('click', '.step-3', function() {
 
 // step 4
 $('label[data-thumbnail]').on('click', function() {
+    console.log('this step-thumbnail');
     if (!$(this).data('clicked')) {
         $(this).data('clicked', true);
 
