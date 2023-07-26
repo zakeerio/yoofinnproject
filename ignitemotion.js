@@ -72,7 +72,7 @@ $(document).on('click', '.step-3', function() {
 // step 4
 $(document).on('click', 'label[data-thumbnail]', function() {
     // if (!$(this).data('clicked')) {
-        $(this).data('clicked', true);
+        // $(this).data('clicked', true);
         console.log('this step-thumbnail');
 
         var thumb = parseInt($(this).attr('data-thumbnail'));
