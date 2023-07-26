@@ -70,7 +70,7 @@ $(document).on('click', '.step-3', function() {
 });
 
 // step 4
-$('label[data-thumbnail]').on('click', function() {
+$(document).on('click', 'label[data-thumbnail]', function() {
     if (!$(this).data('clicked')) {
         $(this).data('clicked', true);
         console.log('this step-thumbnail');
