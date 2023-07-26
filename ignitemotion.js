@@ -71,7 +71,7 @@ $(document).on('click', '.step-3', function() {
 
 // step 4
 $(document).on('click', 'label[data-thumbnail]', function() {
-    if (!$(this).data('clicked')) {
+    // if (!$(this).data('clicked')) {
         $(this).data('clicked', true);
         console.log('this step-thumbnail');
 
@@ -82,7 +82,7 @@ $(document).on('click', 'label[data-thumbnail]', function() {
         stp4 = total + thumb;
         $('.duration-price').text(stp4);
         console.log('step: ' + stp4);
-    }
+    // }
 });
 
 
