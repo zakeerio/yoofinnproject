@@ -35,6 +35,8 @@ $(document).on('click', '.step-2', function(event) {
                 var total2  = total+(247*2);
                 console.log(total2+" -- "+total);
                 $('.duration-price').text(total2);
+            } else {
+                $('.duration-price').text(total);
             }
             step2ClickProcessed = false;
         }, 500);
