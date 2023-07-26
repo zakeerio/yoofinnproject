@@ -22,15 +22,15 @@ $(document).on('click', '.step-2', function(event) {
         setTimeout(function() {
             x = $('.step-2 .radio-button.w--redirected-checked').length;
             if (x === 2) {
-                var val = parseInt($(this).parents('.duration').children().find('.duration-price').text());
-                val = val + 247;
-                console.log(val)+" -- ";
+                // var val = parseInt($(this).parents('.duration').children().find('.duration-price').text());
+                // val = val + 247;
+                // console.log(val)+" -- ";
                 var total1  = total+247;
                 console.log(total1+" -- "+total);
                 $('.duration-price').text(total1);
             } else if (x === 3) {
-                var val1 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
-                val1 = val1 + 247;
+                // var val1 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
+                // val1 = val1 + 247;
                 
                 var total2  = total+(247*2);
                 console.log(total2+" -- "+total);
