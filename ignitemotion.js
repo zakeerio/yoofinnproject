@@ -65,6 +65,7 @@ $(document).on('click', '.step-3', function() {
         console.log(stp3);
         // var price3 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
         price3 = total + parseInt(stp3);
+        total = price3;
         $('.duration-price').text(price3);
     // }
 });
@@ -79,9 +80,12 @@ $(document).on('click', 'label[data-thumbnail]', function() {
         console.log('thumb: ' + thumb);
         // var stp4 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
         
-        stp4 = total + thumb;
+        var stp4 = total + thumb;
+
+        total = stp4;
+
         $('.duration-price').text(stp4);
-        console.log('step: ' + stp4);
+        console.log('Total: ' + total);
     // }
 });
 
