@@ -7,7 +7,7 @@ $('.next-step').on('click', function(){
 $('.step-1').on('click', function(){
     console.log('this step-1');
    $('.duration-price').text($(this).children('input[data-price]').attr('data-price'));
-   total = $(this).children('input[data-price]').attr('data-price');
+   total = parseInt($(this).children('input[data-price]').attr('data-price'));
    console.log(total);
 })
 
@@ -25,12 +25,14 @@ $(document).on('click', '.step-2', function(event) {
                 var val = parseInt($(this).parents('.duration').children().find('.duration-price').text());
                 val = val + 247;
                 console.log(val)+" -- ";
+                total  = total+247;
                 $('.duration-price').text(val);
             } else if (x === 3) {
                 var val1 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
                 val1 = val1 + 247;
                 console.log(val1)+" -- ";
 
+                total  = total+(247*2);
                 $('.duration-price').text(val1);
             }
             step2ClickProcessed = false;
