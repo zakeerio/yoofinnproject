@@ -19,17 +19,18 @@ $(document).on('click', '.step-2', function(event) {
         console.log('this step-2');
         step2ClickProcessed = true;
         var x = 0;
-        var the = $(this);
         setTimeout(function() {
             x = $('.step-2 .radio-button.w--redirected-checked').length;
-            console.log(x)+" -- ";
             if (x === 2) {
-                var val = parseInt(the.parents('.duration').children().find('.duration-price').text());
+                var val = parseInt($(this).parents('.duration').children().find('.duration-price').text());
                 val = val + 247;
+                console.log(val)+" -- ";
                 $('.duration-price').text(val);
             } else if (x === 3) {
-                var val1 = parseInt(the.parents('.duration').children().find('.duration-price').text());
+                var val1 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
                 val1 = val1 + 247;
+                console.log(val1)+" -- ";
+
                 $('.duration-price').text(val1);
             }
             step2ClickProcessed = false;
