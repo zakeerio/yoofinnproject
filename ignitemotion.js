@@ -25,15 +25,16 @@ $(document).on('click', '.step-2', function(event) {
                 var val = parseInt($(this).parents('.duration').children().find('.duration-price').text());
                 val = val + 247;
                 console.log(val)+" -- ";
-                total  = total+247;
-                $('.duration-price').text(val);
+                var total1  = total+247;
+                console.log(total1+" -- "+total);
+                $('.duration-price').text(total1);
             } else if (x === 3) {
                 var val1 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
                 val1 = val1 + 247;
-                console.log(val1)+" -- ";
-
-                total  = total+(247*2);
-                $('.duration-price').text(val1);
+                
+                var total2  = total+(247*2);
+                console.log(total2+" -- "+total);
+                $('.duration-price').text(total2);
             }
             step2ClickProcessed = false;
         }, 500);
