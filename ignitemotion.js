@@ -1,4 +1,11 @@
+var pricing = [ {duration : { duration_20 : 1997, duration_40 : 2997, duration_60 : 3997, } },
+                {duration : { duration_20 : 1997, duration_40 : 2997, duration_60 : 3997, } },
+              ];
+
 var total = 0;
+var duration_subtoal=0;
+var total1 = 0;
+var total2 = 0;
 $('.next-step').on('click', function(){
     $('.w-slider-arrow-right').trigger('click', function(){
         console.log('this clicked');
@@ -7,7 +14,8 @@ $('.next-step').on('click', function(){
 $('.step-1').on('click', function(){
     console.log('this step-1');
    $('.duration-price').text($(this).children('input[data-price]').attr('data-price'));
-   total = parseInt($(this).children('input[data-price]').attr('data-price'));
+   duration_subtoal = parseInt($(this).children('input[data-price]').attr('data-price'));
+   total = duration_subtoal;
    console.log(total);
 })
 
@@ -16,7 +24,6 @@ var step2ClickProcessed = false;
 $(document).on('click', '.step-2', function(event) {
     
     if (!step2ClickProcessed) {
-        console.log('this step-2');
         step2ClickProcessed = true;
         var x = 0;
         setTimeout(function() {
@@ -26,16 +33,21 @@ $(document).on('click', '.step-2', function(event) {
                 // val = val + 247;
                 // console.log(val)+" -- ";
                 var total1  = total+247;
-                console.log(total1+" -- "+total);
+                console.log(total1+" -- Two "+total);
+                total = total1;
                 $('.duration-price').text(total1);
             } else if (x === 3) {
                 // var val1 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
                 // val1 = val1 + 247;
                 
                 var total2  = total+(247*2);
-                console.log(total2+" -- "+total);
+                total = total2;
+                console.log(total2+" -- Three "+total);
                 $('.duration-price').text(total2);
             } else {
+                total = duration_subtoal;
+                console.log(total+" single");
+
                 $('.duration-price').text(total);
             }
             step2ClickProcessed = false;
@@ -50,8 +62,9 @@ $(document).on('click', '.step-3', function() {
         console.log('this step-3');
         $(this).data('clicked', true);
         var stp3 = $(this).attr('data-step-3');
-        var price3 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
-        price3 = price3 + parseInt(stp3);
+        console.log(stp3);
+        // var price3 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
+        price3 = total + parseInt(stp3);
         $('.duration-price').text(price3);
     }
 });
