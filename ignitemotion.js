@@ -57,8 +57,8 @@ $(document).on('click', '.step-2', function(event) {
 
 // step 3
 $(document).on('click', '.step-3', function() {
-    var isClicked = $(this).data('clicked');
-    if (!isClicked) {
+    // var isClicked = $(this).data('clicked');
+    // if (!isClicked) {
         console.log('this step-3');
         $(this).data('clicked', true);
         var stp3 = $(this).attr('data-step-3');
@@ -66,7 +66,7 @@ $(document).on('click', '.step-3', function() {
         // var price3 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
         price3 = total + parseInt(stp3);
         $('.duration-price').text(price3);
-    }
+    // }
 });
 
 // step 4
