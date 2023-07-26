@@ -14,9 +14,9 @@ $('.step-1').on('click', function(){
 // step 2 code
 var step2ClickProcessed = false;
 $(document).on('click', '.step-2', function(event) {
-    console.log('this step-2');
-
+    
     if (!step2ClickProcessed) {
+        console.log('this step-2');
         step2ClickProcessed = true;
         var x = 0;
         var the = $(this);
@@ -39,9 +39,9 @@ $(document).on('click', '.step-2', function(event) {
 
 // step 3
 $(document).on('click', '.step-3', function() {
-    console.log('this step-3');
     var isClicked = $(this).data('clicked');
     if (!isClicked) {
+        console.log('this step-3');
         $(this).data('clicked', true);
         var stp3 = $(this).attr('data-step-3');
         var price3 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
@@ -52,9 +52,9 @@ $(document).on('click', '.step-3', function() {
 
 // step 4
 $('label[data-thumbnail]').on('click', function() {
-    console.log('this step-thumbnail');
     if (!$(this).data('clicked')) {
         $(this).data('clicked', true);
+        console.log('this step-thumbnail');
 
         var thumb = parseInt($(this).attr('data-thumbnail'));
         console.log('thumb: ' + thumb);
