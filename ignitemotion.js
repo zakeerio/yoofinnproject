@@ -77,8 +77,9 @@ $(document).on('click', 'label[data-thumbnail]', function() {
 
         var thumb = parseInt($(this).attr('data-thumbnail'));
         console.log('thumb: ' + thumb);
-        var stp4 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
-        stp4 = stp4 + thumb;
+        // var stp4 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
+        
+        stp4 = total + thumb;
         $('.duration-price').text(stp4);
         console.log('step: ' + stp4);
     }
