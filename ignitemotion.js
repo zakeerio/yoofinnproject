@@ -202,7 +202,11 @@ $('.submit-btn').on('click', function() {
         console.log('Matched Value:', matchedValue);
 
         // TEST
-        var stripe = Stripe('pk_test_51IVH1EAbTE2jKd8otfWEVhotk6EAxOZVARanEwDPzZEE9THGdRCLfQv21JV79oqnIuCyFpVawhvsmU0m8F5v5Ri700imuCCbWV');
+        // var stripe = Stripe('pk_test_51IVH1EAbTE2jKd8otfWEVhotk6EAxOZVARanEwDPzZEE9THGdRCLfQv21JV79oqnIuCyFpVawhvsmU0m8F5v5Ri700imuCCbWV');
+
+        // Live
+
+        var stripe = Stripe('pk_live_51N9RBYENjwnIyXhTON92zsZ7qNV68rz7hBk95Pm9duNSAeSyMJi2vS0ePVTUgdTWJZQQBHmSb33yAmt9ZMxyMwjH001c70RD2i');
 
         // $('.checkoutbutton').click(function(e){
         //     e.preventDefault();
@@ -234,9 +238,8 @@ $('.submit-btn').on('click', function() {
             $.ajax(settings).done(function (response) {
                 console.log(response);
                 if(response.id) {
-                
                     stripe.redirectToCheckout({
-                    sessionId: response.id
+                        sessionId: response.id
                     });
                 } else {
                     alert(response);
