@@ -52,8 +52,8 @@ $(document).on('click', '.step-2', function(event) {
                 // val = val + 247;
                 // console.log(val)+" -- ";
                 var total1  = total+247;
-                console.log(total1+" -- Two "+total);
                 total = total1;
+                console.log(total1+" -- Two "+total);
                 $('.duration-price').text(total1);
             } else if (x === 3 && step3 == false) {
                 // var val1 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
