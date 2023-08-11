@@ -23,6 +23,9 @@ var total = 0;
 var duration_subtoal=0;
 var total1 = 0;
 var total2 = 0;
+var formats_total = 0;
+var price3 = 0;
+
 $('.next-step').on('click', function(){
     $('.w-slider-arrow-right').trigger('click', function(){
         console.log('this clicked');
@@ -54,6 +57,7 @@ $(document).on('click', '.step-2', function(event) {
                 var total1  = duration_subtoal+247;
                 total = total1;
                 console.log(total1+" -- Two "+total);
+                formats_total = total1;
                 $('.duration-price').text(total1);
             } else if (x === 3 && step3 == false) {
                 // var val1 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
@@ -61,10 +65,14 @@ $(document).on('click', '.step-2', function(event) {
                 step3 = true;
                 var total2  = total+(247*2);
                 total = total2;
+                formats_total = total2;
+
                 console.log(total2+" -- Three "+total);
                 $('.duration-price').text(total2);
             } else {
                 total = duration_subtoal;
+                formats_total = duration_subtoal;
+
                 console.log(total+" single");
 
                 $('.duration-price').text(total);
@@ -83,7 +91,7 @@ $(document).on('click', '.step-3', function() {
         var stp3 = $(this).attr('data-step-3');
         console.log(stp3);
         // var price3 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
-        price3 = total + parseInt(stp3);
+        price3 = formats_total + parseInt(stp3);
         total = price3;
         $('.duration-price').text(price3);
     // }
@@ -99,7 +107,7 @@ $(document).on('click', 'label[data-thumbnail]', function() {
         console.log('thumb: ' + thumb);
         // var stp4 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
         
-        var stp4 = total + thumb;
+        var stp4 = price3 + thumb;
         total = stp4;
         $('.duration-price').text(stp4);
         console.log('Total: ' + total);
