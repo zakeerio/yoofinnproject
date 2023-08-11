@@ -44,8 +44,10 @@ $(document).on('click', '.step-2', function(event) {
         step2ClickProcessed = true;
         var x = 0;
         setTimeout(function() {
+            var step3 = false;
             x = $('.step-2 .radio-button.w--redirected-checked').length;
             if (x === 2) {
+                step3 = false;
                 // var val = parseInt($(this).parents('.duration').children().find('.duration-price').text());
                 // val = val + 247;
                 // console.log(val)+" -- ";
@@ -53,10 +55,10 @@ $(document).on('click', '.step-2', function(event) {
                 console.log(total1+" -- Two "+total);
                 total = total1;
                 $('.duration-price').text(total1);
-            } else if (x === 3) {
+            } else if (x === 3 && step3 == false) {
                 // var val1 = parseInt($(this).parents('.duration').children().find('.duration-price').text());
                 // val1 = val1 + 247;
-                
+                step3 = true;
                 var total2  = total1+(247*2);
                 // total = total2;
                 console.log(total2+" -- Three "+total);
