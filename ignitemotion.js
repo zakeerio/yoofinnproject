@@ -51,7 +51,7 @@ $(document).on('click', '.step-2', function(event) {
                 // var val = parseInt($(this).parents('.duration').children().find('.duration-price').text());
                 // val = val + 247;
                 // console.log(val)+" -- ";
-                var total1  = total+247;
+                var total1  = duration_subtoal+247;
                 total = total1;
                 console.log(total1+" -- Two "+total);
                 $('.duration-price').text(total1);
