@@ -22,12 +22,12 @@ $(document).ready(function() {
         }
     });
 
-    $(".next.checkout").on('click', function(){
-        $(".popop-box").css({'display':'flex','opacity':'1'});
-    })
-    $(".cancel-btn.w-button, .close-popup").click(function(){
-        $(".popop-box").css({'display':'none','opacity':'0'});
-    })
+    // $(".next.checkout").on('click', function(){
+    //     $(".popop-box").css({'display':'flex','opacity':'1'});
+    // })
+    // $(".cancel-btn.w-button, .close-popup").click(function(){
+    //     $(".popop-box").css({'display':'none','opacity':'0'});
+    // })
 });
 
 
