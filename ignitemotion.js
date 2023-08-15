@@ -2,13 +2,15 @@ $(document).ready(function() {
     $(".next-step").click(function() {
         var currentSlide = $(this).parents(".w-slide");
         var requiredInputs = currentSlide.find("input");
-        var allInputsChecked = true;
+        var allInputsChecked = false;
 
         requiredInputs.each(function() {
-            if (!$(this).prop("checked")) {
-                console.log('A checkbox is not checked.');
-                allInputsChecked = false;
+            if ($(this).prop("checked")) {
+                console.log('A checkbox is checked.');
+                allInputsChecked = true;
                 return false; // Exit the each loop early
+            } else {
+                console.log('A checkbox is not checked.');
             }
         });
 
