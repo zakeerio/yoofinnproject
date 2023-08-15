@@ -1,24 +1,27 @@
-// $(document).ready(function() {
+$(document).ready(function() {
     $(".next-step").click(function() {
-      var currentSlide = $(this).parents(".w-slide");
-      var requiredInputs = currentSlide.find("input");
-        console.log('clicked here');
-      var allInputsChecked = true;
-      requiredInputs.each(function() {
-        if (!$(this).prop("checked")) {
-          allInputsChecked = false;
-          return false; // exit the loop early
+        var currentSlide = $(this).parents(".w-slide");
+        var requiredInputs = currentSlide.find("input");
+        var allInputsChecked = true;
+
+        requiredInputs.each(function() {
+            if (!$(this).prop("checked")) {
+                console.log('A checkbox is not checked.');
+                allInputsChecked = false;
+                return false; // Exit the each loop early
+            }
+        });
+
+        if (allInputsChecked) {
+            $('.w-slider-arrow-right').trigger('click');
+            $(this).prop("disabled", false);
+        } else {
+            $(this).prop("disabled", true);
         }
-      });
-  
-      if (allInputsChecked) {    
-         $('.w-slider-arrow-right').trigger('click');
-         $(this).prop("disabled", false);
-      } else {
-        $(this).prop("disabled", true);
-      }
     });
-//   });
+});
+
+
 var total = 0;
 var duration_subtoal=0;
 var total1 = 0;
