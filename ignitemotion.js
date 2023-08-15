@@ -1,23 +1,23 @@
 // $(document).ready(function() {
-//     $(".next-step").click(function() {
-//       var currentSlide = $(this).parents(".w-slide");
-//       var requiredInputs = currentSlide.find("input");
+    $(".next-step").click(function() {
+      var currentSlide = $(this).parents(".w-slide");
+      var requiredInputs = currentSlide.find("input");
+        console.log('clicked here');
+      var allInputsChecked = true;
+      requiredInputs.each(function() {
+        if (!$(this).prop("checked")) {
+          allInputsChecked = false;
+          return false; // exit the loop early
+        }
+      });
   
-//       var allInputsChecked = true;
-//       requiredInputs.each(function() {
-//         if (!$(this).prop("checked")) {
-//           allInputsChecked = false;
-//           return false; // exit the loop early
-//         }
-//       });
-  
-//       if (allInputsChecked) {    
-//          $('.w-slider-arrow-right').trigger('click');
-//          $(this).prop("disabled", false);
-//       } else {
-//         $(this).prop("disabled", true);
-//       }
-//     });
+      if (allInputsChecked) {    
+         $('.w-slider-arrow-right').trigger('click');
+         $(this).prop("disabled", false);
+      } else {
+        $(this).prop("disabled", true);
+      }
+    });
 //   });
 var total = 0;
 var duration_subtoal=0;
@@ -26,11 +26,11 @@ var total2 = 0;
 var formats_total = 0;
 var price3 = 0;
 
-$('.next-step').on('click', function(){
-    $('.w-slider-arrow-right').trigger('click', function(){
-        console.log('this clicked');
-    });
-})
+// $('.next-step').on('click', function(){
+//     $('.w-slider-arrow-right').trigger('click', function(){
+//         console.log('this clicked');
+//     });
+// })
 $('.step-1').on('click', function(){
     console.log('this step-1');
    $('.duration-price').text($(this).children('input[data-price]').attr('data-price'));
