@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    $(".next-step").click(function() {
-        var currentSlide = $(this).parents(".w-slide");
+    $(".next-step").click(function(e) {
+        var currentSlide = $(e).parents(".w-slide");
         var requiredInputs = currentSlide.find("input");
         var allInputsChecked = false;
 
@@ -16,11 +16,18 @@ $(document).ready(function() {
 
         if (allInputsChecked) {
             $('.w-slider-arrow-right').trigger('click');
-            $(this).prop("disabled", false);
+            $(e).prop("disabled", false);
         } else {
-            $(this).prop("disabled", true);
+            $(e).prop("disabled", true);
         }
     });
+
+    $(".next.checkout").on('click', function(){
+        $(".popop-box").css({'display':'flex','opacity':'1'});
+    })
+    $(".cancel-btn.w-button, .close-popup").click(function(){
+        $(".popop-box").css({'display':'none','opacity':'0'});
+    })
 });
 
 
