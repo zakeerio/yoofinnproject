@@ -24,6 +24,7 @@ $('.submit-checkout').on('click', function() {
             "Authorization": "key__8c0d8aa13bf726012e1314e8ad8b4175665b6777513accd79ccb7c63d19706a5111",
             'priceId' : priceId,
             'planId' : planId,
+            'success_url' : "https://docs.google.com/forms/d/e/1FAIpQLSdZGFPYV419ykjaYmnvo3LUzW7fjQ_n_xxHthQKTXJWlBJ2eQ/viewform",
             'planqty' : planqty,
             'domain' : domainname,
         })
