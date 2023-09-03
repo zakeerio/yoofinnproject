@@ -11,6 +11,7 @@ $('.submit-checkout').on('click', function() {
     var priceId = 'price_1LW2VTAbTE2jKd8oPI5rRbMp'; //$(this).attr('data-priceId');
     var planId = 'BASIC';
     var planqty = 1;
+    var success_url = "https://docs.google.com/forms/d/e/1FAIpQLSdZGFPYV419ykjaYmnvo3LUzW7fjQ_n_xxHthQKTXJWlBJ2eQ/viewform";
     var domainname = window.location.hostname;
     
     var settings = {
@@ -24,7 +25,7 @@ $('.submit-checkout').on('click', function() {
             "Authorization": "key__8c0d8aa13bf726012e1314e8ad8b4175665b6777513accd79ccb7c63d19706a5111",
             'priceId' : priceId,
             'planId' : planId,
-            'success_url' : "https://docs.google.com/forms/d/e/1FAIpQLSdZGFPYV419ykjaYmnvo3LUzW7fjQ_n_xxHthQKTXJWlBJ2eQ/viewform",
+            'success_url' : success_url,
             'planqty' : planqty,
             'domain' : domainname,
         })
