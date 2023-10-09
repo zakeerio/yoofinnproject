@@ -24658,7 +24658,7 @@ function init() {
     };
 
     // Retrieve all records from the 'countries' collection
-    countriesCollection.get()
+    countriesCollection.orderBy('name').get()
     .then(querySnapshot => {
         const countries = [];
         querySnapshot.forEach(doc => {
@@ -24671,3 +24671,35 @@ function init() {
     });
 
 }
+
+// Function to calculate age based on selected date of birth
+function calculateAge() {
+    const dateOfBirthInput = $('#dateofbirth').val();
+    const dateOfBirth = new Date(dateOfBirthInput);
+  
+    if (isNaN(dateOfBirth)) {
+      alert('Please select a valid date of birth.');
+      return;
+    }
+  
+    // Calculate the current date
+    const currentDate = new Date();
+  
+    // Calculate the age
+    let age = currentDate.getFullYear() - dateOfBirth.getFullYear();
+  
+    // Adjust age if birthday has not occurred this year yet
+    if (currentDate < new Date(currentDate.getFullYear(), dateOfBirth.getMonth(), dateOfBirth.getDate())) {
+      age--;
+    }
+
+    localStorage.setItem('years', age);
+    localStorage.setItem('dateofbirth', dateOfBirthInput);
+
+  }
+  
+  // Attach onchange event listener to the date input
+  $(document).ready(function() {
+    $('#dateofbirth').on('change', calculateAge);
+  });
+  
