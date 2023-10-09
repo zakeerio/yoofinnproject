@@ -24701,5 +24701,12 @@ function calculateAge() {
   // Attach onchange event listener to the date input
   $(document).ready(function() {
     $('#dateofbirth').on('change', calculateAge);
+
+    $('input[name=gender]').on('change', function(){
+        var gender = $(this).val();
+        localStorage.setItem('gender', gender);
+    })
+
+
   });
   
