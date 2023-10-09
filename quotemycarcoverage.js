@@ -24367,20 +24367,20 @@ function init() {
 
 
 
-    $.each(concerns, function( index, value ) {
-        var key = value.key;
-        var values = value.value;
+    // $.each(concerns, function( index, value ) {
+    //     var key = value.key;
+    //     var values = value.value;
 
-        // var id = db.collection("Concerns").doc();
+    //     // var id = db.collection("Concerns").doc();
 
-        var concerndata = value;
+    //     var concerndata = value;
 
-        console.log(concerndata);
+    //     console.log(concerndata);
 
-        db.collection("quotemycarcoverage").doc().set(concerndata).then(() => {
-            console.log('tested');
-        })
-    });
+    //     db.collection("quotemycarcoverage").doc().set(concerndata).then(() => {
+    //         console.log('tested');
+    //     })
+    // });
 
 
     const countries = [ 
@@ -24630,16 +24630,16 @@ function init() {
       ];
 
 
-    const countriesCollection = db.collection('countries');
+    // const countriesCollection = db.collection('countries');
 
-    countries.forEach(country => {
-    countriesCollection.add(country)
-        .then(docRef => {
-        console.log('Country added with ID:', docRef.id);
-        })
-        .catch(error => {
-        console.error('Error adding country:', error);
-        });
-    });
+    // countries.forEach(country => {
+    // countriesCollection.add(country)
+    //     .then(docRef => {
+    //     console.log('Country added with ID:', docRef.id);
+    //     })
+    //     .catch(error => {
+    //     console.error('Error adding country:', error);
+    //     });
+    // });
 
 }
