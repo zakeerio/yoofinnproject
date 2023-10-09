@@ -24642,4 +24642,32 @@ function init() {
     //     });
     // });
 
+
+    const countriesCollection = db.collection('countries');
+
+    const selectElement = document.getElementById('country');
+
+    // Function to populate the <select> element with country options
+    const populateCountryOptions = (countries) => {
+        countries.forEach(country => {
+            const option = document.createElement('option');
+            option.value = country.name;
+            option.textContent = country.name;
+            selectElement.appendChild(option);
+        });
+    };
+
+    // Retrieve all records from the 'countries' collection
+    countriesCollection.get()
+    .then(querySnapshot => {
+        const countries = [];
+        querySnapshot.forEach(doc => {
+        countries.push(doc.data());
+        });
+        populateCountryOptions(countries);
+    })
+    .catch(error => {
+        console.error('Error getting countries:', error);
+    });
+
 }
