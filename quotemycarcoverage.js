@@ -24707,6 +24707,16 @@ function calculateAge() {
         localStorage.setItem('gender', gender);
     })
 
+    $('input[name=deposit]').on('change', function(){
+        var deposit = $(this).val();
+        localStorage.setItem('deposit', deposit);
+    })
+
+    $('#duration').on('change', function(){
+        var duration = $(this).val();
+        localStorage.setItem('duration', duration);
+    })
+    
 
   });
   
