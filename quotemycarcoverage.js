@@ -24367,7 +24367,7 @@ function init() {
 
 
 
-    $.each(states, function( index, value ) {
+    $.each(concerns, function( index, value ) {
         var key = value.key;
         var values = value.value;
 
