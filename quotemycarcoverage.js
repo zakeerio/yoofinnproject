@@ -24731,7 +24731,7 @@ $(document).ready(function() {
         var duration = localStorage.getItem('duration');
         var age = localStorage.getItem('age');
 
-        console.log(deposit+" - "+gender+" - "+duration+" - "+age);
+        console.log(deposit+"deposit - "+gender+":gender - "+duration+":years - "+age+":age");
 
         var quotemycarcoverageCollection = db.collection('quotemycarcoverage');
 
