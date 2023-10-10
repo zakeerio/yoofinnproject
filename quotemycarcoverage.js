@@ -24784,7 +24784,6 @@ $("#paycalcbutton").on('click', function(e){
     //     "charges": 212.35
     //    },
     // 600000:deposit - Female:gender - 20:years - 31:age
-    const database = firebase.firestore();
 
     const quotemycarcoverageCollection = db.collection('quotemycarcoverage');
 
