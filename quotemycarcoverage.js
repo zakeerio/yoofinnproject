@@ -3,32 +3,6 @@ var db = firebase.firestore();
 $(init);
 function init() {
 
-    const deposit = 600000; // Set the desired deposit value
-
-const db = firebase.firestore();
-const quotemycarcoverageCollection = db.collection('quotemycarcoverage');
-
-let query = quotemycarcoverageCollection.where('deposit', '==', deposit);
-
-query.get()
-  .then(querySnapshot => {
-    console.log('Matching documents count:', querySnapshot.size);
-
-    if (querySnapshot.size > 0) {
-      querySnapshot.forEach(doc => {
-        const dbdata = doc.data();
-        console.log('Matching user:', dbdata);
-        console.log('Charges:', dbdata.charges);
-        // Perform further actions with the matching user data
-      });
-    } else {
-      console.log("No matching documents found.");
-    }
-  })
-  .catch(error => {
-    console.error('Error getting matching users:', error);
-  });
- 
     var concerns =  [
         {
         "gender": "Female",
@@ -24760,8 +24734,6 @@ $(document).ready(function() {
 
         console.log(deposit+"deposit - "+gender+":gender - "+duration+":years - "+age+":age");
 
-        var quotemycarcoverageCollection = db.collection('quotemycarcoverage');
-
         // {
         //     "gender": "Female",
         //     "age": 31,
@@ -24770,29 +24742,25 @@ $(document).ready(function() {
         //     "charges": 212.35
         //    },
         // 600000:deposit - Female:gender - 20:years - 31:age
+        const db = firebase.firestore();
 
-        let query = db.collection('quotemycarcoverage').where('deposit','==', deposit);
-            // .where('gender', "{gender}")
-            // .where('age', age)
-            // .where('years', duration)
-            // .where('deposit', deposit);
+        const quotemycarcoverageCollection = db.collection('quotemycarcoverage');
 
-        console.log('Query:', query);
-        
+        let query = quotemycarcoverageCollection.where('deposit', '==', deposit).where('age', '==', age).where('years', '==', duration).where('gender', '==', gender);
+
         query.get()
         .then(querySnapshot => {
-            console.log(querySnapshot.size);
+            console.log('Matching documents count:', querySnapshot.size);
+
             if (querySnapshot.size > 0) {
-               querySnapshot.forEach(doc => {
-                    var dbdata = doc.data();
-
-                    console.log('Matching user:', dbdata);
-                    console.log('Charges:', dbdata.charges);
-
-                    // Perform further actions with the matching user data
-                });
+            querySnapshot.forEach(doc => {
+                const dbdata = doc.data();
+                console.log('Matching user:', dbdata);
+                console.log('Charges:', dbdata.charges);
+                // Perform further actions with the matching user data
+            });
             } else {
-                console.log("Not found");
+            console.log("No matching documents found.");
             }
         })
         .catch(error => {
