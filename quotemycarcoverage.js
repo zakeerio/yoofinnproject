@@ -24736,15 +24736,16 @@ $(document).ready(function() {
         var quotemycarcoverageCollection = db.collection('quotemycarcoverage');
 
         // {
-        //     "gender": "Male",
-        //     "age": 33,
+        //     "gender": "Female",
+        //     "age": 31,
         //     "years": 20,
-        //     "deposit": 500000,
-        //     "charges": 251.26
+        //     "deposit": 600000,
+        //     "charges": 212.35
         //    },
+        // 600000:deposit - Female:gender - 20:years - 31:age
 
         let query = quotemycarcoverageCollection.where('deposit', '==', deposit)
-        .where('gender', '==', gender)
+        .where('gender', '==', String(gender))
         .where('age', '==', age)
         .where('years', '==', duration);
 
