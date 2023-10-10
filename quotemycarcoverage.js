@@ -24697,10 +24697,10 @@ function calculateAge() {
     localStorage.setItem('age', age);
     localStorage.setItem('dateofbirth', dateOfBirthInput);
 
-  }
+}
   
-  // Attach onchange event listener to the date input
-  $(document).ready(function() {
+// Attach onchange event listener to the date input
+$(document).ready(function() {
     localStorage.removeItem('deposit');
     localStorage.removeItem('gender');
     localStorage.removeItem('duration');
@@ -24735,22 +24735,22 @@ function calculateAge() {
 
         var quotemycarcoverageCollection = db.collection('quotemycarcoverage');
 
-        // Build the query based on the provided values
         let query = quotemycarcoverageCollection.where('deposit', '==', deposit)
-                                    .where('gender', '==', gender)
-                                    .where('duration', '==', duration)
-                                    .where('years', '==', age);
+        .where('gender', '==', gender)
+        .where('duration', '==', duration)
+        .where('years', '==', age);
 
-        // Execute the query
+        console.log('Query:', query);
+
         query.get()
         .then(querySnapshot => {
+            console.log('Query successful. Results:', querySnapshot.size);
             querySnapshot.forEach(doc => {
                 var dbdata = doc.data();
-
-                console.log('Matching user:', doc.data());
-                console.log(dbdata.charges);
-
-            // Perform further actions with the matching user data
+        
+                console.log('Matching user:', dbdata);
+                console.log('Charges:', dbdata.charges);
+                // Perform further actions with the matching user data
             });
         })
         .catch(error => {
@@ -24759,5 +24759,5 @@ function calculateAge() {
 
     })
 
-  });
+});
   
