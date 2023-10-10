@@ -24693,7 +24693,8 @@ function calculateAge() {
       age--;
     }
 
-    localStorage.setItem('years', age);
+    $("#info_dateofbirth").val(dateOfBirthInput);
+    localStorage.setItem('age', age);
     localStorage.setItem('dateofbirth', dateOfBirthInput);
 
   }
@@ -24716,7 +24717,38 @@ function calculateAge() {
         var duration = $(this).val();
         localStorage.setItem('duration', duration);
     })
-    
+    $("#paycalcbutton").on('click', function(e){
+        e.preventDefault();
+        const deposit = localStorage.getItem('deposit');
+        const gender = localStorage.getItem('gender');
+        const duration = localStorage.getItem('duration');
+        const age = localStorage.getItem('age');
+
+        const quotemycarcoverageCollection = db.collection('quotemycarcoverage');
+
+        // Build the query based on the provided values
+        let query = quotemycarcoverageCollection.where('deposit', '==', deposit)
+                                    .where('gender', '==', gender)
+                                    .where('duration', '==', duration)
+                                    .where('years', '==', age);
+
+        // Execute the query
+        query.get()
+        .then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+                var dbdata = doc.data();
+
+                console.log('Matching user:', doc.data());
+                console.log(dbdata.charges);
+
+            // Perform further actions with the matching user data
+            });
+        })
+        .catch(error => {
+            console.error('Error getting matching users:', error);
+        });
+
+    })
 
   });
   
