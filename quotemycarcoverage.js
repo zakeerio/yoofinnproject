@@ -49,8 +49,8 @@ function init(){
                         console.log('Charges:', dbdata.charges);
                         // Perform further actions with the matching user data
 
-                        $("#totalcharges").text(dbdata.charges);
                         $("#Charges").val(dbdata.charges);
+                        $("#totalcharges").text(dbdata.charges);
                         $('.w-slider-arrow-right').trigger('click');
 
                     });
