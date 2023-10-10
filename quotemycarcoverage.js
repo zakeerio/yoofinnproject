@@ -1,46 +1,44 @@
+'use strict';
 var db = firebase.firestore();
 
 $(init);
 function init() {
+    $("#paycalcbutton").on('click', function(e) {
+        e.preventDefault();
 
-    // {
-        //     "gender": "Female",
-        //     "age": 31,
-        //     "years": 20,
-        //     "deposit": 600000,
-        //     "charges": 212.35
-        //    },
-        // 600000:deposit - Female:gender - 20:years - 31:age
-        const database = firebase.firestore();
-        var deposit = 600000;
-        var age = 22;
-        var duration = 20;
-        var gender = "Male";
+        // Retrieve data from localStorage
+        const deposit = parseInt(localStorage.getItem('deposit'));
+        const gender = localStorage.getItem('gender');
+        const duration = parseInt(localStorage.getItem('duration'));
+        const age = parseInt(localStorage.getItem('age'));
 
-
+        // Query Firestore
         const quotemycarcoverageCollection = db.collection('quotemycarcoverage');
 
-        let query = quotemycarcoverageCollection.where('deposit', '==', deposit).where('age', '==', age).where('years', '==', duration).where('gender', '==', gender);
+        quotemycarcoverageCollection
+            .where('deposit', '==', deposit)
+            .where('age', '==', age)
+            .where('years', '==', duration)
+            .where('gender', '==', gender)
+            .get()
+            .then(querySnapshot => {
+                console.log('Matching documents count:', querySnapshot.size);
 
-        query.get()
-        .then(querySnapshot => {
-            console.log('Matching documents count:', querySnapshot.size);
-
-            if (querySnapshot.size > 0) {
-            querySnapshot.forEach(doc => {
-                const dbdata = doc.data();
-                console.log('Matching user:', dbdata);
-                console.log('Charges:', dbdata.charges);
-                // Perform further actions with the matching user data
+                if (querySnapshot.size > 0) {
+                    querySnapshot.forEach(doc => {
+                        const dbdata = doc.data();
+                        console.log('Matching user:', dbdata);
+                        console.log('Charges:', dbdata.charges);
+                        // Perform further actions with the matching user data
+                    });
+                } else {
+                    console.log("No matching documents found.");
+                }
+            })
+            .catch(error => {
+                console.error('Error getting matching users:', error);
             });
-            } else {
-            console.log("No matching documents found.");
-            }
-        })
-        .catch(error => {
-            console.error('Error getting matching users:', error);
-        });
-
+    });
     var concerns =  [
         {
         "gender": "Female",
@@ -24707,51 +24705,7 @@ function init() {
     })
     .catch(error => {
         console.error('Error getting countries:', error);
-    });
-
-
-    $("#paycalcbutton").on('click', function(e){
-        e.preventDefault();
-        var deposit = localStorage.getItem('deposit');
-        var gender = localStorage.getItem('gender');
-        var duration = localStorage.getItem('duration');
-        var age = localStorage.getItem('age');
-    
-        console.log(deposit+"deposit - "+gender+":gender - "+duration+":years - "+age+":age");
-    
-        // {
-        //     "gender": "Female",
-        //     "age": 31,
-        //     "years": 20,
-        //     "deposit": 600000,
-        //     "charges": 212.35
-        //    },
-        // 600000:deposit - Female:gender - 20:years - 31:age
-    
-        const quotemycarcoverageCollection = db.collection('quotemycarcoverage');
-    
-        let query = quotemycarcoverageCollection.where('deposit', '==', deposit).where('age', '==', age).where('years', '==', duration).where('gender', '==', gender);
-    
-        query.get()
-        .then(querySnapshot => {
-            console.log('Matching documents count:', querySnapshot.size);
-    
-            if (querySnapshot.size > 0) {
-            querySnapshot.forEach(doc => {
-                const dbdata = doc.data();
-                console.log('Matching user:', dbdata);
-                console.log('Charges:', dbdata.charges);
-                // Perform further actions with the matching user data
-            });
-            } else {
-            console.log("No matching documents found.");
-            }
-        })
-        .catch(error => {
-            console.error('Error getting matching users:', error);
-        });
-    
-    })
+    });     
 
 }
 
@@ -24789,10 +24743,6 @@ $(document).ready(function() {
     localStorage.removeItem('duration');
     localStorage.removeItem('age');
     localStorage.removeItem('dateofbirth');
-    
-
-    
-
 });
 
 $('#dateofbirth').on('change', calculateAge);
