@@ -24744,27 +24744,27 @@ $(document).ready(function() {
         //    },
         // 600000:deposit - Female:gender - 20:years - 31:age
 
-        let query = quotemycarcoverageCollection.where('deposit', '==', deposit)
-        .where('gender', '==', String(gender))
-        .where('age', '==', age)
-        .where('years', '==', duration);
-
-        console.log('Query:', query);
+        let query = quotemycarcoverageCollection
+            .where('gender', '==', "{gender}")
+            .where('age', '==', age)
+            .where('years', '==', duration)
+            .where('deposit', '==', deposit);
 
         query.get()
-        .then(querySnapshot => {
-            console.log('Query successful. Results:', querySnapshot.size);
-            querySnapshot.forEach(doc => {
-                var dbdata = doc.data();
-        
-                console.log('Matching user:', dbdata);
-                console.log('Charges:', dbdata.charges);
-                // Perform further actions with the matching user data
+            .then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    var dbdata = doc.data();
+
+                    console.log('Matching user:', dbdata);
+                    console.log('Charges:', dbdata.charges);
+
+                    // Perform further actions with the matching user data
+                });
+            })
+            .catch(error => {
+                console.error('Error getting matching users:', error);
             });
-        })
-        .catch(error => {
-            console.error('Error getting matching users:', error);
-        });
+
 
     })
 
