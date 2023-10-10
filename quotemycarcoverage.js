@@ -24735,10 +24735,18 @@ $(document).ready(function() {
 
         var quotemycarcoverageCollection = db.collection('quotemycarcoverage');
 
+        // {
+        //     "gender": "Male",
+        //     "age": 33,
+        //     "years": 20,
+        //     "deposit": 500000,
+        //     "charges": 251.26
+        //    },
+
         let query = quotemycarcoverageCollection.where('deposit', '==', deposit)
         .where('gender', '==', gender)
-        .where('duration', '==', duration)
-        .where('years', '==', age);
+        .where('age', '==', age)
+        .where('years', '==', duration);
 
         console.log('Query:', query);
 
