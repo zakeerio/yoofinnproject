@@ -24748,7 +24748,7 @@ $(document).ready(function() {
             .where('gender', "{gender}")
             .where('age', age)
             .where('years', duration)
-            .where('deposit',, deposit);
+            .where('deposit', deposit);
 
         console.log('Query:', query);
         
