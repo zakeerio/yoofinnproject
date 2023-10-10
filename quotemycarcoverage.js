@@ -24744,11 +24744,11 @@ $(document).ready(function() {
         //    },
         // 600000:deposit - Female:gender - 20:years - 31:age
 
-        let query = quotemycarcoverageCollection
-            .where('gender', "{gender}")
-            .where('age', age)
-            .where('years', duration)
-            .where('deposit', deposit);
+        let query = db.collection('quotemycarcoverage').where('deposit', deposit);
+            // .where('gender', "{gender}")
+            // .where('age', age)
+            // .where('years', duration)
+            // .where('deposit', deposit);
 
         console.log('Query:', query);
         
