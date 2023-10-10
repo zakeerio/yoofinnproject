@@ -24715,7 +24715,7 @@ function calculateAge() {
         localStorage.setItem('gender', gender);
     })
 
-    $('input[name=deposit]').on('change', function(){
+    $('#deposit').on('change', function(){
         var deposit = $(this).val();
         localStorage.setItem('deposit', deposit);
     })
