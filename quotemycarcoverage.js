@@ -24719,12 +24719,14 @@ function calculateAge() {
     })
     $("#paycalcbutton").on('click', function(e){
         e.preventDefault();
-        const deposit = localStorage.getItem('deposit');
-        const gender = localStorage.getItem('gender');
-        const duration = localStorage.getItem('duration');
-        const age = localStorage.getItem('age');
+        var deposit = localStorage.getItem('deposit');
+        var gender = localStorage.getItem('gender');
+        var duration = localStorage.getItem('duration');
+        var age = localStorage.getItem('age');
 
-        const quotemycarcoverageCollection = db.collection('quotemycarcoverage');
+        console.log(deposit+" - "+gender+" - "+duration+" - "+age);
+
+        var quotemycarcoverageCollection = db.collection('quotemycarcoverage');
 
         // Build the query based on the provided values
         let query = quotemycarcoverageCollection.where('deposit', '==', deposit)
