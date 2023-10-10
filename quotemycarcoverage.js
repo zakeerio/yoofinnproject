@@ -24750,21 +24750,22 @@ $(document).ready(function() {
             .where('years', '==', duration)
             .where('deposit', '==', deposit);
 
+        console.log('Query:', query);
+        
         query.get()
-            .then(querySnapshot => {
-                querySnapshot.forEach(doc => {
-                    var dbdata = doc.data();
+        .then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+                var dbdata = doc.data();
 
-                    console.log('Matching user:', dbdata);
-                    console.log('Charges:', dbdata.charges);
+                console.log('Matching user:', dbdata);
+                console.log('Charges:', dbdata.charges);
 
-                    // Perform further actions with the matching user data
-                });
-            })
-            .catch(error => {
-                console.error('Error getting matching users:', error);
+                // Perform further actions with the matching user data
             });
-
+        })
+        .catch(error => {
+            console.error('Error getting matching users:', error);
+        });
 
     })
 
