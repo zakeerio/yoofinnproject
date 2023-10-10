@@ -24705,6 +24705,8 @@ function calculateAge() {
     localStorage.removeItem('gender');
     localStorage.removeItem('duration');
     localStorage.removeItem('age');
+    localStorage.removeItem('dateofbirth');
+    
 
     $('#dateofbirth').on('change', calculateAge);
 
