@@ -48,6 +48,11 @@ function init(){
                         console.log('Matching user:', dbdata);
                         console.log('Charges:', dbdata.charges);
                         // Perform further actions with the matching user data
+
+                        $("#totalcharges").text(dbdata.charges);
+                        $("#chargesvalue").val(dbdata.charges);
+                        $('.w-slider-arrow-right').trigger('click');
+
                     });
                 } else {
                     console.log("No matching documents found.");
