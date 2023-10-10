@@ -24754,14 +24754,19 @@ $(document).ready(function() {
         
         query.get()
         .then(querySnapshot => {
-            querySnapshot.forEach(doc => {
-                var dbdata = doc.data();
+            console.log(querySnapshot.size);
+            if (querySnapshot.size > 0) {
+               querySnapshot.forEach(doc => {
+                    var dbdata = doc.data();
 
-                console.log('Matching user:', dbdata);
-                console.log('Charges:', dbdata.charges);
+                    console.log('Matching user:', dbdata);
+                    console.log('Charges:', dbdata.charges);
 
-                // Perform further actions with the matching user data
-            });
+                    // Perform further actions with the matching user data
+                });
+            } else {
+                console.log("Not found");
+            }
         })
         .catch(error => {
             console.error('Error getting matching users:', error);
