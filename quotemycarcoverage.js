@@ -50,7 +50,7 @@ function init(){
                         // Perform further actions with the matching user data
 
                         $("#Charges").val(dbdata.charges);
-                        $("#totalcharges").text(dbdata.charges);
+                        $("#totalcharges").text("$"+dbdata.charges);
                         $('.w-slider-arrow-right').trigger('click');
 
                     });
