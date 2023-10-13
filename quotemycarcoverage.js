@@ -6,6 +6,11 @@ $(document).ready(function() {
 });
 
 function init(){
+    // remove localStorage
+    localStorage.removeItem('deposit');
+    localStorage.removeItem('gender');
+    localStorage.removeItem('duration');
+    localStorage.removeItem('age');
     // Event listeners
     $('#dateofbirth').on('change', calculateAge);
     $('input[name=gender]').on('change', function(){
