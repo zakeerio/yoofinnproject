@@ -29,8 +29,8 @@ function init(){
 
     $(document).on('click', "#plan-monthly", function(e){
         e.preventDefault();
-        $("#plan-yearly").removeClass("plan-active");
-        $("#plan-monthly").addClass("plan-active");
+        $("#plan-yearly").removeClass("active-plan");
+        $("#plan-monthly").addClass("active-plan");
         var chargesval = $("#totalcharges").attr("plan-monthly");
         console.log(chargesval);
         $("#Charges").val(chargesval);
@@ -40,8 +40,8 @@ function init(){
 
     $(document).on('click', "#plan-yearly", function(e){
         e.preventDefault();
-        $("#plan-monthly").removeClass("plan-active");
-        $("#plan-yearly").addClass("plan-active");
+        $("#plan-monthly").removeClass("active-plan");
+        $("#plan-yearly").addClass("active-plan");
         var chargesval = $("#totalcharges").attr("plan-yearly");
         console.log(chargesval);
         $("#Charges").val(chargesval);
