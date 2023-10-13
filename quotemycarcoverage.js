@@ -71,7 +71,6 @@ function init(){
 
                         $("#Charges").val(dbdata.charges);
                         $("#totalcharges").text("$"+dbdata.charges).attr("plan-monthly", (dbdata.charges/12).toFixed(2)).attr("plan-yearly", dbdata.charges);
-                        $("#totalcharges").attr("data-plan-monthly", dbdata.charges);
                         $('.w-slider-arrow-right').trigger('click');
 
                     });
