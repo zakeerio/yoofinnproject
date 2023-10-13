@@ -11,6 +11,7 @@ function init(){
     localStorage.removeItem('gender');
     localStorage.removeItem('duration');
     localStorage.removeItem('age');
+    localStorage.removeItem('dateofbirth');
     // Event listeners
     $('#dateofbirth').on('change', calculateAge);
     $('input[name=gender]').on('change', function(){
