@@ -34,7 +34,7 @@ function init(){
         var chargesval = $("#totalcharges").attr("plan-monthly");
         console.log(chargesval);
         $("#Charges").val(chargesval);
-        $("#totalcharges").text("$"+chargesval);
+        $("#totalcharges").text(chargesval);
         $("#Plan").val("Monthly Plan");
     })
 
@@ -45,7 +45,7 @@ function init(){
         var chargesval = $("#totalcharges").attr("plan-yearly");
         console.log(chargesval);
         $("#Charges").val(chargesval);
-        $("#totalcharges").text("$"+chargesval);
+        $("#totalcharges").text(chargesval);
         $("#Plan").val("Yearly Plan");
     })
     // Event listener for paycalcbutton
@@ -77,8 +77,8 @@ function init(){
                         console.log('Charges:', dbdata.charges);
                         // Perform further actions with the matching user data
 
-                        $("#Charges").val(dbdata.charges);
-                        $("#totalcharges").text("$"+dbdata.charges).attr("plan-monthly", (dbdata.charges/12).toFixed(2)).attr("plan-yearly", dbdata.charges);
+                        $("#Charges").val("$"+dbdata.charges);
+                        $("#totalcharges").text("$"+dbdata.charges).attr("plan-monthly", "$"+(dbdata.charges/12).toFixed(2)).attr("plan-yearly", "$"+dbdata.charges);
                         $('.w-slider-arrow-right').trigger('click');
 
                     });
