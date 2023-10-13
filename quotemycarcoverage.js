@@ -116,6 +116,39 @@ function init(){
         .catch(error => {
             console.error('Error getting countries:', error);
         });
+    
+    if ($('#Street-Address-City').length > 0) {
+        var options = { types: ['(cities)']};
+
+        var autocomplete = new google.maps.places.Autocomplete($("#Street-Address-City")[0], options);
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var result = autocomplete.getPlace();
+            console.log(result.address_components[0]);
+            var addressComponents = result.address_components;
+            var address_street_line1 = result.formatted_address;
+            // var city = getAddressComponent(addressComponents, 'locality');
+            var state = getAddressComponent(addressComponents, 'administrative_area_level_1');
+            var country = getAddressComponent(addressComponents, 'country');
+            var postalCode = getAddressComponent(addressComponents, 'postal_code');
+            $('#Street-Address-City').val(address_street_line1);
+            $('#address_zipcode').val(postalCode);
+            // $('#address_city').val(city);
+            $('#State').val(state);
+            $('#address_country').val(country);
+        });
+    }
+
+    function getAddressComponent(components, type) {
+        for (var i = 0; i < components.length; i++) {
+            var component = components[i];
+            var componentTypes = component.types;
+            if (componentTypes.indexOf(type) !== -1) {
+                return component.long_name;
+            }
+        }
+        return '';
+    }
 }
 
 function calculateAge() {
