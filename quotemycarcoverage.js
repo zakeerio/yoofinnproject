@@ -20,6 +20,26 @@ function init(){
         var duration = $(this).val();
         localStorage.setItem('duration', duration);
     });
+
+    $("#plan-monthly").on('click', function(e){
+        e.preventDefault();
+        $("#plan-yearly").removeClass("plan-active");
+        $("#plan-monthly").addClass("plan-active");
+        var chargesval = $("#totalcharges").attr("plan-monthly");
+        $("#Charges").val(chargesval);
+        $("#totalcharges").text("$".chargesval);
+        $("#Plan").val("Monthly Plan");
+    })
+
+    $("#plan-yearly").on('click', function(e){
+        e.preventDefault();
+        $("#plan-monthly").removeClass("plan-active");
+        $("#plan-yearly").addClass("plan-active");
+        var chargesval = $("#totalcharges").attr("plan-yearly");
+        $("#Charges").val(chargesval);
+        $("#totalcharges").text("$".chargesval);
+        $("#Plan").val("Yearly Plan");
+    })
     // Event listener for paycalcbutton
     $("#paycalcbutton").on('click', function(e) {
         e.preventDefault();
@@ -50,7 +70,8 @@ function init(){
                         // Perform further actions with the matching user data
 
                         $("#Charges").val(dbdata.charges);
-                        $("#totalcharges").text("$"+dbdata.charges);
+                        $("#totalcharges").text("$"+dbdata.charges).attr("plan-monthly", (dbdata.charges/12).toFixed(2)).attr("plan-yearly", dbdata.charges);
+                        $("#totalcharges").attr("data-plan-monthly", dbdata.charges);
                         $('.w-slider-arrow-right').trigger('click');
 
                     });
