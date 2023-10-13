@@ -34,7 +34,7 @@ function init(){
         var chargesval = $("#totalcharges").attr("plan-monthly");
         console.log(chargesval);
         $("#Charges").val(chargesval);
-        $("#totalcharges").text("$".chargesval);
+        $("#totalcharges").text("$"+chargesval);
         $("#Plan").val("Monthly Plan");
     })
 
@@ -45,7 +45,7 @@ function init(){
         var chargesval = $("#totalcharges").attr("plan-yearly");
         console.log(chargesval);
         $("#Charges").val(chargesval);
-        $("#totalcharges").text("$".chargesval);
+        $("#totalcharges").text("$"+chargesval);
         $("#Plan").val("Yearly Plan");
     })
     // Event listener for paycalcbutton
