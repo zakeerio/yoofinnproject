@@ -26,6 +26,7 @@ function init(){
         $("#plan-yearly").removeClass("plan-active");
         $("#plan-monthly").addClass("plan-active");
         var chargesval = $("#totalcharges").attr("plan-monthly");
+        console.log(chargesval);
         $("#Charges").val(chargesval);
         $("#totalcharges").text("$".chargesval);
         $("#Plan").val("Monthly Plan");
@@ -36,6 +37,7 @@ function init(){
         $("#plan-monthly").removeClass("plan-active");
         $("#plan-yearly").addClass("plan-active");
         var chargesval = $("#totalcharges").attr("plan-yearly");
+        console.log(chargesval);
         $("#Charges").val(chargesval);
         $("#totalcharges").text("$".chargesval);
         $("#Plan").val("Yearly Plan");
