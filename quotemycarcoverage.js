@@ -27,7 +27,7 @@ function init(){
         localStorage.setItem('duration', duration);
     });
 
-    $("#plan-monthly").on('click', function(e){
+    $(document).on('click', "#plan-monthly", function(e){
         e.preventDefault();
         $("#plan-yearly").removeClass("plan-active");
         $("#plan-monthly").addClass("plan-active");
@@ -38,7 +38,7 @@ function init(){
         $("#Plan").val("Monthly Plan");
     })
 
-    $("#plan-yearly").on('click', function(e){
+    $(document).on('click', "#plan-yearly", function(e){
         e.preventDefault();
         $("#plan-monthly").removeClass("plan-active");
         $("#plan-yearly").addClass("plan-active");
