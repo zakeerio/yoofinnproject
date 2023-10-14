@@ -1,6 +1,5 @@
 // Initialize Firebase
 var db = firebase.firestore();
-
 $(document).ready(function() {
     init();
 });
@@ -20,11 +19,15 @@ function init(){
     });
     $('#deposit').on('change', function(){
         var deposit = $(this).val();
-        localStorage.setItem('deposit', deposit);
+        if(deposit !=""){
+            localStorage.setItem('deposit', deposit);
+        }
     });
     $('#duration').on('change', function(){
         var duration = $(this).val();
-        localStorage.setItem('duration', duration);
+        if(deposit !=""){
+            localStorage.setItem('duration', duration);
+        }
     });
 
     $(document).on('click', "#plan-monthly", function(e){
@@ -32,7 +35,6 @@ function init(){
         $("#plan-yearly").removeClass("active-plan");
         $("#plan-monthly").addClass("active-plan");
         var chargesval = $("#totalcharges").attr("plan-monthly");
-        console.log(chargesval);
         $("#Charges").val(chargesval);
         $("#totalcharges").text(chargesval);
         $("#Plan").val("Monthly Plan");
@@ -43,7 +45,6 @@ function init(){
         $("#plan-monthly").removeClass("active-plan");
         $("#plan-yearly").addClass("active-plan");
         var chargesval = $("#totalcharges").attr("plan-yearly");
-        console.log(chargesval);
         $("#Charges").val(chargesval);
         $("#totalcharges").text(chargesval);
         $("#Plan").val("Yearly Plan");
@@ -51,44 +52,38 @@ function init(){
     // Event listener for paycalcbutton
     $("#paycalcbutton").on('click', function(e) {
         e.preventDefault();
-
         // Retrieve data from localStorage
         const deposit = parseInt(localStorage.getItem('deposit'));
-        const gender = localStorage.getItem('gender');
         const duration = parseInt(localStorage.getItem('duration'));
-        const age = parseInt(localStorage.getItem('age'));
-
-        // Query Firestore
-        const quotemycarcoverageCollection = db.collection('quotemycarcoverage');
-
-        quotemycarcoverageCollection
+        if (!isNaN(deposit) && !isNaN(duration)) {
+            const gender = localStorage.getItem('gender');
+            const age = parseInt(localStorage.getItem('age'));
+            // Query Firestore
+            const quotemycarcoverageCollection = db.collection('quotemycarcoverage');
+            quotemycarcoverageCollection
             .where('deposit', '==', deposit)
             .where('age', '==', age)
             .where('years', '==', duration)
             .where('gender', '==', gender)
-            .get()
-            .then(querySnapshot => {
-                console.log('Matching documents count:', querySnapshot.size);
-
+            .get().then(querySnapshot => {
                 if (querySnapshot.size > 0) {
                     querySnapshot.forEach(doc => {
                         const dbdata = doc.data();
                         console.log('Matching user:', dbdata);
-                        console.log('Charges:', dbdata.charges);
-                        // Perform further actions with the matching user data
-
-                        $("#Charges").val("$"+dbdata.charges);
+                        $("#Charges").val("$"+dbdata.charges).trigger("change");
                         $("#totalcharges").text("$"+dbdata.charges).attr("plan-monthly", "$"+(dbdata.charges/12).toFixed(2)).attr("plan-yearly", "$"+dbdata.charges);
                         $('.w-slider-arrow-right').trigger('click');
-
                     });
                 } else {
-                    console.log("No matching documents found.");
+                    alert("Date of brith must be greater then 20.");
                 }
             })
             .catch(error => {
                 console.error('Error getting matching users:', error);
             });
+        } else {
+            alert("Amount of coverage or Length of coverage should be selected.");
+        }
     });
 
     const countriesCollection = db.collection('countries');
@@ -167,6 +162,11 @@ function calculateAge() {
     // Adjust age if birthday has not occurred this year yet
     if (currentDate < new Date(currentDate.getFullYear(), dateOfBirth.getMonth(), dateOfBirth.getDate())) {
       age--;
+    }
+
+    if (age < 21) {
+        alert('You must be at least 21 years old.');
+        return;
     }
 
     $("#info_dateofbirth").val(dateOfBirthInput);
