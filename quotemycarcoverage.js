@@ -38,7 +38,7 @@ function init(){
     // Event listener for paycalcbutton
     $("#paycalcbutton").on('click', function(e) {
         e.preventDefault();
-        $(this).parents('.w-slide').find('required').each(function(){
+        $(this).parents('.w-slide').find('.required').each(function(){
             var currentval = $(this).val().trim();
             if(currentval ==""){ $(this).addClass("error"); } else { $(this).removeClass("error"); }
         });
@@ -65,7 +65,7 @@ function init(){
                         $('.w-slider-arrow-right').trigger('click');
                     });
                 } else {
-                    alert("Date of brith must be greater then 20.");
+                    alert("Something went must be greater then 20.");
                 }
             })
             .catch(error => {
