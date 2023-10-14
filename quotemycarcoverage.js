@@ -52,10 +52,10 @@ function init(){
     // Event listener for paycalcbutton
     $("#paycalcbutton").on('click', function(e) {
         e.preventDefault();
-        $(this).parents('.w-slide').find('required').each(function{
+        $(this).parents('.w-slide').find('required').each(function(){
             var currentval = $(this).val().trim();
             if(currentval ==""){ $(this).addClass("error"); } else { $(this).removeClass("error"); }
-        })
+        });
         // Retrieve data from localStorage
         const deposit = parseInt(localStorage.getItem('deposit'));
         const duration = parseInt(localStorage.getItem('duration'));
