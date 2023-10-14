@@ -40,7 +40,14 @@ function init(){
         e.preventDefault();
         $(this).parents('.w-slide').find('.required').each(function(){
             var currentval = $(this).val().trim();
-            if(currentval ==""){ $(this).addClass("error"); } else { $(this).removeClass("error"); }
+            var checktest = false;
+            if(currentval ==""){ 
+                $(this).addClass("error"); 
+                checktest = true;
+            } else { 
+                $(this).removeClass("error"); 
+            }
+            if(checktest) { return false; }
         });
         // Retrieve data from localStorage
         const deposit = parseInt($('#deposit').val());
