@@ -65,7 +65,7 @@ function init(){
                         $('.w-slider-arrow-right').trigger('click');
                     });
                 } else {
-                    alert("Something went must be greater then 20.");
+                    alert("Something went wrong.");
                 }
             })
             .catch(error => {
