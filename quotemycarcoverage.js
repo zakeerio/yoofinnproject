@@ -52,6 +52,10 @@ function init(){
     // Event listener for paycalcbutton
     $("#paycalcbutton").on('click', function(e) {
         e.preventDefault();
+        $(this).parents('.w-slide').find('required').each(function{
+            var currentval = $(this).val().trim();
+            if(currentval ==""){ $(this).addClass("error"); } else { $(this).removeClass("error"); }
+        })
         // Retrieve data from localStorage
         const deposit = parseInt(localStorage.getItem('deposit'));
         const duration = parseInt(localStorage.getItem('duration'));
@@ -81,8 +85,6 @@ function init(){
             .catch(error => {
                 console.error('Error getting matching users:', error);
             });
-        } else {
-            alert("Amount of coverage or Length of coverage should be selected.");
         }
     });
 
