@@ -6,9 +6,7 @@ $(document).ready(function() {
 
 function init(){
     // remove localStorage
-    localStorage.removeItem('deposit');
     localStorage.removeItem('gender');
-    localStorage.removeItem('duration');
     localStorage.removeItem('age');
     localStorage.removeItem('dateofbirth');
     // Event listeners
@@ -17,19 +15,7 @@ function init(){
         var gender = $(this).val();
         localStorage.setItem('gender', gender);
     });
-    $('#deposit').on('change', function(){
-        var deposit = $(this).val();
-        if(deposit !=""){
-            localStorage.setItem('deposit', deposit);
-        }
-    });
-    $('#duration').on('change', function(){
-        var duration = $(this).val();
-        if(deposit !=""){
-            localStorage.setItem('duration', duration);
-        }
-    });
-
+    
     $(document).on('click', "#plan-monthly", function(e){
         e.preventDefault();
         $("#plan-yearly").removeClass("active-plan");
@@ -57,9 +43,9 @@ function init(){
             if(currentval ==""){ $(this).addClass("error"); } else { $(this).removeClass("error"); }
         });
         // Retrieve data from localStorage
-        const deposit = parseInt(localStorage.getItem('deposit'));
-        const duration = parseInt(localStorage.getItem('duration'));
-        if (!isNaN(deposit) && !isNaN(duration)) {
+        const deposit = parseInt($('#deposit').val());
+        const duration = parseInt($('#duration').val());
+        if (deposit !="" && duration !="") {
             const gender = localStorage.getItem('gender');
             const age = parseInt(localStorage.getItem('age'));
             // Query Firestore
