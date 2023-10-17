@@ -107,7 +107,7 @@ function init(){
             console.error('Error getting countries:', error);
         });
     
-    if ($('#Street-Address-City-change').length > 0) {
+    if ($('#Street-Address-City').length > 0) {
         var options = { types: ['(cities)']};
         var autocomplete = new google.maps.places.Autocomplete($("#Street-Address-City")[0], options);
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
