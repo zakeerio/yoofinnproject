@@ -119,11 +119,11 @@ function init(){
             var state = getAddressComponent(addressComponents, 'administrative_area_level_1');
             var country = getAddressComponent(addressComponents, 'country');
             var postalCode = getAddressComponent(addressComponents, 'postal_code');
-            $('#Street-Address-City').val(address_street_line1);
-            $('#address_zipcode').val(postalCode);
+            $('#Street-Address-City').val(address_street_line1).trigger("change");
+            $('#address_zipcode').val(postalCode).trigger("change");
             // $('#address_city').val(city);
-            $('#State').val(state);
-            $('#address_country').val(country);
+            $('#State').val(state).trigger("change");
+            $('#address_country').val(country).trigger("change");
         });
     }
 
