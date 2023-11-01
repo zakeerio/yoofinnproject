@@ -14,8 +14,34 @@ function init(){
     $('input[name=gender]').on('change', function(){
         var gender = $(this).val();
         localStorage.setItem('gender', gender);
+        $("#text-gender").text(gender);
     });
+
+
+    $(document).on("click", "#SubmitBtn", function(){
+    // Assuming you have a JavaScript object with the provided fields
+    var formData = {
+        firstName: localStorage.getItem("firstName"),
+        lastName: localStorage.getItem("lastName"),
+        emailAddress: localStorage.getItem("emailAddress"),
+        phoneNumber: localStorage.getItem("phoneNumber"),
+        gender: localStorage.getItem("gender"),
+        dateOfBirth: localStorage.getItem("dateOfBirth"),
+        country: localStorage.getItem("country"),
+        streetAddress: localStorage.getItem("streetAddress"),
+        state: localStorage.getItem("state"),
+        zip: localStorage.getItem("zip")
+    };
     
+    // Add the document to the "formData" collection
+        db.collection("quotemycarcoverageData").add(formData)
+        .then(function(docRef) {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
+    })
     $(document).on('click', "#plan-monthly", function(e){
         e.preventDefault();
         $("#plan-yearly").removeClass("active-plan");
@@ -83,6 +109,29 @@ function init(){
 
     const countriesCollection = db.collection('countries');
     const selectElement = document.getElementById('country');
+    $("#country").on("change", function(){
+        $("#text-country").text($(this).val());
+        localStorage.setItem("country", $(this).val());
+        
+    })
+    $("#First-Name").on("change", function(){
+        $("#text-firstname").text($(this).val());
+        localStorage.setItem("firstName", $(this).val());
+    })
+    $("#Last-Name").on("change", function(){
+        $("#text-lastname").text($(this).val());
+        localStorage.setItem("lastName", $(this).val());
+
+    })
+    $("#Email-Address").on("change", function(){
+        $("#text-emailaddress").text($(this).val());
+        localStorage.setItem("emailAddress", $(this).val());
+    })
+    $("#Phone-Number").on("change", function(){
+        $("#text-phonenumber").text($(this).val());
+        localStorage.setItem("phoneNumber", $(this).val());
+
+    })
 
     // Function to populate the <select> element with country options
     const populateCountryOptions = (countries) => {
@@ -108,11 +157,11 @@ function init(){
         });
     
     if ($('#Street-Address-City').length > 0) {
-        var options = { types: ['(cities)']};
-        var autocomplete = new google.maps.places.Autocomplete($("#Street-Address-City")[0], options);
+        // var options = { types: ['(cities)']};
+        var autocomplete = new google.maps.places.Autocomplete($("#Street-Address-City")[0]);
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
             var result = autocomplete.getPlace();
-            console.log(result.address_components[0]);
+            // console.log(result.address_components[0]);
             var addressComponents = result.address_components;
             var address_street_line1 = result.formatted_address;
             // var city = getAddressComponent(addressComponents, 'locality');
@@ -120,10 +169,18 @@ function init(){
             var country = getAddressComponent(addressComponents, 'country');
             var postalCode = getAddressComponent(addressComponents, 'postal_code');
             $('#Street-Address-City').val(address_street_line1).trigger("change");
+            $('#text-address').text(address_street_line1);
             $('#address_zipcode').val(postalCode).trigger("change");
+            $('#text-zip').text(postalCode);
             // $('#address_city').val(city);
             $('#State').val(state).trigger("change");
+            $('#text-state').text(state);
             $('#address_country').val(country).trigger("change");
+            // Assuming you have a JavaScript object with the provided fields
+
+            localStorage.setItem("streetAddress", address_street_line1);
+            localStorage.setItem("state", state);
+            localStorage.setItem("zip", postalCode);
         });
     }
 
@@ -165,6 +222,7 @@ function calculateAge() {
     }
 
     $("#info_dateofbirth").val(dateOfBirthInput);
+    $("#text-dateofbirth").text(dateOfBirthInput);
     localStorage.setItem('age', age);
     localStorage.setItem('dateofbirth', dateOfBirthInput);
 }
