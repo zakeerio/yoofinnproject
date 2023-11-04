@@ -26,7 +26,7 @@ function init(){
         emailAddress: localStorage.getItem("emailAddress"),
         phoneNumber: localStorage.getItem("phoneNumber"),
         gender: localStorage.getItem("gender"),
-        dateOfBirth: localStorage.getItem("dateOfBirth"),
+        dateOfBirth: localStorage.getItem("dateofbirth"),
         country: localStorage.getItem("country"),
         streetAddress: localStorage.getItem("streetAddress"),
         state: localStorage.getItem("state"),
