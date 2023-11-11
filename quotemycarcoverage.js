@@ -9,6 +9,15 @@ function init(){
     localStorage.removeItem('gender');
     localStorage.removeItem('age');
     localStorage.removeItem('dateofbirth');
+    localStorage.removeItem('lastName');
+    localStorage.removeItem('state');
+    localStorage.removeItem('zip');
+    localStorage.removeItem('emailAddress');
+    localStorage.removeItem('country');
+    localStorage.removeItem('phoneNumber');
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('streetAddress');
+
     // Event listeners
     $('#dateofbirth').on('change', calculateAge);
     $('input[name=gender]').on('change', function(){
@@ -18,22 +27,23 @@ function init(){
     });
 
 
-    $(document).on("click", "#SubmitBtn", function(){
-    // Assuming you have a JavaScript object with the provided fields
-    var formData = {
-        firstName: localStorage.getItem("firstName"),
-        lastName: localStorage.getItem("lastName"),
-        emailAddress: localStorage.getItem("emailAddress"),
-        phoneNumber: localStorage.getItem("phoneNumber"),
-        gender: localStorage.getItem("gender"),
-        dateOfBirth: localStorage.getItem("dateofbirth"),
-        country: localStorage.getItem("country"),
-        streetAddress: localStorage.getItem("streetAddress"),
-        state: localStorage.getItem("state"),
-        zip: localStorage.getItem("zip")
-    };
-    
-    // Add the document to the "formData" collection
+    $("#email-form").on("submit", function(e){
+
+        // Assuming you have a JavaScript object with the provided fields
+        var formData = {
+            firstName: localStorage.getItem("firstName"),
+            lastName: localStorage.getItem("lastName"),
+            emailAddress: localStorage.getItem("emailAddress"),
+            phoneNumber: localStorage.getItem("phoneNumber"),
+            gender: localStorage.getItem("gender"),
+            dateOfBirth: localStorage.getItem("dateofbirth"),
+            country: localStorage.getItem("country"),
+            streetAddress: localStorage.getItem("streetAddress"),
+            state: localStorage.getItem("state"),
+            zip: localStorage.getItem("zip")
+        };
+        
+        // Add the document to the "formData" collection
         db.collection("quotemycarcoverageData").add(formData)
         .then(function(docRef) {
             console.log("Document written with ID: ", docRef.id);
@@ -92,7 +102,7 @@ function init(){
                 if (querySnapshot.size > 0) {
                     querySnapshot.forEach(doc => {
                         const dbdata = doc.data();
-                        console.log('Matching user:', dbdata);
+                        // console.log('Matching user:', dbdata);
                         $("#Charges").val("$"+dbdata.charges).trigger("change");
                         $("#totalcharges").text("$"+dbdata.charges).attr("plan-monthly", "$"+(dbdata.charges/12).toFixed(2)).attr("plan-yearly", "$"+dbdata.charges);
                         $('.w-slider-arrow-right').trigger('click');
@@ -126,6 +136,10 @@ function init(){
     $("#Email-Address").on("change", function(){
         $("#text-emailaddress").text($(this).val());
         localStorage.setItem("emailAddress", $(this).val());
+    })
+    $('#address_zipcode').on("change", function(){
+        $("#text-zip").text($(this).val());
+        localStorage.setItem("zip", $(this).val());
     })
     $("#Phone-Number").on("change", function(){
         $("#text-phonenumber").text($(this).val());
