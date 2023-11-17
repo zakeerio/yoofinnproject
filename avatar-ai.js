@@ -1,4 +1,4 @@
-init
+var db = firebase.firestore();
 
 $("#Login_button").on('click', function (e) {
     e.preventDefault();
