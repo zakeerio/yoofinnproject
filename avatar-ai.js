@@ -1,5 +1,64 @@
 var db = firebase.firestore();
 
+
+$("#signupButton").on("click", function (e) {
+
+    var errors = "";
+    $('#error-message').html("");
+    $('input[type=text], input[type=email]').removeClass('error');
+
+    var email = $("#email").val();
+    var password = $("#password").val();
+
+    if (email == "") {
+        $("#email").addClass('error');
+        // alert('Please enter an email address.');
+        errors += "<li>Please enter value in email field</li>";
+    }
+
+    if (password.length < 6 || password == "") {
+        $("#password").addClass('error');
+        errors += "<li>Please enter a password</li>";
+    }
+
+    if (errors != "") {
+        errors = "<h4>Errors!</h4>" + errors;
+        $('#error-message').html(errors).removeClass("hide");
+        return false;
+    }
+
+    firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        localStorage.setItem('userdata', JSON.stringify(user));
+
+        console.log(user);
+        userId = user.uid;
+        var email = user.email;
+        var displayname = "John";
+        if(user.displayName != null){
+            displayname = user.displayName;
+        } else {
+            displayname = fname+" "+lname;
+        }
+
+        $("#user_name").text(displayname);
+
+        // if (fname != "" && lname != "") {
+            // var userdata = writeNewPost(userId, fname, lname, email, ckb_status);
+            // if (userdata) {
+            //     window.location.href('/welcome');
+            // }
+        // }
+
+    })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            $("#errors").html(errorMessage)
+        });
+})
+
 $("#Login_button").on('click', function (e) {
     e.preventDefault();
 
@@ -65,14 +124,6 @@ function toggleSignIn(provider) {
             var providerData = user.providerData;
 
             console.log(user);
-
-            // if (email) {
-            //     var userdata = writeNewPost(uid, displayName, email);
-            //     if (userdata) {
-            //         $(".registration").addClass('hide');
-            //         // window.location.href="/registration";
-            //     }
-            // }
 
 
         }).catch(function(error) {
