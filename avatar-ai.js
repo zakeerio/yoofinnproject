@@ -171,13 +171,13 @@ function initApp() {
             var providerData = user.providerData;
             console.log(email);
             if (email) {
-                var userdata = writeNewPost(uid, displayName, email);
-                console.log(userdata);
-                if (userdata) {
-                    console.log("here");
-                    $(".registration").addClass('hide');
-                    window.location.href="/registration";
-                }
+                // var userdata = writeNewPost(uid, displayName, email);
+                // console.log(userdata);
+                // if (userdata) {
+                //     console.log("here");
+                //     $(".registration").addClass('hide');
+                    window.location.href="/welcome";
+                // }
             }
             
 
