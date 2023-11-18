@@ -176,6 +176,7 @@ function initApp() {
                 // if (userdata) {
                 //     console.log("here");
                 //     $(".registration").addClass('hide');
+                
                     window.location.href="/welcome";
                 // }
             }
