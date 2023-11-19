@@ -204,7 +204,10 @@ function initApp() {
             console.log('user logged out!');
             
         }
-    });
+    }).catch(function(error) {
+        // An error happened.
+        console.error("Signed out:", error);
+      });;
 
     // $('#Loginwithfacebook').on('click', function(){
     //     var provider = new firebase.auth.FacebookAuthProvider();
