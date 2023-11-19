@@ -104,7 +104,7 @@ $('#Loginwithgoogle').on('click', function(){
  * Function called when clicking the Login/Logout button.
  */
 function toggleSignIn(provider) {
-    $(".error-message").html("");
+    $("#error-message").html("");
     if (!firebase.auth().currentUser) {
 
         // provider.addScope('user_birthday');
@@ -132,7 +132,7 @@ function toggleSignIn(provider) {
             var errorMessage = error.message;
             // The email of the user's account used.
             console.log(errorCode+" "+errorMessage);
-            $(".error-message").html(errorMessage);
+            $("#error-message").html(errorMessage);
             var email = error.email;
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
