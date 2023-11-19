@@ -222,9 +222,11 @@ function initApp() {
   $('#checkoutbutton').click(function (e) {
     e.preventDefault();
     var priceId = $(this).attr('productid');
-    var planId = $(this).attr('planid');
-
+    var quantity = $("#quantity").val();
     var userinfo = localStorage.getItem("userdata");
+    if(quantity ==""){
+        alert("Quantity should be added");
+    }
     if (userinfo != null || userinfo != "undefined") {
       userinfo = JSON.parse(userinfo);
       var emailaddress = userinfo.email;
@@ -236,7 +238,8 @@ function initApp() {
       "Authorization": "key__8c0d8aa13bf726012e1314e8ad8b4175665b6777513accd79ccb7c63d19706a5111",
       'priceId': priceId,
       'domain': domainname,
-      'emailaddress': emailaddress
+      'emailaddress': emailaddress,
+      'quantity'  :quantity
     };
     var settings = {
       "url": "https://stripeapi.pixeltechnosol.com/stripeapivagonio/charge.php",
