@@ -150,6 +150,22 @@ function toggleSignIn(provider) {
 //   $('#Loginwithfacebook').attr('disabled', true);
 }
 
+$("#logoutButton").on("click", function(){
+    signOut();
+})
+
+function signOut() {
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      localStorage.removeItem('userdata');
+      console.log("User signed out");
+      window.location.href="/";
+
+    }).catch(function(error) {
+      // An error happened.
+      console.error("Error signing out:", error);
+    });
+  }
 
 /**
  * initApp handles setting up UI event listeners and registering Firebase auth listeners:
@@ -184,7 +200,6 @@ function initApp() {
 
         } else {
             localStorage.removeItem('userdata');
-            localStorage.removeItem('userfbdata');
             // User is signed out.
             console.log('user logged out!');
             
