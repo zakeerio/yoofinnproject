@@ -155,16 +155,11 @@ $("#logoutButton").on("click", function(){
 })
 
 function signOut() {
-    firebase.auth().signOut().then(function() {
+    firebase.auth().signOut();
       // Sign-out successful.
       localStorage.removeItem('userdata');
       console.log("User signed out");
       window.location.href="/";
-
-    }).catch(function(error) {
-      // An error happened.
-      console.error("Error signing out:", error);
-    });
   }
 
 /**
