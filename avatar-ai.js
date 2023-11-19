@@ -170,7 +170,7 @@ function signOut() {
 function initApp() {
     // Listening for auth state changes.
     firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
+        if (user) {k
             localStorage.setItem('userdata', JSON.stringify(user));
             // User is signed in.
             var displayName = user.displayName;
@@ -216,6 +216,7 @@ function initApp() {
 }
 
 window.onload = function() {
-    initApp();
+    //initApp();
+    
 };
 
