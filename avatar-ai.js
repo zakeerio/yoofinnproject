@@ -170,7 +170,7 @@ function signOut() {
 function initApp() {
     // Listening for auth state changes.
     firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {k
+        if (user) {
             localStorage.setItem('userdata', JSON.stringify(user));
             // User is signed in.
             var displayName = user.displayName;
@@ -199,10 +199,7 @@ function initApp() {
             console.log('user logged out!');
             
         }
-    }).catch(function(error) {
-        // An error happened.
-        console.error("Signed out:", error);
-      });;
+    })
 
     // $('#Loginwithfacebook').on('click', function(){
     //     var provider = new firebase.auth.FacebookAuthProvider();
@@ -216,7 +213,6 @@ function initApp() {
 }
 
 window.onload = function() {
-    //initApp();
-    
+    initApp();
 };
 
