@@ -135,12 +135,14 @@ function toggleSignIn(provider) {
             var errorMessage = error.message;
             // The email of the user's account used.
             console.log(errorCode+" "+errorMessage);
-            $("#error-message").html(errorMessage);
+            // $("#error-message").html(errorMessage);
             var email = error.email;
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
             if (errorCode === 'auth/account-exists-with-different-credential') {
                 alert('You have already signed up with a different auth provider for that email.');
+                $("#error-message").html(errorMessage);
+
                 // If you are using multiple auth providers on your app you should handle linking
                 // the user's accounts here.
             } else {
