@@ -286,6 +286,8 @@ function writeNewPost(customerId, email, quantity) {
             mailContent : '<iframe id="vagonFrame" allow="microphone *; clipboard-read *; clipboard-write *; encrypted-media *;" src="https://streams.vagon.io/streams/db0792d9-ba0e-4c17-bb4f-4b2030964cb1 "/>',
         }; 
 
+        console.log(dataArray);
+
         const customerIdToMatch = customerId;
         // Reference to the "subscriptionData" collection
         const subscriptionDataCollection = db.collection('subscriptionData');
