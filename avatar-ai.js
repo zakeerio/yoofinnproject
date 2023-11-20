@@ -267,6 +267,8 @@ function writeNewPost(customerId, email, quantity) {
     // A post entry.
     var data_added = localStorage.getItem('dataAdded');
 
+    console.log(data_added); return false;
+
     if(data_added !=""){
 
         var currentdate = new Date(); 
