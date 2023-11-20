@@ -218,9 +218,6 @@ function initApp() {
 }
 
 
-
-
-
   $('#checkoutbutton').click(function (e) {
     e.preventDefault();
     var priceId = $(this).attr('productid');
@@ -264,3 +261,61 @@ function initApp() {
       }
     });
   });
+
+  // Firebase add data
+function writeNewPost(customerId, email, quantity) {
+    // A post entry.
+    var data_added = localStorage.getItem('dataAdded');
+
+    if(data_added !=""){
+
+        var currentdate = new Date(); 
+        var datetime = 
+                currentdate.getFullYear() + ":"  
+                + (currentdate.getMonth()+1)  + ":" 
+                + currentdate.getDate() + " "
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+
+        var dataArray = {
+            customerId: customerId,
+            Email: email,
+            quantity: quantity,
+            currentDate : datetime,
+            mailContent : '<iframe id="vagonFrame" allow="microphone *; clipboard-read *; clipboard-write *; encrypted-media *;" src="https://streams.vagon.io/streams/db0792d9-ba0e-4c17-bb4f-4b2030964cb1 "/>',
+        }; 
+
+        const customerIdToMatch = customerId;
+        // Reference to the "subscriptionData" collection
+        const subscriptionDataCollection = db.collection('subscriptionData');
+        // Query the collection where 'customerId' matches
+        subscriptionDataCollection.where('customerId', '==', customerIdToMatch).get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                console.log('No matching documents.');
+                // console.log(userData);
+                db.collection("subscriptionData").doc().set(dataArray).then(() => {
+                    localStorage.setItem('dataAdded', true);
+                    console.log("users data updated successfully");
+                    return true;
+                })
+            }
+
+            // Loop through the matching documents
+            snapshot.forEach(doc => {
+                console.log('Document ID:', doc.id, 'Data:', doc.data());
+
+                db.collection("subscriptionData").doc(doc.id).set(dataArray).then(() => {
+                    localStorage.setItem('dataAdded', true);
+                    console.log("users data updated successfully");
+                    return true;
+                })
+
+            });
+        })
+        .catch(err => {
+            console.error('Error getting documents:', err);
+        });        
+    }
+}
