@@ -127,7 +127,7 @@ function toggleSignIn(provider) {
             var providerData = user.providerData;
 
             console.log(user);
-
+            window.location.href="/welcome";
 
         }).catch(function(error) {
             // Handle Errors here.
@@ -191,7 +191,7 @@ function initApp() {
                 //     console.log("here");
                 //     $(".registration").addClass('hide');
                 
-                    // window.location.href="/welcome";
+                    window.location.href="/welcome";
                 // }
             }
             
