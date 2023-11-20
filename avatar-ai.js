@@ -269,7 +269,7 @@ function writeNewPost(customerId, email, quantity) {
 
     console.log(data_added); return false;
 
-    if(data_added !=""){
+    if(data_added !="" && data_added != 'true'){
 
         var currentdate = new Date(); 
         var datetime = 
