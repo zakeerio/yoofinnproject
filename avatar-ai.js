@@ -191,7 +191,7 @@ function initApp() {
                 //     console.log("here");
                 //     $(".registration").addClass('hide');
                 
-                    window.location.href="/welcome";
+                    // window.location.href="/welcome";
                 // }
             }
             
