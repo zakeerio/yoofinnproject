@@ -297,11 +297,17 @@ function writeNewPost(customerId, email, quantity) {
             if (snapshot.empty) {
                 console.log('No matching documents.');
                 // console.log(userData);
-                db.collection("subscriptionData").doc().set(dataArray).then(() => {
-                    localStorage.setItem('dataAdded', true);
-                    console.log("users data updated successfully");
-                    return true;
-                })
+                // db.collection("subscriptionData").doc().set(dataArray).then(() => {
+                //     localStorage.setItem('dataAdded', true);
+                //     console.log("users data updated successfully");
+                //     return true;
+                // })
+
+                var datacheck = addSubscriptionData(dataArray)
+                if(datacheck){
+                    alert("data added successfully");
+                }
+                
             }
 
             // Loop through the matching documents
@@ -319,5 +325,17 @@ function writeNewPost(customerId, email, quantity) {
         .catch(err => {
             console.error('Error getting documents:', err);
         });        
+    }
+}
+
+async function addSubscriptionData(dataArray) {
+    try {
+        await db.collection("subscriptionData").doc().set(dataArray);
+        localStorage.setItem('dataAdded', true);
+        console.log("User data added successfully");
+        return true;
+    } catch (error) {
+        console.error("Error adding document: ", error);
+        return false;
     }
 }
