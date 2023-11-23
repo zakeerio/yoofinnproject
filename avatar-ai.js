@@ -30,36 +30,38 @@ $("#signupButton").on("click", function (e) {
         return false;
     }
 
-    firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
-        // Signed in
-        var user = userCredential.user;
-        localStorage.setItem('userdata', JSON.stringify(user));
+    signInOrSignUp(useremail, userpassword);
 
-        console.log(user);
-        userId = user.uid;
-        var email = user.email;
-        var displayname = "John";
-        if(user.displayName != null){
-            displayname = user.displayName;
-        } else {
-            displayname = fname+" "+lname;
-        }
+    // firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
+    //     // Signed in
+    //     var user = userCredential.user;
+    //     localStorage.setItem('userdata', JSON.stringify(user));
 
-        $("#user_name").text(displayname);
+    //     console.log(user);
+    //     userId = user.uid;
+    //     var email = user.email;
+    //     var displayname = "John";
+    //     if(user.displayName != null){
+    //         displayname = user.displayName;
+    //     } else {
+    //         displayname = fname+" "+lname;
+    //     }
 
-        // if (fname != "" && lname != "") {
-            // var userdata = writeNewPost(userId, fname, lname, email, ckb_status);
-            // if (userdata) {
-            //     window.location.href('/welcome');
-            // }
-        // }
+    //     $("#user_name").text(displayname);
 
-    })
-        .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            $("#errors").html(errorMessage)
-        });
+    //     // if (fname != "" && lname != "") {
+    //         // var userdata = writeNewPost(userId, fname, lname, email, ckb_status);
+    //         // if (userdata) {
+    //         //     window.location.href('/welcome');
+    //         // }
+    //     // }
+
+    // })
+    //     .catch((error) => {
+    //         var errorCode = error.code;
+    //         var errorMessage = error.message;
+    //         $("#errors").html(errorMessage)
+    //     });
 })
 
 $("#Login_button").on('click', function (e) {
