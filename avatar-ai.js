@@ -115,15 +115,15 @@ function signInOrSignUp(useremail, userpassword) {
             // If user does not exist, create a new account
             signUpWithEmailAndPassword(useremail, userpassword);
 
-            if (error.code === "auth/user-not-found") {
-            } else {
-                // Handle other sign-in errors
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                $("#error-message").html(errorMessage);
-                console.log("Sign In Error Code: ", errorCode);
-                console.log("Sign In Error Message: ", errorMessage);
-            }
+            // if (error.code === "auth/user-not-found") {
+            // } else {
+            //     // Handle other sign-in errors
+            //     var errorCode = error.code;
+            //     var errorMessage = error.message;
+            //     $("#error-message").html(errorMessage);
+            //     console.log("Sign In Error Code: ", errorCode);
+            //     console.log("Sign In Error Message: ", errorMessage);
+            // }
         });
 }
 
