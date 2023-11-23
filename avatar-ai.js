@@ -101,16 +101,19 @@ $("#Login_button").on('click', function (e) {
 // Sign In User with Email and Password or Sign Up if the user does not exist
 function signInOrSignUp(useremail, userpassword) {
     firebase.auth().signInWithEmailAndPassword(useremail, userpassword)
-        .then(() => {
+        .then((userCredential) => {
             // User signed in successfully
+            var user = userCredential.user;
+            localStorage.setItem('userdata', JSON.stringify(user));
             console.log("User signed in successfully");
             window.location.href="/welcome";
 
         })
         .catch(function (error) {
             // If user does not exist, create a new account
+            signUpWithEmailAndPassword(useremail, userpassword);
+
             if (error.code === "auth/user-not-found") {
-                signUpWithEmailAndPassword(useremail, userpassword);
             } else {
                 // Handle other sign-in errors
                 var errorCode = error.code;
@@ -125,8 +128,10 @@ function signInOrSignUp(useremail, userpassword) {
 // Sign Up User with Email and Password
 function signUpWithEmailAndPassword(useremail, userpassword) {
     firebase.auth().createUserWithEmailAndPassword(useremail, userpassword)
-        .then(() => {
+        .then((userCredential) => {
             // User signed up successfully
+            var user = userCredential.user;
+            localStorage.setItem('userdata', JSON.stringify(user));
             console.log("User signed up successfully");
             window.location.href="/welcome";
 
