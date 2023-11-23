@@ -30,7 +30,7 @@ $("#signupButton").on("click", function (e) {
         return false;
     }
 
-    signInOrSignUp(useremail, userpassword);
+    signInOrSignUp(email, password);
 
     // firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
     //     // Signed in
