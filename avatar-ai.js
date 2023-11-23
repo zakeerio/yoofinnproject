@@ -84,17 +84,62 @@ $("#Login_button").on('click', function (e) {
         errors += "<li>Please enter a password</li>";
     }
 
+    signInOrSignUp(useremail, userpassword);
+
     //Sign In User with Email and Password
-    firebase.auth().signInWithEmailAndPassword(useremail, userpassword).catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        $("#error-message").html(errorMessage);
-        console.log(errorCode);
-        console.log(errorMessage);
-    });
+    // firebase.auth().signInWithEmailAndPassword(useremail, userpassword).catch(function (error) {
+    //     // Handle Errors here.
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+    //     $("#error-message").html(errorMessage);
+    //     console.log(errorCode);
+    //     console.log(errorMessage);
+    // });
 
 })
+
+// Sign In User with Email and Password or Sign Up if the user does not exist
+function signInOrSignUp(useremail, userpassword) {
+    firebase.auth().signInWithEmailAndPassword(useremail, userpassword)
+        .then(() => {
+            // User signed in successfully
+            console.log("User signed in successfully");
+            window.location.href="/welcome";
+
+        })
+        .catch(function (error) {
+            // If user does not exist, create a new account
+            if (error.code === "auth/user-not-found") {
+                signUpWithEmailAndPassword(useremail, userpassword);
+            } else {
+                // Handle other sign-in errors
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                $("#error-message").html(errorMessage);
+                console.log("Sign In Error Code: ", errorCode);
+                console.log("Sign In Error Message: ", errorMessage);
+            }
+        });
+}
+
+// Sign Up User with Email and Password
+function signUpWithEmailAndPassword(useremail, userpassword) {
+    firebase.auth().createUserWithEmailAndPassword(useremail, userpassword)
+        .then(() => {
+            // User signed up successfully
+            console.log("User signed up successfully");
+            window.location.href="/welcome";
+
+        })
+        .catch(function (error) {
+            // Handle sign-up errors
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            $("#error-message").html(errorMessage);
+            console.log("Sign Up Error Code: ", errorCode);
+            console.log("Sign Up Error Message: ", errorMessage);
+        });
+}
 
 
 $('#Loginwithgoogle').on('click', function(){
