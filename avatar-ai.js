@@ -313,10 +313,12 @@ function initApp() {
       }
     });
   });
-
-  if($("#iframebox").length > 0 ) {
-    alert("TEST");
-  }
+$(document).ready(function(){
+    if($("#iframebox").length > 0 ) {
+        alert("TEST");
+    }
+})
+  
   // Firebase add data
 function writeNewPost(customerId, email, quantity) {
     // A post entry.
