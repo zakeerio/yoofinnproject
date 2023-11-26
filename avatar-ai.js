@@ -324,12 +324,12 @@ $(document).ready(function(){
         if(customer) {
             customer = JSON.parse(customer);
             console.log(customer);
-            const customerIdToMatch = customer.uid;
-            console.log(customerIdToMatch);
+            const emailAddress = customer.email;
+            console.log(emailAddress);
             // Reference to the "subscriptionData" collection
             const subscriptionDataCollection = db.collection('subscriptionData');
             // Query the collection where 'customerId' matches
-            subscriptionDataCollection.where('customerId', '==', customerIdToMatch).get()
+            subscriptionDataCollection.where('emailaddress', '==', emailAddress).get()
             .then(snapshot => {
                 if (snapshot.empty) {
                     console.log('No matching documents.');
