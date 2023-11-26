@@ -320,7 +320,7 @@ $(document).ready(function(){
     if($("#iframebox").length > 0 ) {
         alert($("#iframebox").length);
         // alert("TEST");
-        var customer = localStorage.getItem('userData');
+        var customer = localStorage.getItem('userdata');
         if(customer) {
             customer = JSON.parse(customer);
             console.log(customer);
@@ -332,7 +332,7 @@ $(document).ready(function(){
             .then(snapshot => {
                 if (snapshot.empty) {
                     console.log('No matching documents.');
-                    // console.log(userData);
+                    // console.log(userdata);
                     // db.collection("subscriptionData").doc().set(dataArray).then(() => {
                     //     localStorage.setItem('dataAdded', true);
                     //     console.log("users data updated successfully");
