@@ -337,9 +337,8 @@ $(document).ready(function(){
                     console.log(doc);
                     console.log('Document ID:', doc.id, 'Data:', doc.data());
                     if (quantity > 0) {
-                        var iframdata = doc.data().mailContent;
-                        $("#iframebox").html(iframdata);
-                
+                        // var iframdata = doc.data().mailContent;
+                        $("#iframebox").show();
                         var newQuantity = quantity - 1;
                         // Update the 'quantity' field using the update method
                         db.collection("subscriptionData").doc(doc.id).update({ quantity: newQuantity })
