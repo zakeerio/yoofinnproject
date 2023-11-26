@@ -333,15 +333,26 @@ $(document).ready(function(){
 
                 // Loop through the matching documents
                 snapshot.forEach(doc => {
+                    var quantity = doc.quantity;
                     console.log(doc);
                     console.log('Document ID:', doc.id, 'Data:', doc.data());
+                    if(doc.quantity > 0){
+                        var iframdata = doc.mailContent;
+                        $("#iframebox").html(iframdata);
+                        var dataArray = { 'quantity' : quantity-1 };
+                        db.collection("subscriptionData").doc(doc.id).set(dataArray).then(() => {
+                            localStorage.setItem('dataAdded', true);
+                            console.log("users data updated successfully");
+                            return true;
+                        })
 
-                    // db.collection("subscriptionData").doc(doc.id).set(dataArray).then(() => {
-                    //     localStorage.setItem('dataAdded', true);
-                    //     console.log("users data updated successfully");
-                    //     return true;
-                    // })
-
+                    } else {
+                        // db.collection("subscriptionData").doc(doc.id).set(dataArray).then(() => {
+                        //     localStorage.setItem('dataAdded', true);
+                        //     console.log("users data updated successfully");
+                        //     return true;
+                        // })
+                    }
                 });
             })
             .catch(err => {
