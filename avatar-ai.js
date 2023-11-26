@@ -317,8 +317,8 @@ function initApp() {
     });
   });
 $(document).ready(function(){
-    alert($("#iframebox").length);
     if($("#iframebox").length > 0 ) {
+        alert($("#iframebox").length);
         // alert("TEST");
         var customer = localStorage.getItem('userData');
         if(customer) {
