@@ -1,9 +1,5 @@
 var db = firebase.firestore();
 
-window.onload = function() {
-    initApp();
-};
-
 $("#signupButton").on("click", function (e) {
 
     var errors = "";
