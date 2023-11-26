@@ -375,6 +375,11 @@ function writeNewPost(customerId, email, quantity) {
 
     
     if(data_added == null && data_added != 'true'){
+
+        var customer = localStorage.getItem('userdata');
+        customer = JSON.parse(customer);
+        var userId = customer.uid;
+        
         console.log(data_added); 
         
         var currentdate = new Date(); 
@@ -388,6 +393,7 @@ function writeNewPost(customerId, email, quantity) {
 
         var dataArray = {
             customerId: customerId,
+            userId: userId,
             emailaddress: email,
             quantity: quantity,
             currentDate : datetime,
