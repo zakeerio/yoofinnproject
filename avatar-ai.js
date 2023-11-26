@@ -215,6 +215,7 @@ function signOut() {
     firebase.auth().signOut();
       // Sign-out successful.
       localStorage.removeItem('userdata');
+      localStorage.removeItem('dataAdded');
       console.log("User signed out");
       window.location.href="/";
   }
@@ -254,7 +255,9 @@ function initApp() {
             localStorage.removeItem('userdata');
             // User is signed out.
             console.log('user logged out!');
-            
+            // User is not logged in, redirect to homepage
+            console.log("User is not logged in. Redirecting to homepage...");
+            window.location.href = "/"; // Replace "/" with the URL of your homepage
         }
     })
 
