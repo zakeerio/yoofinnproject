@@ -333,18 +333,6 @@ $(document).ready(function(){
             .then(snapshot => {
                 if (snapshot.empty) {
                     console.log('No matching documents.');
-                    // console.log(userdata);
-                    // db.collection("subscriptionData").doc().set(dataArray).then(() => {
-                    //     localStorage.setItem('dataAdded', true);
-                    //     console.log("users data updated successfully");
-                    //     return true;
-                    // })
-
-                    // var datacheck = addSubscriptionData(dataArray)
-                    // if(datacheck){
-                    //     alert("data added successfully");
-                    // }
-                    
                 }
 
                 // Loop through the matching documents
