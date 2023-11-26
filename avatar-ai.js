@@ -325,6 +325,7 @@ $(document).ready(function(){
             customer = JSON.parse(customer);
             console.log(customer);
             const customerIdToMatch = customer.uid;
+            console.log(customerIdToMatch);
             // Reference to the "subscriptionData" collection
             const subscriptionDataCollection = db.collection('subscriptionData');
             // Query the collection where 'customerId' matches
