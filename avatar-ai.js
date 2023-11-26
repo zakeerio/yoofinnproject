@@ -338,21 +338,19 @@ $(document).ready(function(){
                     console.log('Document ID:', doc.id, 'Data:', doc.data());
                     if (quantity > 0) {
                         var iframdata = doc.data().mailContent;
+                        iframdata.attr("width", '100%').attr("heigth", '400px');
                         $("#iframebox").html(iframdata);
                 
                         var newQuantity = quantity - 1;
-                
                         // Update the 'quantity' field using the update method
                         db.collection("subscriptionData").doc(doc.id).update({ quantity: newQuantity })
                             .then(() => {
                                 console.log("User's quantity updated successfully");
-                                alert("TEST");
+                                // alert("TEST");
                             })
                             .catch(error => {
                                 console.error("Error updating quantity:", error);
                             });
-                    } else {
-                        // Handle the case where quantity is 0
                     }
                 });
             })
