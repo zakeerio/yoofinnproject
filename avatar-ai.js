@@ -338,7 +338,6 @@ $(document).ready(function(){
                     console.log('Document ID:', doc.id, 'Data:', doc.data());
                     if (quantity > 0) {
                         var iframdata = doc.data().mailContent;
-                        iframdata.attr("width", '100%').attr("heigth", '400px');
                         $("#iframebox").html(iframdata);
                 
                         var newQuantity = quantity - 1;
