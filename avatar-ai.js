@@ -314,7 +314,7 @@ function initApp() {
   });
 $(document).ready(function(){
     if($("#iframebox").length > 0 ) {
-        alert($("#iframebox").length);
+        // alert($("#iframebox").length);
         // alert("TEST");
         var customer = localStorage.getItem('userdata');
         if(customer) {
@@ -362,7 +362,7 @@ $(document).ready(function(){
 })
   
   // Firebase add data
-function writeNewPost(customerId, email, quantity) {
+function writeNewPost(customerId, email, quantity, iframeData) {
     // A post entry.
     var data_added = localStorage.getItem('dataAdded');
 
@@ -390,7 +390,7 @@ function writeNewPost(customerId, email, quantity) {
             emailaddress: email,
             quantity: quantity,
             currentDate : datetime,
-            mailContent : '<iframe id="vagonFrame" allow="microphone *; clipboard-read *; clipboard-write *; encrypted-media *;" src="https://streams.vagon.io/streams/db0792d9-ba0e-4c17-bb4f-4b2030964cb1 "/>',
+            mailContent : iframeData,
         }; 
 
         console.log(dataArray);
