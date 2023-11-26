@@ -333,26 +333,26 @@ $(document).ready(function(){
 
                 // Loop through the matching documents
                 snapshot.forEach(doc => {
-                    var quantity = parseInt(doc.quantity);
+                    var quantity = parseInt(doc.data().quantity);
                     console.log(doc);
                     console.log('Document ID:', doc.id, 'Data:', doc.data());
-                    if(doc.quantity > 0){
-                        var iframdata = doc.mailContent;
+                    if (quantity > 0) {
+                        var iframdata = doc.data().mailContent;
                         $("#iframebox").html(iframdata);
-                        var dataArray = { 'quantity' : quantity-1 };
-                        db.collection("subscriptionData").doc(doc.id).set(dataArray).then(() => {
-                            // localStorage.setItem('dataAdded', true);
-                            console.log("users data updated successfully");
-                            alert("TEST");
-                            // return true;
-                        })
-
+                
+                        var newQuantity = quantity - 1;
+                
+                        // Update the 'quantity' field using the update method
+                        db.collection("subscriptionData").doc(doc.id).update({ quantity: newQuantity })
+                            .then(() => {
+                                console.log("User's quantity updated successfully");
+                                alert("TEST");
+                            })
+                            .catch(error => {
+                                console.error("Error updating quantity:", error);
+                            });
                     } else {
-                        // db.collection("subscriptionData").doc(doc.id).set(dataArray).then(() => {
-                        //     localStorage.setItem('dataAdded', true);
-                        //     console.log("users data updated successfully");
-                        //     return true;
-                        // })
+                        // Handle the case where quantity is 0
                     }
                 });
             })
