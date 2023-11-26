@@ -338,7 +338,7 @@ $(document).ready(function(){
                     console.log('Document ID:', doc.id, 'Data:', doc.data());
                     if (quantity > 0) {
                         var iframdata = doc.data().mailContent;
-                        $("#iframebox").html(iframdata);
+                        $("#iframebox iframe").attr("src",iframdata).show();
                 
                         var newQuantity = quantity - 1;
                         // Update the 'quantity' field using the update method
