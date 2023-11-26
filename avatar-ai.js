@@ -257,7 +257,7 @@ function initApp() {
             console.log('user logged out!');
             // User is not logged in, redirect to homepage
             console.log("User is not logged in. Redirecting to homepage...");
-            window.location.href = "/"; // Replace "/" with the URL of your homepage
+            // window.location.href = "/"; // Replace "/" with the URL of your homepage
         }
     })
 
