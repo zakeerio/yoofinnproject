@@ -314,6 +314,7 @@ function initApp() {
     });
   });
 $(document).ready(function(){
+    alert($("#iframebox").length);
     if($("#iframebox").length > 0 ) {
         alert("TEST");
     }
