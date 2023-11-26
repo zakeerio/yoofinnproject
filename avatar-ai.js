@@ -341,9 +341,10 @@ $(document).ready(function(){
                         $("#iframebox").html(iframdata);
                         var dataArray = { 'quantity' : quantity-1 };
                         db.collection("subscriptionData").doc(doc.id).set(dataArray).then(() => {
-                            localStorage.setItem('dataAdded', true);
+                            // localStorage.setItem('dataAdded', true);
                             console.log("users data updated successfully");
-                            return true;
+                            alert("TEST");
+                            // return true;
                         })
 
                     } else {
