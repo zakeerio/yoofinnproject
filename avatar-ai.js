@@ -333,7 +333,7 @@ $(document).ready(function(){
 
                 // Loop through the matching documents
                 snapshot.forEach(doc => {
-                    var quantity = doc.quantity;
+                    var quantity = parseInt(doc.quantity);
                     console.log(doc);
                     console.log('Document ID:', doc.id, 'Data:', doc.data());
                     if(doc.quantity > 0){
