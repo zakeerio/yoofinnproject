@@ -319,7 +319,50 @@ function initApp() {
 $(document).ready(function(){
     alert($("#iframebox").length);
     if($("#iframebox").length > 0 ) {
-        alert("TEST");
+        // alert("TEST");
+        var customer = localStorage.getItem('userData');
+        if(customer) {
+            customer = JSON.parse(customer);
+            const customerIdToMatch = customer.uid;
+            // Reference to the "subscriptionData" collection
+            const subscriptionDataCollection = db.collection('subscriptionData');
+            // Query the collection where 'customerId' matches
+            subscriptionDataCollection.where('customerId', '==', customerIdToMatch).get()
+            .then(snapshot => {
+                if (snapshot.empty) {
+                    console.log('No matching documents.');
+                    // console.log(userData);
+                    // db.collection("subscriptionData").doc().set(dataArray).then(() => {
+                    //     localStorage.setItem('dataAdded', true);
+                    //     console.log("users data updated successfully");
+                    //     return true;
+                    // })
+
+                    // var datacheck = addSubscriptionData(dataArray)
+                    // if(datacheck){
+                    //     alert("data added successfully");
+                    // }
+                    
+                }
+
+                // Loop through the matching documents
+                snapshot.forEach(doc => {
+                    console.log(doc);
+                    console.log('Document ID:', doc.id, 'Data:', doc.data());
+
+                    // db.collection("subscriptionData").doc(doc.id).set(dataArray).then(() => {
+                    //     localStorage.setItem('dataAdded', true);
+                    //     console.log("users data updated successfully");
+                    //     return true;
+                    // })
+
+                });
+            })
+            .catch(err => {
+                console.error('Error getting documents:', err);
+            });
+            
+        }
     }
 })
   
