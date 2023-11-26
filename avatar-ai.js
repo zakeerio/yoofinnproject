@@ -323,6 +323,7 @@ $(document).ready(function(){
         var customer = localStorage.getItem('userData');
         if(customer) {
             customer = JSON.parse(customer);
+            console.log(customer);
             const customerIdToMatch = customer.uid;
             // Reference to the "subscriptionData" collection
             const subscriptionDataCollection = db.collection('subscriptionData');
