@@ -268,7 +268,7 @@ function initApp() {
     })
 }
 
-
+// change quantty
 $("#quantity").on("change", function(){
     var price = $("#checkoutbutton").data("price");
     var value = $(this).val();
