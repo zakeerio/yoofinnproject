@@ -270,7 +270,7 @@ function initApp() {
 
 // change quantty
 $("#quantity").on("change", function(){
-    var price = $("#checkoutbutton").data("price");
+    var price = $("#checkoutbutton").attr("dataPrice");
     var value = $(this).val();
     var totalval = (price*value).toFixed(2);
     $("#totalprice").text(totalval);
