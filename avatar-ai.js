@@ -356,6 +356,8 @@ $(document).ready(function(){
                             .catch(error => {
                                 console.error("Error updating quantity:", error);
                             });
+                    } else {
+                        window.location.href="/";
                     }
                 });
             })
