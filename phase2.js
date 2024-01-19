@@ -189,20 +189,20 @@ $("#university_section").on("click", function (e) {
         if (counter_append === 0) {
           $("#w-dropdown-list-0").html(
             "<a href='#' class='w-dropdown-link' tabindex='0'  onclick='setstatevalue(\"ALL\")'>ALL</a>" +
-            " " +
-            "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setstatevalue(\"" +
-            statesdata.name +
-            "\")'>" +
-            statesdata.name +
-            "</a>"
+              " " +
+              "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setstatevalue(\"" +
+              statesdata.name +
+              "\")'>" +
+              statesdata.name +
+              "</a>"
           );
         } else {
           $("#w-dropdown-list-0").append(
             "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setstatevalue(\"" +
-            statesdata.name +
-            "\")'>" +
-            statesdata.name +
-            "</a>"
+              statesdata.name +
+              "\")'>" +
+              statesdata.name +
+              "</a>"
           );
         }
         counter_append = counter_append + 1;
@@ -218,18 +218,18 @@ $("#university_section").on("click", function (e) {
         if (country_counter_append === 0) {
           $("#w-dropdown-list-1").html(
             "<a href='#' class='w-dropdown-link' tabindex='0'  onclick='setdepartmentvalue(\"ANY\")'>ANY</a><a href='#' class='w-dropdown-link' tabindex='0' onclick='setdepartmentvalue(\"" +
-            departmentdata.name +
-            "\")'>" +
-            departmentdata.name +
-            "</a>"
+              departmentdata.name +
+              "\")'>" +
+              departmentdata.name +
+              "</a>"
           );
         } else {
           $("#w-dropdown-list-1").append(
             "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setdepartmentvalue(\"" +
-            departmentdata.name +
-            "\")'>" +
-            departmentdata.name +
-            "</a>"
+              departmentdata.name +
+              "\")'>" +
+              departmentdata.name +
+              "</a>"
           );
         }
         country_counter_append = country_counter_append + 1;
@@ -268,18 +268,18 @@ $("#values_section").on("click", function (e) {
         if (abortion_access_counter_append === 0) {
           $("#abortion_access_parent_div").html(
             "<label class='radio-button-field-3 w-radio'><input type='radio' data-name='Radio 3' id='radio-3' name='radio-3' value='" +
-            result +
-            "' class='w-form-formradioinput radio-button-4 w-radio-input'><span class='radio-btn-text w-form-label' for='radio-3'>" +
-            abortionaccessdata.type +
-            "</span></label>"
+              result +
+              "' class='w-form-formradioinput radio-button-4 w-radio-input'><span class='radio-btn-text w-form-label' for='radio-3'>" +
+              abortionaccessdata.type +
+              "</span></label>"
           );
         } else {
           $("#abortion_access_parent_div").append(
             "<label class='radio-btn-no w-radio'><input type='radio' data-name='Radio 3' id='radio-3' name='radio-3' value='" +
-            result +
-            "' class='w-form-formradioinput radio-button-4 w-radio-input'><span class='radio-btn-text w-form-label' for='radio-3'>" +
-            abortionaccessdata.type +
-            "</span></label>"
+              result +
+              "' class='w-form-formradioinput radio-button-4 w-radio-input'><span class='radio-btn-text w-form-label' for='radio-3'>" +
+              abortionaccessdata.type +
+              "</span></label>"
           );
         }
         abortion_access_counter_append = abortion_access_counter_append + 1;
@@ -296,18 +296,18 @@ $("#values_section").on("click", function (e) {
         if (ethnicity_counter_append === 0) {
           $("#w-dropdown-list-2").html(
             "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setethnicityvalue(\"" +
-            result +
-            "\")'>" +
-            ethnicitydata.ethnicity_type +
-            "</a>"
+              result +
+              "\")'>" +
+              ethnicitydata.ethnicity_type +
+              "</a>"
           );
         } else {
           $("#w-dropdown-list-2").append(
             "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setethnicityvalue(\"" +
-            result +
-            "\")'>" +
-            ethnicitydata.ethnicity_type +
-            "</a>"
+              result +
+              "\")'>" +
+              ethnicitydata.ethnicity_type +
+              "</a>"
           );
         }
         ethnicity_counter_append = ethnicity_counter_append + 1;
@@ -325,18 +325,18 @@ $("#values_section").on("click", function (e) {
         if (religion_counter_append === 0) {
           $("#w-dropdown-list-3").html(
             "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setreligionvalue(\"" +
-            result1 +
-            "\")'>" +
-            religiondata.name +
-            "</a>"
+              result1 +
+              "\")'>" +
+              religiondata.name +
+              "</a>"
           );
         } else {
           $("#w-dropdown-list-3").append(
             "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setreligionvalue(\"" +
-            result1 +
-            "\")'>" +
-            religiondata.name +
-            "</a>"
+              result1 +
+              "\")'>" +
+              religiondata.name +
+              "</a>"
           );
         }
         religion_counter_append = religion_counter_append + 1;
@@ -477,18 +477,18 @@ $("#add_university_button").on("click", function (e) {
 
   $("#univeristy_lissting").append(
     "<div class='university_list' id='univeristy_" +
-    univeristy_counter +
-    "'><a href='#' class='anchor-img w-inline-block' onclick='closeuniversitypanel(\"" +
-    replaced +
-    "-" +
-    univeristy_counter +
-    "\")'><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63c83b23bcdbf2331f6d0cc2_Vector%20(20).svg' loading='lazy' alt=''></a><div class='heading-14'>" +
-    univeristy_name +
-    "</div><div class='tittle-flex'><div class='heading-12'>" +
-    department_name +
-    "</div><div class='heading-12 blod-700'>" +
-    state_value +
-    "</div></div></div>"
+      univeristy_counter +
+      "'><a href='#' class='anchor-img w-inline-block' onclick='closeuniversitypanel(\"" +
+      replaced +
+      "-" +
+      univeristy_counter +
+      "\")'><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63c83b23bcdbf2331f6d0cc2_Vector%20(20).svg' loading='lazy' alt=''></a><div class='heading-14'>" +
+      univeristy_name +
+      "</div><div class='tittle-flex'><div class='heading-12'>" +
+      department_name +
+      "</div><div class='heading-12 blod-700'>" +
+      state_value +
+      "</div></div></div>"
   );
   univeristy_counter = univeristy_counter + 1;
 });
@@ -523,18 +523,18 @@ $("#submit_university_program_button").on("click", function (e) {
         if (abortion_access_counter_append === 0) {
           $("#abortion_access_parent_div").html(
             "<label class='radio-button-field-3 w-radio'><input type='radio' data-name='Radio 3' id='radio-3' name='radio-3' value='" +
-            result +
-            "' class='w-form-formradioinput radio-button-4 w-radio-input'><span class='radio-btn-text w-form-label' for='radio-3'>" +
-            abortionaccessdata.type +
-            "</span></label>"
+              result +
+              "' class='w-form-formradioinput radio-button-4 w-radio-input'><span class='radio-btn-text w-form-label' for='radio-3'>" +
+              abortionaccessdata.type +
+              "</span></label>"
           );
         } else {
           $("#abortion_access_parent_div").append(
             "<label class='radio-btn-no w-radio'><input type='radio' data-name='Radio 3' id='radio-3' name='radio-3' value='" +
-            result +
-            "' class='w-form-formradioinput radio-button-4 w-radio-input'><span class='radio-btn-text w-form-label' for='radio-3'>" +
-            abortionaccessdata.type +
-            "</span></label>"
+              result +
+              "' class='w-form-formradioinput radio-button-4 w-radio-input'><span class='radio-btn-text w-form-label' for='radio-3'>" +
+              abortionaccessdata.type +
+              "</span></label>"
           );
         }
         abortion_access_counter_append = abortion_access_counter_append + 1;
@@ -551,18 +551,18 @@ $("#submit_university_program_button").on("click", function (e) {
         if (ethnicity_counter_append === 0) {
           $("#w-dropdown-list-2").html(
             "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setethnicityvalue(\"" +
-            result +
-            "\")'>" +
-            ethnicitydata.ethnicity_type +
-            "</a>"
+              result +
+              "\")'>" +
+              ethnicitydata.ethnicity_type +
+              "</a>"
           );
         } else {
           $("#w-dropdown-list-2").append(
             "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setethnicityvalue(\"" +
-            result +
-            "\")'>" +
-            ethnicitydata.ethnicity_type +
-            "</a>"
+              result +
+              "\")'>" +
+              ethnicitydata.ethnicity_type +
+              "</a>"
           );
         }
         ethnicity_counter_append = ethnicity_counter_append + 1;
@@ -580,18 +580,18 @@ $("#submit_university_program_button").on("click", function (e) {
         if (religion_counter_append === 0) {
           $("#w-dropdown-list-3").html(
             "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setreligionvalue(\"" +
-            result1 +
-            "\")'>" +
-            religiondata.name +
-            "</a>"
+              result1 +
+              "\")'>" +
+              religiondata.name +
+              "</a>"
           );
         } else {
           $("#w-dropdown-list-3").append(
             "<a href='#' class='w-dropdown-link' tabindex='0' onclick='setreligionvalue(\"" +
-            result1 +
-            "\")'>" +
-            religiondata.name +
-            "</a>"
+              result1 +
+              "\")'>" +
+              religiondata.name +
+              "</a>"
           );
         }
         religion_counter_append = religion_counter_append + 1;
@@ -828,25 +828,25 @@ $("#tiles_section").on("click", function (e) {
 
   if (help_call === "splash") {
     $("#registration_splash_screen").addClass("hide");
-    $("#registration_screen_7").removeClass("hide");
+    $("#registration_screen_seven").removeClass("hide");
   } else if (help_call === "university_section") {
     $("#registration_screen_0").addClass("hide");
-    $("#registration_screen_7").removeClass("hide");
+    $("#registration_screen_seven").removeClass("hide");
   } else if (help_call === "values_section") {
     $("#registration_screen_1").addClass("hide");
-    $("#registration_screen_7").removeClass("hide");
+    $("#registration_screen_seven").removeClass("hide");
   } else if (help_call === "school_section") {
     $("#registration_screen_2").addClass("hide");
-    $("#registration_screen_7").removeClass("hide");
+    $("#registration_screen_seven").removeClass("hide");
   } else if (help_call === "career_section") {
     $("#registration_screen_3").addClass("hide");
-    $("#registration_screen_7").removeClass("hide");
+    $("#registration_screen_seven").removeClass("hide");
   } else if (help_call === "cost_section") {
     $("#registration_screen_4").addClass("hide");
-    $("#registration_screen_7").removeClass("hide");
+    $("#registration_screen_seven").removeClass("hide");
   } else if (help_call === "sat_section") {
     $("#registration_screen_5").addClass("hide");
-    $("#registration_screen_7").removeClass("hide");
+    $("#registration_screen_seven").removeClass("hide");
   }
 });
 $("#about_section").on("click", function (e) {
@@ -1141,16 +1141,16 @@ function get_the_data(career, salary, growth) {
           } else {
             $("#career_parent_list").append(
               "<div class='training flex'><div class='results'><div class='social-heading16 mb'><span class='light-sky-blue'>" +
-              half_name +
-              "</span>" +
-              last_name +
-              "</div></div><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt='' onclick='postcareerselection(\"" +
-              replaced +
-              "-" +
-              careerdata.salary +
-              +"-" +
-              careerdata.growth_careers +
-              "\")' ></div>"
+                half_name +
+                "</span>" +
+                last_name +
+                "</div></div><img src='https://uploads-ssl.webflow.com/629a6c53c8ec9fdc6019d9f8/63737f69d2049860f5be355f_ep_arrow-right-bold.svg' loading='lazy' alt='' onclick='postcareerselection(\"" +
+                replaced +
+                "-" +
+                careerdata.salary +
+                +"-" +
+                careerdata.growth_careers +
+                "\")' ></div>"
             );
             career_array.push(career_title);
           }
@@ -1185,3 +1185,279 @@ $("input[type=radio][name=growth_button]").change(function () {
   get_the_data(career_text_2, Salary_button_2, growth_button_2);
 });
 
+
+
+
+
+// not_sure_university_list
+$('.progress').on("change", function () {
+  var value1 = $(this).val();
+  $(this).css("background", `linear-gradient(to right, #82CFD0 0%, #82CFD0 ${value1}%, #fff ${value1}%, white 100%)`)
+
+})
+
+$(".about-us").on('click', function () {
+  $(".continue-section").addClass("hide");
+  $("#registration_screen_10").removeClass("hide");
+})
+
+
+/////////////////////////////////////////
+
+
+
+$(".tiles").on('click', function () {
+
+  var userdatacheck = localStorage.getItem("userfbdata");
+  
+  userdatacheck = JSON.parse(userdatacheck);
+  
+  let displayUniversity = userdatacheck.university;
+ 
+    if (displayUniversity !== null && displayUniversity !== undefined) {
+      // console.log(displayUniversity);
+
+
+      var universityBlock ="";
+      displayUniversity.forEach(myFunction);
+
+      function myFunction(value) {
+        // txt += value + "<br>";
+        // console.log(value.university_info)
+
+
+        db.collection("University").where("university_name", "==", value.university_info).get().then((querySnapshot) => {
+         
+          console.log(querySnapshot.size);
+          if (querySnapshot.size > 0) {
+              querySnapshot.forEach((doc) => {
+
+                  statedata = doc.data();
+                  // console.log(doc.id, " => ", doc.data());
+
+                  universityBlock += `<div class="tab-box not_sure_university_list" data-uniid="${doc.id}" >
+                  <div class="btn"><a href="#" class="university-button mb-8 hide-bodr w-button">${statedata.university_name}</a>
+                    <div class="bg-img-text">
+                      <div class="nub-text">97%</div>
+                      <div class="heaing-10">MATCH</div>
+                    </div>
+                  </div>
+                  <div class="university-denver"><a href="#" class="links-arch w-inline-block">
+                      <div class="text-block-29">ARCHEOLOGIST</div>
+                    </a>
+                    <div class="heading-12">Denver, <span class="span">Colorado</span></div>
+                  </div>
+                  <div class="soical-icon mt-15">
+                    <div class="soicl-icon-text"><a href="#" class="tile-rejected w-inline-block" data-status="disliked">
+                        <div class="socl-icon"><img src="./Phase-2_files/63c9351446fa29beec75737f_ion_thumbs-down-sharp.svg" loading="lazy" alt=""></div>
+                      </a>
+                      <div class="socl-text">
+                        <div class="heading-12">Reject</div>
+                      </div>
+                    </div>
+                    <div class="soicl-icon-text">
+                      <div class="socl-icon"><img src="./Phase-2_files/63c93514aa263025c35d8ed5_Vector (22).svg" loading="lazy" alt=""></div><a href="#" class="tile-liked w-inline-block" data-status="liked">
+                        <div class="socl-text position">
+                          <div>Like</div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>` ;
+
+
+                  // var school_item = { id: doc.id, value: doc.data().schoolname };
+
+                  // array_schools.push(school_item);
+
+              });
+              // console.log(universityBlock);
+              $(".not-sure-tab").html(universityBlock);
+             
+          }
+         
+          // console.log(array_schools);
+          // response(array_schools);
+      }).catch((error) => {
+          // The document probably doesn't exist.
+          console.error("No results found: ", error);
+      });
+      
+}
+
+
+    }
+
+    $(document).on("click", ".tile-liked, .tile-rejected", function(e) {
+      e.preventDefault();
+      var uniId = $(this).parents(".not_sure_university_list").data("uniid");
+      console.log(uniId);
+      var userdatacheck = localStorage.getItem("userfbdata");
+      var likestatus = $(this).data("status");
+      userdatacheck = JSON.parse(userdatacheck);
+      var universityStatusData = { universityId: uniId, userId: userdatacheck.ID, status : likestatus };
+
+      var oldstatus = '';
+
+      db.collection("UnivestiesStatus").where("universityId", "==", uniId).where("userId", "==", userdatacheck.ID).get().then((querySnapshot) => {
+      
+      if (querySnapshot.size > 0) {
+        const doc = querySnapshot.docs[0];
+
+        if (doc) {
+          const docId = doc.id;
+          var documentdata = doc.data();
+          oldstatus = documentdata.status;
+          // console.log(doc.id, " => ", doc.data());
+
+          db.collection("UnivestiesStatus")
+          .doc(docId)
+          .update(universityStatusData)
+          .then(() => {
+            updateSettingData(oldstatus, likestatus);
+
+            console.log("University data successfully updated with ID: ", docId);
+          })
+          .catch((error) => {
+            console.error("Error updating university status data:", error);
+          });
+        }
+      } else {
+          
+        db.collection("UnivestiesStatus")
+        .add(universityStatusData)
+        .then(docRef => {
+          updateSettingData(oldstatus, likestatus);
+
+          console.log("Univesrity data successfully inserted with ID: ", docRef.id);
+        })
+        .catch(error => {
+            console.error("Error update unvieristy status data:", error);
+        });
+      }
+    })
+  })
+
+  function updateSettingData(oldstatus, likestatus){
+    
+    
+  // Reference the document by its ID and get its data
+  db.collection('settings').doc("universityCount").get()
+    .then((doc) => {
+      if (doc.exists) {
+        // Document found, access its data
+        const data = doc.data();
+        // console.log(data);
+
+        if(oldstatus == ""){
+          
+        } else {
+          var counter = ''; 
+
+          // Example usage
+          const recordIdToUpdate = 'universityCount'; // Replace with the actual record ID
+          const newStatusToUpdate = likestatus; // Replace with the actual new status
+          const newoldstatus = oldstatus; // Replace with the actual new status
+
+          updateUniversityStatus(newoldstatus, recordIdToUpdate, newStatusToUpdate);
+          // console.log(recordIdToUpdate, newStatusToUpdate);
+
+        }
+        console.log('Document data:', data);
+      } else {
+        console.log('Document not found');
+      }
+    })
+    .catch((error) => {
+      console.error('Error getting document:', error);
+    });
+  }
+
+  // Function to update university status based on another collection's record
+  async function updateUniversityStatus(oldstatus, recordId, newStatus) {
+    try {
+      // Get the current status of the university
+      const universityStatusDoc = await db.collection('settings').doc(recordId).get();
+      const currentStatus = universityStatusDoc.data();
+      // console.log(currentStatus);
+      // Update the counter in universityStatus based on the new status
+      switch (newStatus) {
+        case 'liked':
+          currentStatus.liked++;
+          break;
+        case 'disliked':
+          currentStatus.disliked++;
+          break;
+        case 'notsure':
+          currentStatus.notsure++;
+          break;
+        default:
+          throw new Error('Invalid status');
+      }
+
+      switch (oldstatus) {
+        case 'liked':
+          currentStatus.liked--;
+          break;
+        case 'disliked':
+          currentStatus.disliked--;
+          break;
+        case 'notsure':
+          currentStatus.notsure--;
+          break;
+        default:
+          throw new Error('Invalid status');
+      }
+
+      var likedTotal = currentStatus.liked;
+      var rejectedTotal = currentStatus.disliked;
+      var notSureTotal = currentStatus.notsure;
+
+
+      $("#likedTotal").text(likedTotal);
+      $("#rejectedTotal").text(rejectedTotal);
+      $("#notSureTotal").text(notSureTotal);
+
+
+
+
+      // console.log(currentStatus, newStatus);
+
+      // Update the universityStatus collection
+      await db.collection('settings').doc(recordId).update(currentStatus);
+
+      // Decrease the counter in the other collection (assuming it's called 'otherCollection')
+      // await db.collection('otherCollection').doc(recordId).update({
+      //   status: newStatus,
+      // });
+
+      console.log('University status updated successfully');
+    } catch (error) {
+      console.error('Error updating university status:', error);
+    }
+  }
+  // db.collection("Users")
+  // .doc(userdatacheck.ID)
+  // .get()
+  // .then((querySnapshot) => {
+  //   var userfbdata = querySnapshot.data();
+  
+  //   console.log(userfbdata);
+  
+  
+  //   let displayUniversity = userfbdata.university;
+  //   if (displayUniversity !== null && displayUniversity !== undefined) {
+  //     console.log(displayUniversity)
+  //   }
+  //   console.log("test", displayUniversity)
+  //   // $("#university_user_university").text(university_user_university_div_text);
+  // });
+
+  $(".continue-section").addClass("hide");
+  $("#registration_screen_seven").removeClass("hide");
+})
+
+$(".profile-btn").on('click', function () {
+  $(".continue-section").addClass("hide");
+  $("#registration_splash_screen").removeClass("hide");
+})
