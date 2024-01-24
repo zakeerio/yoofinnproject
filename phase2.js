@@ -495,10 +495,6 @@ $("#add_university_button").on("click", function (e) {
 		alert("please add exsisting university")
 		return false;
 	} 
-
-
-
-
 	
 
 	const replaced = univeristy_name.replaceAll(" ", "_");
