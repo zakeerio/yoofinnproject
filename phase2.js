@@ -433,16 +433,34 @@ $("#sat_section").on("click", function (e) {
 
 $(function () {
 	let university_array = [];
+	let universitydata_array = [];
 	db.collection("University")
 		.get()
 		.then((querySnapshot) => {
 			querySnapshot.forEach((doc) => {
-				universitydata = doc.data();
-				console.log(universitydata + "universitydata");
+				var universitydata = doc.data();
+				var universityId = doc.id;
+				var university_name = { uniId : universitydata.university_name+"__"+universityId};
+				universitydata_array.push(university_name);
+
+				// Get the input element
+				// var autocompleteInput = $("#Type-name-of-University");
+
+				// // Add attributes from the array
+				// autocompleteInput.attr("data-id", universityId);
+
+
+
+				// console.log(universitydata + "universitydata");
+				// console.log(universityId);
 				university_array.push(universitydata.university_name);
+				// console.log(university_array);
 			});
-			console.log(university_array);
+
+			console.log(universitydata_array);
+		localStorage.setItem('universitydata_array', JSON.stringify(universitydata_array));
 		});
+		
 
 	$("#Type-name-of-University").autocomplete({
 		source: university_array,
@@ -454,9 +472,35 @@ $("#add_university_button").on("click", function (e) {
 	var errors = "";
 	$("#errors").html("");
 
+
+
 	var state_value = JSON.parse(localStorage.getItem("state_value"));
 	var department_name = JSON.parse(localStorage.getItem("department_name"));
 	var univeristy_name = $("#Type-name-of-University").val();
+	
+	var universitydata_array = JSON.parse(localStorage.getItem("universitydata_array"));
+	var universityId = "";
+	var exsistUniversity = false;
+	universitydata_array.forEach((doc) => {
+		universitydata = doc;
+		// console.log(universitydata);
+		var parts = universitydata.uniId.split('__');
+		if(parts[0] == univeristy_name ) {
+			universityId = parts[1];
+			exsistUniversity = true;
+			return false;
+		} 
+	});
+	if(exsistUniversity == false) {
+		alert("please add exsisting university")
+		return false;
+	} 
+
+
+
+
+	
+
 	const replaced = univeristy_name.replaceAll(" ", "_");
 
 	if (!state_value) {
@@ -472,7 +516,10 @@ $("#add_university_button").on("click", function (e) {
 		state_info: state_value,
 		department_info: department_name,
 		university_info: univeristy_name,
+		university_id: universityId,
+
 	};
+	// console.log(univeristy_object); return false;
 	univeristy_array.push(univeristy_object);
 
 	$("#univeristy_lissting").append(
@@ -492,6 +539,10 @@ $("#add_university_button").on("click", function (e) {
 	);
 	univeristy_counter = univeristy_counter + 1;
 });
+
+
+
+
 $("#submit_university_program_button").on("click", function (e) {
 	let states_array = [];
 	let abortion_access_counter_append = 0;
@@ -501,10 +552,40 @@ $("#submit_university_program_button").on("click", function (e) {
 	let useruniversity = { university: univeristy_array };
 	var userdatacheck = localStorage.getItem("userfbdata");
 	let userdata = JSON.parse(userdatacheck);
+
+
+
+
+
+	// User added university successfully
 	db.collection("Users")
 		.doc(userdata.ID)
 		.update(useruniversity)
 		.then(() => {
+			univeristy_array.forEach((result) => {
+				var universityId = result.university_id;
+				console.log(universityId);
+				db.collection("UnivestiesStatus").where("universityId", "==", universityId).where("userId", "==", userdata.ID).get().then((querySnapshot) => {
+				var universityStatusData = { universityId: universityId, userId: userdata.ID, status: "notsure" };
+					console.log("kutch bhi");
+					if (querySnapshot.size == 0) {
+						db.collection("UnivestiesStatus")
+
+						
+
+
+							.add(universityStatusData)
+							.then(docRef => {
+	
+								console.log("Univesrity data successfully inserted with ID: ", docRef.id);
+							})
+							.catch(error => {
+								console.error("Error update unvieristy status data:", error);
+							});
+					}
+				});
+			console.log(result)
+		});
 			console.log("user successfully updated!");
 		});
 
@@ -1247,39 +1328,39 @@ $(".tiles").on('click', function () {
 		$(".dislikeuniversityblock").html(dislikedUniversityBlock);
 
 		displayUniversity.forEach(myFunction);
-		
+
 		function myFunction(value) {
 			// txt += value + "<br>";
 			// console.log(value.university_info); return false;
 			// console.log(userdatacheck); return false;
 			db.collection("University").where("university_name", "==", value.university_info).get().then((querySnapshot) => {
-		
+
 				// console.log(querySnapshot.size); return false;
 				if (querySnapshot.size > 0) {
 					querySnapshot.forEach((doc) => {
 						statedata = doc.data();
 
-				// console.log(statedata); return false;
-				var userdatacheck = localStorage.getItem("userfbdata");
-				userdatacheck = JSON.parse(userdatacheck);
-				
+						// console.log(statedata); return false;
+						var userdatacheck = localStorage.getItem("userfbdata");
+						userdatacheck = JSON.parse(userdatacheck);
+
 						// var userID = userdatacheck.ID;
 						var uniId = doc.id;
 						db.collection("UnivestiesStatus").where("universityId", "==", uniId).where("userId", "==", userdatacheck.ID).get().then((querySnapshot) => {
-				// console.log(uniId); return false;
-							
+							// console.log(uniId); return false;
+
 
 							if (querySnapshot.size > 0) {
 								var statusdoc = querySnapshot.docs[0];
 								statusdoc = statusdoc.data();
-		
+
 								if (statusdoc) {
-		
+
 									if (statusdoc.status == "notsure") {
 										console.log(statusdoc.status)
-		
+
 										// console.log(doc.id, " => ", doc.data());
-		
+
 										notsureUniversityBlock += `<div class="tab-box universitydatablock"  id="universityId_${doc.id}" data-uniid="${doc.id}" >
 											<div class="btn"><a href="#" class="university-button mb-8 hide-bodr w-button">${statedata.university_name}</a>
 												<div class="bg-img-text">
@@ -1310,7 +1391,7 @@ $(".tiles").on('click', function () {
 											</div>
 										</div>` ;
 									} else if (statusdoc.status == "liked") {
-		
+
 										likedUniversityBlock += `
 										<div class="tab-box mt-20 universitydatablock"  id="universityId_${doc.id}" data-uniid="${doc.id}" >
 											<div class="btn"><a href="#"
@@ -1404,8 +1485,8 @@ $(".tiles").on('click', function () {
 											</div>
 										</div>`;
 									} else if (statusdoc.status == "disliked") {
-		
-		
+
+
 										dislikedUniversityBlock += `
 										<div class="tab-box universitydatablock"  id="universityId_${doc.id}" data-uniid="${doc.id}" >
 										<div class="btn"><a href="#"
@@ -1444,32 +1525,32 @@ $(".tiles").on('click', function () {
 									}
 								}
 							}
-		
+
 							// console.log(universityBlock);
 							$(".not-sure-tab").html(notsureUniversityBlock);
-		
+
 							$(".likeduniversityblock").html(likedUniversityBlock);
-		
+
 							$(".dislikeuniversityblock").html(dislikedUniversityBlock);
-		
+
 						});
-		
-		
+
+
 						// var school_item = { id: doc.id, value: doc.data().schoolname };
-		
+
 						// array_schools.push(school_item);
-		
+
 					});
-		
+
 				}
-		
+
 				// console.log(array_schools);
 				// response(array_schools);
 			}).catch((error) => {
 				// The document probably doesn't exist.
 				console.error("No results found: ", error);
 			});
-		
+
 		}
 
 	}
@@ -1479,25 +1560,30 @@ $(".tiles").on('click', function () {
 })
 
 
-function tileUpdateUnivesities(universtityId){
+
+
+
+function tileUpdateUnivesities(universtityId) {
+
+
 	var notsureUniversityBlock = "";
 	var likedUniversityBlock = "";
 	var dislikedUniversityBlock = "";
-	
+
 	// console.log(statedata); return false;
 	var userdatacheck = localStorage.getItem("userfbdata");
 	userdatacheck = JSON.parse(userdatacheck);
 
-	var university_name = "Univeristy Name Static"; 
-	var department_info = "Department Info" 
+	var university_name = "Univeristy Name Static";
+	var department_info = "Department Info"
 	var state_info = "State Info";
-	
-	$(document).find("#universityId_"+universtityId).remove();
+
+	$(document).find("#universityId_" + universtityId).remove();
 	// var userID = userdatacheck.ID;
 	var uniId = universtityId;
 	db.collection("UnivestiesStatus").where("universityId", "==", uniId).where("userId", "==", userdatacheck.ID).get().then((querySnapshot) => {
-	// console.log(uniId); return false;
-		
+		// console.log(uniId); return false;
+
 
 		if (querySnapshot.size > 0) {
 			var statusdoc = querySnapshot.docs[0];
@@ -1673,25 +1759,25 @@ function tileUpdateUnivesities(universtityId){
 				</div>`
 				}
 
-				console.log(notsureUniversityBlock,likedUniversityBlock,dislikedUniversityBlock);
+				console.log(notsureUniversityBlock, likedUniversityBlock, dislikedUniversityBlock);
 
-				if(statusdoc.status == "notsure") {
+				if (statusdoc.status == "notsure") {
 					$(".not-sure-tab").append(notsureUniversityBlock);
 				}
-				if(statusdoc.status == "liked") {
+				if (statusdoc.status == "liked") {
 					$(".likeduniversityblock").append(likedUniversityBlock);
 				}
-				if(statusdoc.status == "disliked") {
+				if (statusdoc.status == "disliked") {
 					$(".dislikeuniversityblock").append(dislikedUniversityBlock);
 
 				}
 
 			}
 			// console.log(universityBlock);
-		
+
 		}
 
-		
+
 
 	});
 
