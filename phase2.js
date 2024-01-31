@@ -1357,35 +1357,39 @@ $(".tiles").on('click', function () {
 
 										// console.log(doc.id, " => ", doc.data());
 
-										notsureUniversityBlock += `<div class="tab-box universitydatablock"  id="universityId_${doc.id}" data-uniid="${doc.id}" >
-											<div class="btn"><a href="#" class="university-button mb-8 hide-bodr w-button">${statedata.university_name}</a>
-												<div class="bg-img-text">
-												<div class="nub-text">97%</div>
-												<div class="heaing-10">MATCH</div>
-												</div>
-											</div>
-											<div class="university-denver"><a href="#" class="links-arch w-inline-block">
-												<div class="text-block-29 capitalize">${value.department_info}</div>
-												</a>
-												<div class="heading-12">Denver, <span class="span">${value.state_info}</span></div>
-											</div>
-											<div class="soical-icon mt-15">
-												<div class="soicl-icon-text"><a href="#" class="tile-rejected w-inline-block" data-status="disliked">
-													<div class="socl-icon"><img src="https://assets-global.website-files.com/629a6c53c8ec9fdc6019d9f8/63c9351446fa29beec75737f_ion_thumbs-down-sharp.svg" loading="lazy" alt=""></div>
-												</a>
-												<div class="socl-text">
-													<div class="heading-12">Reject</div>
-												</div>
-												</div>
-												<div class="soicl-icon-text">
-												<div class="socl-icon"><img src="https://assets-global.website-files.com/629a6c53c8ec9fdc6019d9f8/63c93514aa263025c35d8ed5_Vector%20(22).svg" loading="lazy" alt=""></div><a href="#" class="tile-liked w-inline-block" data-status="liked">
-													<div class="socl-text position">
-													<div>Like</div>
+										notsureUniversityBlock += `
+											
+											<div class="tab-box universitydatablock"  id="universityId_${doc.id}" data-uniid="${doc.id}" >
+												<div class="btn"><a href="#" class="university-button mb-8 hide-bodr w-button">${statedata.university_name}</a>
+													<div class="bg-img-text">
+													<div class="nub-text">97%</div>
+													<div class="heaing-10">MATCH</div>
 													</div>
-												</a>
 												</div>
-											</div>
-										</div>` ;
+												<div class="university-denver"><a href="#" class="links-arch w-inline-block">
+													<div class="text-block-29 capitalize">${value.department_info}</div>
+													</a>
+													<div class="heading-12">Denver, <span class="span">${value.state_info}</span></div>
+												</div>
+												<div class="soical-icon mt-15">
+													<div class="soicl-icon-text">
+														<a href="#" class="tile-rejected w-inline-block" data-status="disliked">
+														<div class="socl-icon">
+															<img src="https://assets-global.website-files.com/629a6c53c8ec9fdc6019d9f8/63c9351446fa29beec75737f_ion_thumbs-down-sharp.svg" loading="lazy" alt=""></div>
+													</a>
+													<div class="socl-text">
+														<div class="heading-12">Reject</div>
+													</div>
+													</div>
+													<div class="soicl-icon-text">
+													<div class="socl-icon"><img src="https://assets-global.website-files.com/629a6c53c8ec9fdc6019d9f8/63c93514aa263025c35d8ed5_Vector%20(22).svg" loading="lazy" alt=""></div><a href="#" class="tile-liked w-inline-block" data-status="liked">
+														<div class="socl-text position">
+														<div>Like</div>
+														</div>
+													</a>
+													</div>
+												</div>
+											</div>` ;
 									} else if (statusdoc.status == "liked") {
 
 										async function fetchLikedUniversities1() {
@@ -1411,19 +1415,20 @@ $(".tiles").on('click', function () {
 															<div class="checkbox-text ${(university.steps[step] == 'complete' ? 'bg-clolor' : '')}">
 																<div class="heading-12 ${(university.steps[step] == 'complete' ? 'clr-white' : '')}">${step}</div>
 																<label class="w-checkbox checkbox-field-5 position">
-																	<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox bg"></div>
-																	<input type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
+																	<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox bg ${(university.steps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div>
+															
+																	<input type="checkbox" id="checkbox-2" name="checkbox-2" data-universityId="${uniId}" data-name="${step}" class="checkboxStepbox"
 																		style="opacity:0;position:absolute;z-index:-1">
 																	<span class="checkbox-label-3 w-form-label" for="checkbox-2"></span>
 																</label>
 															</div>`;
-															console.log(step + ": " + university.steps[step]);
+															// console.log(step + ": " + university.steps[step]);
 
 															stepBoxesCheckBox+= `
 															<label class="w-checkbox checkbox-field-5">
-																<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox"></div><input
-																type="checkbox" ${(university.steps[step] == 'complete' ? 'checked' : '')} id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
-																style="opacity:0;position:absolute;z-index:-1"><span class="checkbox-label-3 w-form-label"
+																<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox ${(university.steps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div><input
+																type="checkbox" ${(university.steps[step] == 'complete' ? 'checked' : '')} id="checkbox-2" data-targetname="${step}" name="checkbox-2" data-name="Checkbox 2"
+																style="opacity:0;position:absolute;z-index:-1" disabled><span class="checkbox-label-3 w-form-label"
 																for="checkbox-2"></span>
 															</label>
 															`;
@@ -1465,42 +1470,7 @@ $(".tiles").on('click', function () {
 													</div>
 													<div class="checkox">
 													${stepBoxesCheckBox}
-														<!-- <label class="w-checkbox checkbox-field-5">
-															<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox"></div><input
-															type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
-															style="opacity:0;position:absolute;z-index:-1"><span class="checkbox-label-3 w-form-label"
-															for="checkbox-2"></span>
-														</label>
-														<label class="w-checkbox checkbox-field-5">
-															<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox"></div><input
-															type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
-															style="opacity:0;position:absolute;z-index:-1"><span class="checkbox-label-3 w-form-label"
-															for="checkbox-2"></span>
-														</label>
-														<label class="w-checkbox checkbox-field-5">
-															<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox"></div><input
-															type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
-															style="opacity:0;position:absolute;z-index:-1"><span class="checkbox-label-3 w-form-label"
-															for="checkbox-2"></span>
-														</label>
-														<label class="w-checkbox checkbox-field-5">
-															<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox"></div><input
-															type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
-															style="opacity:0;position:absolute;z-index:-1"><span class="checkbox-label-3 w-form-label"
-															for="checkbox-2"></span>
-														</label>
-														<label class="w-checkbox checkbox-field-5">
-															<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox"></div><input
-															type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
-															style="opacity:0;position:absolute;z-index:-1"><span class="checkbox-label-3 w-form-label"
-															for="checkbox-2"></span>
-														</label>
-														<label class="w-checkbox checkbox-field-5">
-															<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox"></div><input
-															type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
-															style="opacity:0;position:absolute;z-index:-1"><span class="checkbox-label-3 w-form-label"
-															for="checkbox-2"></span>
-														</label> -->
+														
 													</div>
 												</form>
 												<div class="w-form-done" tabindex="-1" role="region" aria-label="Email Form 3 success">
@@ -1696,19 +1666,19 @@ function tileUpdateUnivesities(universityId) {
 													<div class="checkbox-text ${(university.steps[step] == 'complete' ? 'bg-clolor' : '')}">
 														<div class="heading-12 ${(university.steps[step] == 'complete' ? 'clr-white' : '')}">${step}</div>
 														<label class="w-checkbox checkbox-field-5 position">
-															<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox bg"></div>
-															<input type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
+															<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox bg ${(university.steps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div>
+															<input type="checkbox" id="checkbox-2" name="checkbox-2" data-universityId="${uniId}" data-name="${step}" class="checkboxStepbox"
 																style="opacity:0;position:absolute;z-index:-1">
 															<span class="checkbox-label-3 w-form-label" for="checkbox-2"></span>
 														</label>
 													</div>`;
-													console.log(step + ": " + university.steps[step]);
+													// console.log(step + ": " + university.steps[step]);
 
 													stepBoxesCheckBox += `
 													<label class="w-checkbox checkbox-field-5">
-														<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox"></div><input
-														type="checkbox" ${(university.steps[step] == 'complete' ? 'checked' : '')} id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
-														style="opacity:0;position:absolute;z-index:-1"><span class="checkbox-label-3 w-form-label"
+														<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox  ${(university.steps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div><input
+														type="checkbox" ${(university.steps[step] == 'complete' ? 'checked' : '')} data-targetname="${step}" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
+														style="opacity:0;position:absolute;z-index:-1" disabled><span class="checkbox-label-3 w-form-label" 
 														for="checkbox-2"></span>
 													</label>
 													`;
@@ -2027,6 +1997,67 @@ async function updateUniversityStatus(universityId, oldstatus, recordId, newStat
 	}
 }
 
+$(document).on("change", ".checkboxStepbox", function(){
+	var isChecked = $(this).prop("checked");
+	
+	var userdatacheck = localStorage.getItem("userfbdata");
+	userdatacheck = JSON.parse(userdatacheck);
+
+	var universityId = $(this).data('universityid');
+	var targetname = $(this).data('name');
+	// console.log(targetname)
+
+	var completecheck = "incomplete";
+	
+    if (isChecked) {
+		$(this).parents(".checkbox-text").addClass("bg-clolor");
+		$(this).parents(".checkbox-text").find(".heading-12").addClass("clr-white");
+		$(this).parents(".form-checkbox").find('[data-targetname="' + targetname + '"]').siblings('.w-checkbox-input').addClass('w--redirected-checked');
+		completecheck = "complete";
+        // alert("Checkbox is checked");
+    } else {
+		$(this).parents(".checkbox-text").removeClass("bg-clolor");
+		$(this).parents(".checkbox-text").find(".heading-12").removeClass("clr-white");
+		$(this).parents(".form-checkbox").find('[data-targetname="' + targetname + '"]').siblings('.w-checkbox-input').removeClass('w--redirected-checked');
+        // alert("Checkbox is unchecked");
+    }
+
+	// console.log(universityId,userdatacheck.ID); return false;
+	
+	db.collection("UserUniverstiesLiked")
+		.where("university_id", "==", universityId)
+		.where("user_id", "==", userdatacheck.ID)
+		.get()
+		.then((querySnapshot) => {
+			if (querySnapshot.size > 0) {
+				const doc = querySnapshot.docs[0];
+
+				if (doc) {
+					const docId = doc.id;
+					var documentdata = doc.data();
+					// console.log(doc.id, " => ", doc.data());
+					// Update the document data
+					documentdata.steps[targetname] = completecheck;
+
+					// Move the update operation inside this block
+					db.collection("UserUniverstiesLiked")
+					.doc(docId)
+					.update(documentdata)
+					.then(() => {
+						console.log("University data successfully updated with ID: ", docId);
+					})
+					.catch((error) => {
+						console.error("Error updating university Liked data:", error);
+					});
+				}
+			}
+		})
+		.catch((error) => {
+			console.error("Error getting university Liked data:", error);
+		});
+
+
+})
 
 $(".profile-btn").on('click', function () {
 	$(".continue-section").addClass("hide");
