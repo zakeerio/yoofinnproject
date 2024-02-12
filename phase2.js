@@ -1323,6 +1323,10 @@ $(".tiles").on('click', function () {
 		$(".likeduniversityblock").html(likedUniversityBlock);
 		$(".dislikeuniversityblock").html(dislikedUniversityBlock);
 
+		let allstepscount = 0;
+		let stepsdone = 0;
+		let stepsincomplete = 0;
+
 		displayUniversity.forEach(myFunction);
 
 		function myFunction(value) {
@@ -1392,7 +1396,7 @@ $(".tiles").on('click', function () {
 											</div>` ;
 									} else if (statusdoc.status == "liked") {
 
-										async function fetchLikedUniversities1() {
+										async function fetchLikedUniversities() {
 											try {
 												var stepBoxes = "";
 												var stepBoxesCheckBox = "";
@@ -1402,18 +1406,37 @@ $(".tiles").on('click', function () {
 													.where("user_id", "==", userdatacheck.ID)
 													.get();
 										
-												// console.log(querySnapshot.size + " LIKES SIZE");
-										
-												if (querySnapshot.size > 0) {
-													var university = querySnapshot.docs[0].data();
-										
-													// Iterate over each universityLiked
-													for (var step in university.steps) {
-														console.log(step, university.steps.hasOwnProperty(step));
+													
+													if (querySnapshot.size > 0) {
+														var university = querySnapshot.docs[0].data();
+														console.log(querySnapshot.docs[0].id + " LIKES SIZE", uniId, userdatacheck.ID);
+														var applied_done = (university.applied_at !="") ? "bg-green" : '';
+														var applied_date = "";
+														if(university.applied_at !="" && university.applied_at != undefined ){
+														 	var splitdate = university.applied_at.split(" ");
+															 applied_date = splitdate[0];
+														}
+
+														var sortOrder = ["About the university", "Degree programs", "Tuition & Scholarship", "Book a Virtual Tour", "Book in person Tour", "Applied"];
+
+														var sortedSteps = {};
+
+														sortOrder.forEach(function(step) {
+																	
+														// Iterate over each universityLiked
+														
+														// console.log(step, university.steps.hasOwnProperty(step));
 														if (university.steps.hasOwnProperty(step)) {
+															sortedSteps[step] = university.steps[step];
+
+															(university.steps[step] == "complete") ? stepsdone++ : stepsincomplete++;
+															allstepscount++;
+															
+															var appliedtext = (step == "Applied") ? "<span class='applied_at'>" +((applied_date !="") ? applied_date : "") +"</span>" : "";
+
 															stepBoxes += `
-															<div class="checkbox-text ${(university.steps[step] == 'complete' ? 'bg-clolor' : '')}">
-																<div class="heading-12 ${(university.steps[step] == 'complete' ? 'clr-white' : '')}">${step}</div>
+															<div class="checkbox-text ${(university.steps[step] == 'complete' ? 'bg-clolor' : '')} ${applied_done}">
+																<div class="heading-12 ${(university.steps[step] == 'complete' ? 'clr-white' : '')}">${step} <br> ${appliedtext}</div>
 																<label class="w-checkbox checkbox-field-5 position">
 																	<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox bg ${(university.steps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div>
 															
@@ -1432,10 +1455,11 @@ $(".tiles").on('click', function () {
 																for="checkbox-2"></span>
 															</label>
 															`;
+
 														}
-													}
+													})
 		
-													// Place the code dependent on stepBoxes here
+													// Place the code dependent on stepBoxes here											
 
 													setLikedUniversityBlockContent(stepBoxes, stepBoxesCheckBox)
 												}
@@ -1445,12 +1469,11 @@ $(".tiles").on('click', function () {
 										}
 		
 										// Call the async function
-										fetchLikedUniversities1();
+										fetchLikedUniversities();
 										// console.log(likedUniversityBlock);
-		
+
 										function setLikedUniversityBlockContent(stepBoxesHtml, stepBoxesCheckBox){
-											
-											likedUniversityBlock += `
+											likedUniversityBlock = `
 											<div class="tab-box mt-20 universitydatablock" id="universityId_${uniId}" data-uniid="${uniId}" >
 												<div class="btn"><a href="#"
 													class="university-button mb-8 w-button">${value.university_info}</a></div>
@@ -1482,7 +1505,15 @@ $(".tiles").on('click', function () {
 												</div>
 											</div>`;
 
-											$(".likeduniversityblock").append(likedUniversityBlock);
+											if (statusdoc.status == "liked") {
+												$(".likeduniversityblock").append(likedUniversityBlock);
+											}
+											// $(".likeduniversityblock").append(likedUniversityBlock);
+
+											// console.log("stepsdone "+stepsdone,"stepsimcomplete "+stepsimcomplete);
+											$("#stepsdone").text(stepsdone);
+											$("#stepsincomplete").text(stepsincomplete);
+											$("#allstepscount").text(allstepscount);
 
 										}
 
@@ -1560,6 +1591,10 @@ function tileUpdateUnivesities(universityId) {
 	var notsureUniversityBlock = "";
 	var likedUniversityBlock = "";
 	var dislikedUniversityBlock = "";
+
+	let allstepscount = 0;
+	let stepsdone = 0;
+	let stepsincomplete = 0;
 
 	// console.log(statedata); return false;
 	var userdatacheck = localStorage.getItem("userfbdata");
@@ -1657,33 +1692,47 @@ function tileUpdateUnivesities(universityId) {
 								
 										if (querySnapshot.size > 0) {
 											var university = querySnapshot.docs[0].data();
-								
-											// Iterate over each universityLiked
-											for (var step in university.steps) {
+
+											var sortOrder = ["About the university", "Degree programs", "Tuition & Scholarship", "Book a Virtual Tour", "Book in person Tour", "Applied"];
+
+											var sortedSteps = {};
+
+											sortOrder.forEach(function(step) {
+
+												var appliedtext = (step == "Applied") ? "<span class='applied_at'></span>" : "";
+
+												
+											// // Iterate over each universityLiked
+											// for (var step in university.steps) {
+												(university.steps[step] == "complete") ? stepsdone++ : stepsincomplete++;
+												allstepscount++;
+
 												console.log(step, university.steps.hasOwnProperty(step));
 												if (university.steps.hasOwnProperty(step)) {
+													sortedSteps[step] = university.steps[step];
+
 													stepBoxes += `
-													<div class="checkbox-text ${(university.steps[step] == 'complete' ? 'bg-clolor' : '')}">
-														<div class="heading-12 ${(university.steps[step] == 'complete' ? 'clr-white' : '')}">${step}</div>
+													<div class="checkbox-text ${(sortedSteps[step] == 'complete' ? 'bg-clolor' : '')}">
+														<div class="heading-12 ${(sortedSteps[step] == 'complete' ? 'clr-white' : '')}">${step} ${appliedtext}</div>
 														<label class="w-checkbox checkbox-field-5 position">
-															<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox bg ${(university.steps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div>
+															<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox bg ${(sortedSteps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div>
 															<input type="checkbox" id="checkbox-2" name="checkbox-2" data-universityId="${uniId}" data-name="${step}" class="checkboxStepbox"
 																style="opacity:0;position:absolute;z-index:-1">
 															<span class="checkbox-label-3 w-form-label" for="checkbox-2"></span>
 														</label>
 													</div>`;
-													// console.log(step + ": " + university.steps[step]);
+													// console.log(step + ": " + sortedSteps[step]);
 
 													stepBoxesCheckBox += `
 													<label class="w-checkbox checkbox-field-5">
-														<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox  ${(university.steps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div><input
-														type="checkbox" ${(university.steps[step] == 'complete' ? 'checked' : '')} data-targetname="${step}" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
+														<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox  ${(sortedSteps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div><input
+														type="checkbox" ${(sortedSteps[step] == 'complete' ? 'checked' : '')} data-targetname="${step}" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
 														style="opacity:0;position:absolute;z-index:-1" disabled><span class="checkbox-label-3 w-form-label" 
 														for="checkbox-2"></span>
 													</label>
 													`;
 												}
-											}
+											})
 
 											// Place the code dependent on stepBoxes here
 
@@ -1730,9 +1779,13 @@ function tileUpdateUnivesities(universityId) {
 										</div>
 									</div>`;
 
-									// if (statusdoc.status == "liked") {
+									if (statusdoc.status == "liked") {
 										$(".likeduniversityblock").append(likedUniversityBlock);
-									// }
+											
+										$("#stepsdone").text(parseInt($("#stepsdone").text()) + stepsdone);
+										$("#stepsincomplete").text(parseInt($("#stepsincomplete").text()) - stepsincomplete);
+										$("#allstepscount").text(parseInt($("#allstepscount").text()) + allstepscount);
+									}
 								}								
 
 							} else if (statusdoc.status == "disliked") {
@@ -1779,6 +1832,7 @@ function tileUpdateUnivesities(universityId) {
 				
 								}
 							}
+
 						}
 					}
 					
@@ -1998,33 +2052,61 @@ async function updateUniversityStatus(universityId, oldstatus, recordId, newStat
 }
 
 $(document).on("change", ".checkboxStepbox", function(){
-	var isChecked = $(this).prop("checked");
-	
-	var userdatacheck = localStorage.getItem("userfbdata");
-	userdatacheck = JSON.parse(userdatacheck);
 
-	var universityId = $(this).data('universityid');
-	var targetname = $(this).data('name');
-	// console.log(targetname)
+	var $checkbox = $(this); // Store reference to the checkbox
+    setTimeout(function(){
+        // var isChecked = $checkbox.prop("checked");
+        var isChecked = $checkbox.siblings(".w-checkbox-input").hasClass("w--redirected-checked");
+        
+		var userdatacheck = localStorage.getItem("userfbdata");
+		userdatacheck = JSON.parse(userdatacheck);
 
-	var completecheck = "incomplete";
-	
-    if (isChecked) {
-		$(this).parents(".checkbox-text").addClass("bg-clolor");
-		$(this).parents(".checkbox-text").find(".heading-12").addClass("clr-white");
-		$(this).parents(".form-checkbox").find('[data-targetname="' + targetname + '"]').siblings('.w-checkbox-input').addClass('w--redirected-checked');
-		completecheck = "complete";
-        // alert("Checkbox is checked");
-    } else {
-		$(this).parents(".checkbox-text").removeClass("bg-clolor");
-		$(this).parents(".checkbox-text").find(".heading-12").removeClass("clr-white");
-		$(this).parents(".form-checkbox").find('[data-targetname="' + targetname + '"]').siblings('.w-checkbox-input').removeClass('w--redirected-checked');
-        // alert("Checkbox is unchecked");
-    }
+		var universityId = $checkbox.data('universityid');
+		var targetname = $checkbox.data('name');
+		// console.log(targetname)
 
-	// console.log(universityId,userdatacheck.ID); return false;
-	
-	db.collection("UserUniverstiesLiked")
+		var completecheck = "incomplete";
+
+		var formattedDateTime = '';
+		// console.log(isChecked);
+		if (isChecked) {
+			$checkbox.parents(".checkbox-text").addClass("bg-clolor");
+			$checkbox.parents(".checkbox-text").find(".heading-12").addClass("clr-white");
+			$checkbox.parents(".form-checkbox").find('[data-targetname="' + targetname + '"]').siblings('.w-checkbox-input').addClass('w--redirected-checked');
+			completecheck = "complete";
+			var applied_check = $checkbox.parents(".form-checkbox").find(".checkbox-text.bg-clolor").length;
+
+			if(applied_check==6) {
+				var currentDateTime = new Date();
+				// Format the date and time
+				formattedDateTime = currentDateTime.getFullYear() + '-' + addZeroPrefix(currentDateTime.getMonth() + 1) + '-' + addZeroPrefix(currentDateTime.getDate()) + ' ' + addZeroPrefix(currentDateTime.getHours()) + ':' + addZeroPrefix(currentDateTime.getMinutes()) + ':' + addZeroPrefix(currentDateTime.getSeconds());
+				// Function to add zero prefix to single-digit numbers
+				function addZeroPrefix(number) {
+					return (number < 10 ? '0' : '') + number;
+				}
+				$checkbox.parents(".form-checkbox").find(".checkbox-text").addClass("bg-green");
+				var splitdate = formattedDateTime.split(" ");
+				$checkbox.parents(".form-checkbox").find(".checkbox-text").find(".applied_at").text(splitdate[0]);
+
+
+			}
+
+			// alert("Checkbox is checked");
+		} else {
+			$checkbox.parents(".checkbox-text").removeClass("bg-clolor");
+			$checkbox.parents(".checkbox-text").find(".heading-12").removeClass("clr-white");
+			$checkbox.parents(".form-checkbox").find('[data-targetname="' + targetname + '"]').siblings('.w-checkbox-input').removeClass('w--redirected-checked');
+			// alert("Checkbox is unchecked");
+			$checkbox.parents(".form-checkbox").find(".checkbox-text").removeClass("bg-green");
+			$checkbox.parents(".form-checkbox").find(".checkbox-text").find(".applied_at").text("");
+			formattedDateTime = "";
+			
+
+		}
+
+		// console.log(universityId,userdatacheck.ID); return false;
+		
+		db.collection("UserUniverstiesLiked")
 		.where("university_id", "==", universityId)
 		.where("user_id", "==", userdatacheck.ID)
 		.get()
@@ -2038,12 +2120,22 @@ $(document).on("change", ".checkboxStepbox", function(){
 					// console.log(doc.id, " => ", doc.data());
 					// Update the document data
 					documentdata.steps[targetname] = completecheck;
-
+					documentdata.applied_at = formattedDateTime;
+					console.log(documentdata);
 					// Move the update operation inside this block
 					db.collection("UserUniverstiesLiked")
 					.doc(docId)
 					.update(documentdata)
 					.then(() => {
+						var incrementchange = (completecheck == "complete") ? 1 : 0;
+						if(incrementchange == 1){
+							$("#stepsdone").text(parseInt($("#stepsdone").text()) + 1);
+							$("#stepsincomplete").text(parseInt($("#stepsincomplete").text()) - 1);
+						}else {
+							$("#stepsdone").text(parseInt($("#stepsdone").text()) - 1);
+							$("#stepsincomplete").text(parseInt($("#stepsincomplete").text()) + 1);
+						}
+						
 						console.log("University data successfully updated with ID: ", docId);
 					})
 					.catch((error) => {
@@ -2055,6 +2147,8 @@ $(document).on("change", ".checkboxStepbox", function(){
 		.catch((error) => {
 			console.error("Error getting university Liked data:", error);
 		});
+
+	}, 500)
 
 
 })

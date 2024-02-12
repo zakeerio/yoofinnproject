@@ -6096,7 +6096,9 @@ a {
 .checkbox-text.bg-clolor {
   background-color: #567ebb;
 }
-
+.checkbox-text.bg-clolor.bg-green {
+  background-color: var(--light-sea-green);
+}
 .mt-15 {
   margin-top: 15px;
 }
