@@ -198,27 +198,27 @@ td, th {
 }
 
 .w-icon-slider-right:before {
-  content: "î˜€";
+  content: "";
 }
 
 .w-icon-slider-left:before {
-  content: "î˜";
+  content: "";
 }
 
 .w-icon-nav-menu:before {
-  content: "î˜‚";
+  content: "";
 }
 
 .w-icon-arrow-down:before, .w-icon-dropdown-toggle:before {
-  content: "î˜ƒ";
+  content: "";
 }
 
 .w-icon-file-upload-remove:before {
-  content: "î¤€";
+  content: "";
 }
 
 .w-icon-file-upload-icon:before {
-  content: "î¤ƒ";
+  content: "";
 }
 
 * {
@@ -294,6 +294,10 @@ html[data-w-dynpage] [data-w-cloak] {
 
 .w-code-block {
   margin: unset;
+}
+
+pre.w-code-block code {
+  all: inherit;
 }
 
 .w-webflow-badge, .w-webflow-badge * {
@@ -4415,8 +4419,8 @@ a {
 }
 
 .submit-button-4.gb-col {
+  background-color: var(--light-sea-green);
   color: #fff;
-  background-color: #11ac90;
   border-style: none;
   padding-left: 42px;
   padding-right: 42px;
@@ -5288,6 +5292,7 @@ a {
 }
 
 .congrat-heading {
+  color: #747272;
   font-size: 18px;
   font-weight: 600;
   line-height: 27px;
@@ -5770,7 +5775,7 @@ a {
 }
 
 .tabs-content {
-  margin-top: 40px;
+  margin-top: 0;
   padding: 20px 10px;
 }
 
@@ -6096,9 +6101,11 @@ a {
 .checkbox-text.bg-clolor {
   background-color: #567ebb;
 }
+
 .checkbox-text.bg-clolor.bg-green {
   background-color: var(--light-sea-green);
 }
+
 .mt-15 {
   margin-top: 15px;
 }
@@ -6196,6 +6203,96 @@ a {
 
 .d-none {
   display: none;
+}
+
+.green-color {
+  color: #11ac90;
+}
+
+.green-color.text-bold {
+  font-weight: 600;
+}
+
+.d-flex {
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  padding: 0 15px 45px;
+  display: flex;
+}
+
+.d-flex.success-block {
+  border-bottom: 2px solid rgba(0, 0, 0, .2);
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.paragraph-3 {
+  padding-top: 24px;
+}
+
+.user-uni-question {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.white-btn {
+  color: #474747;
+  mix-blend-mode: normal;
+  background-color: #fff;
+  padding: 18px 36px;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .14);
+}
+
+.answer-options {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  justify-content: center;
+  display: flex;
+}
+
+.answer-options.d-f {
+  flex-direction: row;
+  justify-content: space-between;
+  display: flex;
+}
+
+.feedback-text {
+  color: #567ebb;
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.4em;
+}
+
+.congrats-text {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4em;
+}
+
+.all-done-block {
+  width: 100%;
+  max-width: 310px;
+}
+
+.uni-block-header {
+  justify-content: space-between;
+  display: flex;
+}
+
+.all-done-alert {
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  flex-direction: column;
+  display: flex;
 }
 
 @media screen and (max-width: 991px) {

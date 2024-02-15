@@ -1326,6 +1326,8 @@ $(".tiles").on('click', function () {
 		let allstepscount = 0;
 		let stepsdone = 0;
 		let stepsincomplete = 0;
+		var all_done  = true;
+
 
 		displayUniversity.forEach(myFunction);
 
@@ -1411,12 +1413,12 @@ $(".tiles").on('click', function () {
 														var university = querySnapshot.docs[0].data();
 														console.log(querySnapshot.docs[0].id + " LIKES SIZE", uniId, userdatacheck.ID);
 														var applied_done = (university.applied_at !="") ? "bg-green" : '';
-														var applied_date = "";
+														var applied_date = false;
 														if(university.applied_at !="" && university.applied_at != undefined ){
 														 	var splitdate = university.applied_at.split(" ");
 															 applied_date = splitdate[0];
 														}
-
+														
 														var sortOrder = ["About the university", "Degree programs", "Tuition & Scholarship", "Book a Virtual Tour", "Book in person Tour", "Applied"];
 
 														var sortedSteps = {};
@@ -1429,10 +1431,14 @@ $(".tiles").on('click', function () {
 														if (university.steps.hasOwnProperty(step)) {
 															sortedSteps[step] = university.steps[step];
 
+															if(university.steps[step] == "incomplete"){
+																all_done = false;
+															}
+
 															(university.steps[step] == "complete") ? stepsdone++ : stepsincomplete++;
 															allstepscount++;
 															
-															var appliedtext = (step == "Applied") ? "<span class='applied_at'>" +((applied_date !="") ? applied_date : "") +"</span>" : "";
+															var appliedtext = (step == "Applied") ? "<span class='applied_at'>" +((applied_date !=false) ? applied_date : "") +"</span>" : "";
 
 															stepBoxes += `
 															<div class="checkbox-text ${(university.steps[step] == 'complete' ? 'bg-clolor' : '')} ${applied_done}">
@@ -1461,7 +1467,7 @@ $(".tiles").on('click', function () {
 		
 													// Place the code dependent on stepBoxes here											
 
-													setLikedUniversityBlockContent(stepBoxes, stepBoxesCheckBox)
+													setLikedUniversityBlockContent(stepBoxes, stepBoxesCheckBox, applied_date)
 												}
 											} catch (error) {
 												console.error("Error getting liked universities: ", error);
@@ -1472,9 +1478,11 @@ $(".tiles").on('click', function () {
 										fetchLikedUniversities();
 										// console.log(likedUniversityBlock);
 
-										function setLikedUniversityBlockContent(stepBoxesHtml, stepBoxesCheckBox){
+										function setLikedUniversityBlockContent(stepBoxesHtml, stepBoxesCheckBox, applied_date){
 											likedUniversityBlock = `
 											<div class="tab-box mt-20 universitydatablock" id="universityId_${uniId}" data-uniid="${uniId}" >
+											<div class="uni-block-header">
+												<div>
 												<div class="btn"><a href="#"
 													class="university-button mb-8 w-button">${value.university_info}</a></div>
 												<div class="university-denver">
@@ -1483,6 +1491,14 @@ $(".tiles").on('click', function () {
 													<div class="text-block-29 mt-10">${value.department_info}</div>
 												</a>
 												</div>
+												</div>
+												<div class="all-done-alert" ${(applied_date != false) ? "style='display:flex;'" : ""}><img
+													src="https://assets-global.website-files.com/629a6c53c8ec9fdc6019d9f8/63793b406a668a62dea3049a_Vector%20(12).svg"
+													loading="lazy" alt="">
+												<div>All Done</div>
+												</div>
+											</div>
+												
 												<div class="form-like w-form">
 												<form id="email-form-3" name="email-form-3" data-name="Email Form 3" method="get"
 													class="form-checkbox" data-wf-page-id="636cd27562d86914d6afe79c"
@@ -1514,6 +1530,13 @@ $(".tiles").on('click', function () {
 											$("#stepsdone").text(stepsdone);
 											$("#stepsincomplete").text(stepsincomplete);
 											$("#allstepscount").text(allstepscount);
+
+											if(all_done === true) {	
+												$(".d-flex.success-block").css("display", "flex");
+											} else {
+												$(".d-flex.success-block").css("display", "none");
+											}
+
 
 										}
 
@@ -1566,6 +1589,7 @@ $(".tiles").on('click', function () {
 
 							$(".dislikeuniversityblock").html(dislikedUniversityBlock);
 
+
 						});
 
 					});
@@ -1595,6 +1619,7 @@ function tileUpdateUnivesities(universityId) {
 	let allstepscount = 0;
 	let stepsdone = 0;
 	let stepsincomplete = 0;
+	let all_done = true;
 
 	// console.log(statedata); return false;
 	var userdatacheck = localStorage.getItem("userfbdata");
@@ -1710,9 +1735,15 @@ function tileUpdateUnivesities(universityId) {
 												console.log(step, university.steps.hasOwnProperty(step));
 												if (university.steps.hasOwnProperty(step)) {
 													sortedSteps[step] = university.steps[step];
+													if(sortedSteps[step] == 'incomplete'){
+														all_done = false;
+													}
+
+													var applied_done = (university.applied_at !="") ? "bg-green" : '';
+
 
 													stepBoxes += `
-													<div class="checkbox-text ${(sortedSteps[step] == 'complete' ? 'bg-clolor' : '')}">
+													<div class="checkbox-text ${(sortedSteps[step] == 'complete' ? 'bg-clolor' : '')} ${applied_done}">
 														<div class="heading-12 ${(sortedSteps[step] == 'complete' ? 'clr-white' : '')}">${step} ${appliedtext}</div>
 														<label class="w-checkbox checkbox-field-5 position">
 															<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox bg ${(sortedSteps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div>
@@ -1750,6 +1781,8 @@ function tileUpdateUnivesities(universityId) {
 								
 									likedUniversityBlock += `
 									<div class="tab-box mt-20 universitydatablock" id="universityId_${uniId}" data-uniid="${uniId}" >
+									<div class="uni-block-header">
+                    					<div>
 										<div class="btn"><a href="#"
 											class="university-button mb-8 w-button">${value.university_info}</a></div>
 										<div class="university-denver">
@@ -1758,6 +1791,13 @@ function tileUpdateUnivesities(universityId) {
 											<div class="text-block-29 mt-10">${value.department_info}</div>
 										</a>
 										</div>
+										</div>
+										<div class="all-done-alert"><img
+											src="https://assets-global.website-files.com/629a6c53c8ec9fdc6019d9f8/63793b406a668a62dea3049a_Vector%20(12).svg"
+											loading="lazy" alt="">
+										<div>All Done</div>
+										</div>
+									</div>
 										<div class="form-like w-form">
 										<form id="email-form-3" name="email-form-3" data-name="Email Form 3" method="get"
 											class="form-checkbox" data-wf-page-id="636cd27562d86914d6afe79c"
@@ -1779,12 +1819,20 @@ function tileUpdateUnivesities(universityId) {
 										</div>
 									</div>`;
 
+									var inmcomplete_check = parseInt($("#stepsincomplete").text());
+
 									if (statusdoc.status == "liked") {
 										$(".likeduniversityblock").append(likedUniversityBlock);
 											
 										$("#stepsdone").text(parseInt($("#stepsdone").text()) + stepsdone);
-										$("#stepsincomplete").text(parseInt($("#stepsincomplete").text()) - stepsincomplete);
+										$("#stepsincomplete").text(parseInt($("#stepsincomplete").text()) + stepsincomplete);
 										$("#allstepscount").text(parseInt($("#allstepscount").text()) + allstepscount);
+									}
+
+									if((inmcomplete_check+stepsincomplete)  == 0) {	
+										$(".d-flex.success-block").css("display", "flex");
+									} else {
+										$(".d-flex.success-block").css("display", "none");
 									}
 								}								
 
@@ -2087,7 +2135,7 @@ $(document).on("change", ".checkboxStepbox", function(){
 				$checkbox.parents(".form-checkbox").find(".checkbox-text").addClass("bg-green");
 				var splitdate = formattedDateTime.split(" ");
 				$checkbox.parents(".form-checkbox").find(".checkbox-text").find(".applied_at").text(splitdate[0]);
-
+				$checkbox.parents(".universitydatablock").find(".all-done-alert").css("display","flex");
 
 			}
 
@@ -2099,9 +2147,8 @@ $(document).on("change", ".checkboxStepbox", function(){
 			// alert("Checkbox is unchecked");
 			$checkbox.parents(".form-checkbox").find(".checkbox-text").removeClass("bg-green");
 			$checkbox.parents(".form-checkbox").find(".checkbox-text").find(".applied_at").text("");
+			$checkbox.parents(".universitydatablock").find(".all-done-alert").css("display","none");
 			formattedDateTime = "";
-			
-
 		}
 
 		// console.log(universityId,userdatacheck.ID); return false;
@@ -2135,7 +2182,12 @@ $(document).on("change", ".checkboxStepbox", function(){
 							$("#stepsdone").text(parseInt($("#stepsdone").text()) - 1);
 							$("#stepsincomplete").text(parseInt($("#stepsincomplete").text()) + 1);
 						}
-						
+						var incomplete_check = parseInt($("#stepsincomplete").text());
+						if(incomplete_check == 0){
+							$("#all-done-block").css("display","flex");
+						} else {
+							$("#all-done-block").hide();
+						}
 						console.log("University data successfully updated with ID: ", docId);
 					})
 					.catch((error) => {

@@ -58,7 +58,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .registration.hide {
       display: none;
     }
-
+    .d-flex.success-block, .all-done-alert {
+    display: none;
+    }
     .not-sure.w--current .nub {
       background-color: #efad04;
     }
@@ -1257,6 +1259,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </div>
               <div data-w-tab="Tab 2" class="links-tab w-tab-pane" id="w-tabs-0-data-w-pane-1" role="tabpanel"
                 aria-labelledby="w-tabs-0-data-w-tab-1">
+
+                <div id="all-done-block" class="d-flex success-block">
+                  <div class="all-done-block"><img
+                      src="https://assets-global.website-files.com/629a6c53c8ec9fdc6019d9f8/63735f8d0a0a83a58c45d921_image%202.svg"
+                      loading="lazy" alt="">
+                    <h4 class="green-color">Congratulations</h4>
+                    <div class="congrats-text">You have successfully applied to <span class="green-color text-bold">ALL </span>the
+                      Universities in this section!</div>
+                    <p class="user-uni-question">Can we reach out to you in a month to see where you went to Universitty, what you
+                      studied and how you are doing?</p>
+                    <div class="answer-options"><a href="#" class="white-btn w-button">Yes</a><a href="#"
+                        class="white-btn w-button">No</a></div>
+                    <div class="feedback-text"><a href="#" class="feedback-text">Proide Feedback</a></div>
+                  </div>
+                </div>
+
                 <div class="filtr-box">
                   <div class="filt-itm">
                     <div class="heading-14 colr-white">All</div>
@@ -1273,12 +1291,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 <div class="likeduniversityblock">
                   <div class="tab-box mt-20">
-                    <div class="btn"><a href="#" class="university-button mb-8 w-button">University Of Denver</a></div>
-                    <div class="university-denver">
-                      <div class="heading-12">Denver, <span class="span">Colorado</span></div><a href="#"
-                        class="links-arch w-inline-block">
-                        <div class="text-block-29 mt-10">ARCHEOLOGIST</div>
-                      </a>
+                    <div class="uni-block-header">
+                      <div>
+                        <div class="btn"><a href="#" class="university-button mb-8 w-button">University Of Denver</a></div>
+                        <div class="university-denver">
+                          <div class="heading-12">Denver, <span class="span">Colorado</span></div><a href="#"
+                            class="links-arch w-inline-block">
+                            <div class="text-block-29 mt-10">ARCHEOLOGIST</div>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="all-done-alert"><img
+                          src="https://assets-global.website-files.com/629a6c53c8ec9fdc6019d9f8/63793b406a668a62dea3049a_Vector%20(12).svg"
+                          loading="lazy" alt="">
+                        <div>All Done</div>
+                      </div>
                     </div>
                     <div class="form-like w-form">
                       <form id="email-form-3" name="email-form-3" data-name="Email Form 3" method="get"
