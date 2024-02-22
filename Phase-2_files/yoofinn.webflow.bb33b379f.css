@@ -198,27 +198,27 @@ td, th {
 }
 
 .w-icon-slider-right:before {
-  content: "";
+  content: "î˜€";
 }
 
 .w-icon-slider-left:before {
-  content: "";
+  content: "î˜";
 }
 
 .w-icon-nav-menu:before {
-  content: "";
+  content: "î˜‚";
 }
 
 .w-icon-arrow-down:before, .w-icon-dropdown-toggle:before {
-  content: "";
+  content: "î˜ƒ";
 }
 
 .w-icon-file-upload-remove:before {
-  content: "";
+  content: "î¤€";
 }
 
 .w-icon-file-upload-icon:before {
-  content: "";
+  content: "î¤ƒ";
 }
 
 * {
@@ -6092,9 +6092,11 @@ a {
   width: 100%;
   max-width: 164px;
   text-align: center;
+  cursor: pointer;
   border: 1px solid rgba(0, 0, 0, .1);
   border-radius: 4px;
   padding: 8px 35px;
+  display: block;
   position: relative;
 }
 
@@ -6104,6 +6106,10 @@ a {
 
 .checkbox-text.bg-clolor.bg-green {
   background-color: var(--light-sea-green);
+}
+
+.checkbox-text.box-hover {
+  cursor: pointer;
 }
 
 .mt-15 {

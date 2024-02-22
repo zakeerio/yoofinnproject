@@ -1420,9 +1420,16 @@ $(".tiles").on('click', function () {
 														}
 														
 														var sortOrder = ["About the university", "Degree programs", "Tuition & Scholarship", "Book a Virtual Tour", "Book in person Tour", "Applied"];
-
+														var linksorder = [
+															"https://www.google.com1",
+															"https://www.google.com/2",
+															"https://www.google.com/3",
+															"https://www.google.com/4",
+															"https://www.google.com/5",
+															"https://www.google.com/6"
+														];
 														var sortedSteps = {};
-
+														var counter = 0;
 														sortOrder.forEach(function(step) {
 																	
 														// Iterate over each universityLiked
@@ -1441,10 +1448,10 @@ $(".tiles").on('click', function () {
 															var appliedtext = (step == "Applied") ? "<span class='applied_at'>" +((applied_date !=false) ? applied_date : "") +"</span>" : "";
 
 															stepBoxes += `
-															<div class="checkbox-text ${(university.steps[step] == 'complete' ? 'bg-clolor' : '')} ${applied_done}">
-																<div class="heading-12 ${(university.steps[step] == 'complete' ? 'clr-white' : '')}">${step} <br> ${appliedtext}</div>
+															<div class="checkbox-text box-hover ${(university.steps[step] == 'complete' ? 'bg-clolor' : '')} ${applied_done}"  data-url="${linksorder[counter]}">
+																<div class="heading-12 chkboxlabel ${(university.steps[step] == 'complete' ? 'clr-white' : '')}">${step} <br> ${appliedtext}</div>
 																<label class="w-checkbox checkbox-field-5 position">
-																	<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox bg ${(university.steps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div>
+																																	<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox bg ${(university.steps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div>
 															
 																	<input type="checkbox" id="checkbox-2" name="checkbox-2" data-universityId="${uniId}" data-name="${step}" class="checkboxStepbox"
 																		style="opacity:0;position:absolute;z-index:-1">
@@ -1463,6 +1470,7 @@ $(".tiles").on('click', function () {
 															`;
 
 														}
+														counter++;
 													})
 		
 													// Place the code dependent on stepBoxes here											
@@ -1719,8 +1727,17 @@ function tileUpdateUnivesities(universityId) {
 											var university = querySnapshot.docs[0].data();
 
 											var sortOrder = ["About the university", "Degree programs", "Tuition & Scholarship", "Book a Virtual Tour", "Book in person Tour", "Applied"];
+											var linksorder = [
+													"https://www.google.com1",
+													"https://www.google.com/2",
+													"https://www.google.com/3",
+													"https://www.google.com/4",
+													"https://www.google.com/5",
+													"https://www.google.com/6"
+												];
 
 											var sortedSteps = {};
+											var counter = 0
 
 											sortOrder.forEach(function(step) {
 
@@ -1740,11 +1757,11 @@ function tileUpdateUnivesities(universityId) {
 													}
 
 													var applied_done = (university.applied_at !="") ? "bg-green" : '';
-
+													
 
 													stepBoxes += `
-													<div class="checkbox-text ${(sortedSteps[step] == 'complete' ? 'bg-clolor' : '')} ${applied_done}">
-														<div class="heading-12 ${(sortedSteps[step] == 'complete' ? 'clr-white' : '')}">${step} ${appliedtext}</div>
+													<div class="checkbox-text box-hover ${(sortedSteps[step] == 'complete' ? 'bg-clolor' : '')} ${applied_done}" data-url="${linksorder[counter]}">
+														<div class="heading-12 chkboxlabel ${(sortedSteps[step] == 'complete' ? 'clr-white' : '')}">${step} ${appliedtext}</div>
 														<label class="w-checkbox checkbox-field-5 position">
 															<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox bg ${(sortedSteps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div>
 															<input type="checkbox" id="checkbox-2" name="checkbox-2" data-universityId="${uniId}" data-name="${step}" class="checkboxStepbox"
@@ -1763,6 +1780,7 @@ function tileUpdateUnivesities(universityId) {
 													</label>
 													`;
 												}
+												counter++;
 											})
 
 											// Place the code dependent on stepBoxes here
@@ -1895,6 +1913,14 @@ function tileUpdateUnivesities(universityId) {
 
 };
 
+
+$(document).on("click",".checkbox-text", function(){
+    // $(this).siblings(".w-checkbox.checkbox-field-5.position").find(".checkboxStepbox").trigger("click")
+
+    $(this).children().find(".checkboxStepbox").trigger("click");
+	// alert("test")
+
+})
 
 
 $(document).on("click", ".tile-liked, .tile-notsure, .tile-rejected", function (e) {
@@ -2116,9 +2142,11 @@ $(document).on("change", ".checkboxStepbox", function(){
 		var completecheck = "incomplete";
 
 		var formattedDateTime = '';
+		var dataurl = "";
 		// console.log(isChecked);
 		if (isChecked) {
 			$checkbox.parents(".checkbox-text").addClass("bg-clolor");
+			dataurl = $checkbox.parents(".checkbox-text").data("url")
 			$checkbox.parents(".checkbox-text").find(".heading-12").addClass("clr-white");
 			$checkbox.parents(".form-checkbox").find('[data-targetname="' + targetname + '"]').siblings('.w-checkbox-input').addClass('w--redirected-checked');
 			completecheck = "complete";
@@ -2189,6 +2217,10 @@ $(document).on("change", ".checkboxStepbox", function(){
 							$("#all-done-block").hide();
 						}
 						console.log("University data successfully updated with ID: ", docId);
+
+						if(dataurl !=""){
+							window.open(dataurl,'_blank');
+						}
 					})
 					.catch((error) => {
 						console.error("Error updating university Liked data:", error);
