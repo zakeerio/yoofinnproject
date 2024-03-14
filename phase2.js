@@ -3,9 +3,17 @@ var univeristy_array = [];
 let career_array = [];
 var univeristy_counter = 0;
 var career_counter = 0;
+let linksorder = [
+	"https://www.google.com1",
+	"https://www.google.com/2",
+	"https://www.google.com/3",
+	"https://www.google.com/4",
+	"https://www.google.com/5",
+	"https://www.google.com/6"
+];
 
 $(document).ready(function () {
-	let university_section_status = localStorage.getItem(
+		let university_section_status = localStorage.getItem(
 		"university_section_status"
 	)
 		? localStorage.getItem("university_section_status")
@@ -1420,14 +1428,7 @@ $(".tiles").on('click', function () {
 														}
 														
 														var sortOrder = ["About the university", "Degree programs", "Tuition & Scholarship", "Book a Virtual Tour", "Book in person Tour", "Applied"];
-														var linksorder = [
-															"https://www.google.com1",
-															"https://www.google.com/2",
-															"https://www.google.com/3",
-															"https://www.google.com/4",
-															"https://www.google.com/5",
-															"https://www.google.com/6"
-														];
+														
 														var sortedSteps = {};
 														var counter = 0;
 														sortOrder.forEach(function(step) {
@@ -1451,8 +1452,7 @@ $(".tiles").on('click', function () {
 															<div class="checkbox-text box-hover ${(university.steps[step] == 'complete' ? 'bg-clolor' : '')} ${applied_done}"  data-url="${linksorder[counter]}">
 																<div class="heading-12 chkboxlabel ${(university.steps[step] == 'complete' ? 'clr-white' : '')}">${step} <br> ${appliedtext}</div>
 																<label class="w-checkbox checkbox-field-5 position">
-																																	<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox bg ${(university.steps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div>
-															
+																	<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox bg ${(university.steps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div>
 																	<input type="checkbox" id="checkbox-2" name="checkbox-2" data-universityId="${uniId}" data-name="${step}" class="checkboxStepbox"
 																		style="opacity:0;position:absolute;z-index:-1">
 																	<span class="checkbox-label-3 w-form-label" for="checkbox-2"></span>
@@ -1591,11 +1591,18 @@ $(".tiles").on('click', function () {
 							}
 
 							// console.log(universityBlock);
-							$(".not-sure-tab").html(notsureUniversityBlock);
+							if(notsureUniversityBlock!=""){
+								$(".not-sure-tab").html(notsureUniversityBlock);
+							} else {
+								$(".not-sure-tab").html("No records found.");
+							}
 
 							// $(".likeduniversityblock").html(likedUniversityBlock);
-
-							$(".dislikeuniversityblock").html(dislikedUniversityBlock);
+							if(dislikedUniversityBlock!=""){
+								$(".dislikeuniversityblock").html(dislikedUniversityBlock);
+							} else {
+								$(".dislikeuniversityblock").html("No records found.");
+							}
 
 
 						});
@@ -1704,6 +1711,10 @@ function tileUpdateUnivesities(universityId) {
 									</div>
 								</div>` ;
 
+								if($(".not-sure-tab .universitydatablock").length == 0){
+									$(".not-sure-tab").html("");
+								}
+
 								if (statusdoc.status == "notsure") {
 									$(".not-sure-tab").append(notsureUniversityBlock);
 								}
@@ -1727,14 +1738,7 @@ function tileUpdateUnivesities(universityId) {
 											var university = querySnapshot.docs[0].data();
 
 											var sortOrder = ["About the university", "Degree programs", "Tuition & Scholarship", "Book a Virtual Tour", "Book in person Tour", "Applied"];
-											var linksorder = [
-													"https://www.google.com1",
-													"https://www.google.com/2",
-													"https://www.google.com/3",
-													"https://www.google.com/4",
-													"https://www.google.com/5",
-													"https://www.google.com/6"
-												];
+											
 
 											var sortedSteps = {};
 											var counter = 0
@@ -1839,6 +1843,10 @@ function tileUpdateUnivesities(universityId) {
 
 									var inmcomplete_check = parseInt($("#stepsincomplete").text());
 
+									if($(".likeduniversityblock .universitydatablock").length == 0){
+										$(".likeduniversityblock").html("");
+									}
+
 									if (statusdoc.status == "liked") {
 										$(".likeduniversityblock").append(likedUniversityBlock);
 											
@@ -1892,10 +1900,11 @@ function tileUpdateUnivesities(universityId) {
 									</div>
 								</div>
 								</div>`
-
+								if($(".dislikeuniversityblock .universitydatablock").length == 0){
+									$(".dislikeuniversityblock").html("");
+								}
 								if (statusdoc.status == "disliked") {
-									$(".dislikeuniversityblock").append(dislikedUniversityBlock);
-				
+									$(".dislikeuniversityblock").append(dislikedUniversityBlock);				
 								}
 							}
 
@@ -1912,16 +1921,6 @@ function tileUpdateUnivesities(universityId) {
 	});
 
 };
-
-
-$(document).on("click",".checkbox-text", function(){
-    // $(this).siblings(".w-checkbox.checkbox-field-5.position").find(".checkboxStepbox").trigger("click")
-
-    $(this).children().find(".checkboxStepbox").trigger("click");
-	// alert("test")
-
-})
-
 
 $(document).on("click", ".tile-liked, .tile-notsure, .tile-rejected", function (e) {
 	e.preventDefault();
@@ -2235,6 +2234,36 @@ $(document).on("change", ".checkboxStepbox", function(){
 	}, 500)
 
 
+})
+$("#reach_out_yes, #reach_out_no").on("click", function(){
+	var reach_val = $(this).text();
+	var collectionRef = db.collection("Users");
+	var userdatacheck = localStorage.getItem("userfbdata");
+	let userdata = JSON.parse(userdatacheck);
+	
+	var documentRef = collectionRef.doc(userdata.ID);
+	// Data to be updated or added
+	var currentDateTime = new Date();
+				// Format the date and time
+	formattedDateTime = currentDateTime.getFullYear() + '-' + addZeroPrefix(currentDateTime.getMonth() + 1) + '-' + addZeroPrefix(currentDateTime.getDate()) + ' ' + addZeroPrefix(currentDateTime.getHours()) + ':' + addZeroPrefix(currentDateTime.getMinutes()) + ':' + addZeroPrefix(currentDateTime.getSeconds());
+	// Function to add zero prefix to single-digit numbers
+	function addZeroPrefix(number) {
+		return (number < 10 ? '0' : '') + number;
+	}
+	var newData = {
+			reachOutAnswer : {
+				reachOutLater: reach_val,
+				updatedAt: formattedDateTime,
+			}
+		};
+	// Update the document with the new data
+	documentRef.update(newData)
+	.then(() => {
+		console.log("Document successfully updated!");
+	})
+	.catch((error) => {
+		console.error("Error updating document: ", error);
+	});
 })
 
 $(".profile-btn").on('click', function () {
