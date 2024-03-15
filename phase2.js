@@ -1,5 +1,6 @@
 var db = firebase.firestore();
-var univeristy_array = [];
+var university_array = [];
+var temp_university_array = [];
 let career_array = [];
 var univeristy_counter = 0;
 var career_counter = 0;
@@ -479,8 +480,13 @@ $("#add_university_button").on("click", function (e) {
 	e.preventDefault();
 	var errors = "";
 	$("#errors").html("");
-
-
+	var alreadyexsistUniversity = false;
+	var listalreadyexsistUniversity = false;
+	var userfbdata = localStorage.getItem('userfbdata');
+	userfbdata = JSON.parse(userfbdata);
+	var userUniversities = userfbdata.university;
+	console.log(userUniversities);
+	
 
 	var state_value = JSON.parse(localStorage.getItem("state_value"));
 	var department_name = JSON.parse(localStorage.getItem("department_name"));
@@ -499,6 +505,28 @@ $("#add_university_button").on("click", function (e) {
 			return false;
 		} 
 	});
+
+	userUniversities.forEach((item) => {
+		// console.log(universitydata);
+		if(item.university_info == univeristy_name ) {
+			alreadyexsistUniversity = true;
+			console.log("Exist university");
+			return false;
+		} 
+	});
+	university_array.forEach((item) => {
+		// console.log(universitydata);
+		if(item.university_info == univeristy_name ) {
+			listalreadyexsistUniversity = true;
+			alert("University already exist");
+			return false;
+		} 
+	});
+	if(alreadyexsistUniversity == true || listalreadyexsistUniversity == true){
+		console.log("Did not add already exist university");
+		return false;
+	}
+
 	if(exsistUniversity == false) {
 		alert("please add exsisting university")
 		return false;
@@ -523,8 +551,12 @@ $("#add_university_button").on("click", function (e) {
 		university_id: universityId,
 
 	};
-	// console.log(univeristy_object); return false;
-	univeristy_array.push(univeristy_object);
+	
+	temp_university_array.push(univeristy_object)
+	localStorage.setItem("temp_university_array",JSON.stringify(temp_university_array));
+	university_array.push(univeristy_object);
+
+	console.log(university_array)
 
 	$("#univeristy_lissting").append(
 		"<div class='university_list' id='univeristy_" +
@@ -553,20 +585,29 @@ $("#submit_university_program_button").on("click", function (e) {
 	let ethnicity_counter_append = 0;
 	let religion_counter_append = 0;
 	e.preventDefault();
-	let useruniversity = { university: univeristy_array };
 	var userdatacheck = localStorage.getItem("userfbdata");
-	let userdata = JSON.parse(userdatacheck);
+	userdata = JSON.parse(userdatacheck);
+	// console.log(univeristy_object); return false;
+	var university_array = userdata.university;
+	var temp_uni_ar = localStorage.getItem("temp_university_array");
+	temp_uni_ar = JSON.parse(temp_uni_ar);
+
+	temp_uni_ar.forEach((singleitem) => {
+		university_array.push(singleitem);
+	})
+
+	console.log(university_array);
 
 
 
-
-
+	let useruniversity = { university: university_array };
+	
 	// User added university successfully
 	db.collection("Users")
 		.doc(userdata.ID)
 		.update(useruniversity)
 		.then(() => {
-			univeristy_array.forEach((result) => {
+			university_array.forEach((result) => {
 				var universityId = result.university_id;
 				console.log(universityId);
 				db.collection("UnivestiesStatus").where("universityId", "==", universityId).where("userId", "==", userdata.ID).get().then((querySnapshot) => {
@@ -574,13 +615,29 @@ $("#submit_university_program_button").on("click", function (e) {
 					console.log("kutch bhi");
 					if (querySnapshot.size == 0) {
 						db.collection("UnivestiesStatus")
-
-						
-
-
 							.add(universityStatusData)
 							.then(docRef => {
-	
+								var universityRef = db.collection('settings').doc('universityCount');
+								// Start a transaction
+								db.runTransaction(transaction => {
+									return transaction.get(universityRef).then(doc => {
+										// Read the current value
+										const data = doc.data();
+										var newValue = data.notsure || 0; // If no value exists yet, initialize it to 0
+										// Update the value
+										newValue += 1; // Increment the value by 1
+										// Write the updated value back to the document
+										transaction.update(universityRef, { notsure: newValue });
+										// Return the new value
+										return newValue;
+									});
+								}).then(newValue => {
+									console.log('Transaction successfully committed! New value:', newValue);
+								}).catch(error => {
+									console.log('Transaction failed:', error);
+								});
+
+								userDataGet(userdata.ID);	
 								console.log("Univesrity data successfully inserted with ID: ", docRef.id);
 							})
 							.catch(error => {
@@ -592,6 +649,8 @@ $("#submit_university_program_button").on("click", function (e) {
 		});
 			console.log("user successfully updated!");
 		});
+		localStorage.removeItem("temp_university_array");
+		$("#univeristy_lissting").html("");
 
 	$("#registration_screen_0").addClass("hide");
 	$("#registration_screen_1").removeClass("hide");
@@ -713,6 +772,7 @@ $("#add_values_button").on("click", function (e) {
 		.doc(userdata.ID)
 		.update(uservalues)
 		.then(() => {
+			userDataGet(userdata.ID);
 			console.log("user successfully updated!");
 		});
 
@@ -721,6 +781,7 @@ $("#add_values_button").on("click", function (e) {
 	localStorage.setItem("value_section_status", true);
 	localStorage.setItem("help_call", JSON.stringify("school_section"));
 });
+
 $("#add_school_setting").on("click", function (e) {
 	let career_array = [];
 	e.preventDefault();
@@ -740,6 +801,7 @@ $("#add_school_setting").on("click", function (e) {
 		.doc(userdata.ID)
 		.update(schoolsettingvalues)
 		.then(() => {
+			userDataGet(userdata.ID);
 			console.log("user successfully updated!");
 		});
 
@@ -793,6 +855,7 @@ $("#add_career_button").on("click", function (e) {
 		.doc(userdata.ID)
 		.update(careersettingvalues)
 		.then(() => {
+			userDataGet(userdata.ID);
 			console.log("user successfully updated!");
 		});
 
@@ -824,6 +887,7 @@ $("#add_cost_factor").on("click", function (e) {
 		.doc(userdata.ID)
 		.update(costsettingvalues)
 		.then(() => {
+			userDataGet(userdata.ID);
 			console.log("user successfully updated!");
 		});
 
@@ -1055,6 +1119,7 @@ $("#add_expert").on("click", function (e) {
 		.doc(userdata.ID)
 		.update(userexpert)
 		.then(() => {
+			userDataGet(userdata.ID);
 			console.log("user successfully updated!");
 		});
 
@@ -1150,15 +1215,18 @@ function closeuniversitypanel(panel_id) {
 
 	$("#univeristy_" + panelid).css("display", "none");
 
-	const index = univeristy_array.findIndex(
+	const index = university_array.findIndex(
 		(item) => item.university_info === replaced
 	);
-	console.log(univeristy_array + "before");
+	console.log(university_array + "before");
 	if (index > -1) {
 		// only splice array when item is found
-		univeristy_array.splice(index, 1); // 2nd parameter means remove one item only
+		university_array.splice(index, 1); // 2nd parameter means remove one item only
+		temp_university_array.splice(index, 1); // 2nd parameter means remove one item only
 	}
-	console.log(univeristy_array + "after");
+	localStorage.setItem("temp_university_array",JSON.stringify(temp_university_array));
+
+	console.log(university_array) + "after";
 }
 
 function postcareerselection(career_selection_text) {
@@ -1488,7 +1556,7 @@ $(".tiles").on('click', function () {
 
 										function setLikedUniversityBlockContent(stepBoxesHtml, stepBoxesCheckBox, applied_date){
 											likedUniversityBlock = `
-											<div class="tab-box mt-20 universitydatablock" id="universityId_${uniId}" data-uniid="${uniId}" >
+											<div class="tab-box mt-20 universitydatablock"  ${(applied_date != false) ? "style='box-shadow: 0 0 2px 2px #11ac90;'" : ""} id="universityId_${uniId}" data-uniid="${uniId}" >
 											<div class="uni-block-header">
 												<div>
 												<div class="btn"><a href="#"
@@ -1765,7 +1833,7 @@ function tileUpdateUnivesities(universityId) {
 
 													stepBoxes += `
 													<div class="checkbox-text box-hover ${(sortedSteps[step] == 'complete' ? 'bg-clolor' : '')} ${applied_done}" data-url="${linksorder[counter]}">
-														<div class="heading-12 chkboxlabel ${(sortedSteps[step] == 'complete' ? 'clr-white' : '')}">${step} ${appliedtext}</div>
+														<div class="heading-12 chkboxlabel ${(sortedSteps[step] == 'complete' ? 'clr-white' : '')}">${step} <br>${appliedtext}</div>
 														<label class="w-checkbox checkbox-field-5 position">
 															<div class="w-checkbox-input w-checkbox-input--inputType-custom liked-checkbox bg ${(sortedSteps[step] == 'complete' ? 'w--redirected-checked' : '')}"></div>
 															<input type="checkbox" id="checkbox-2" name="checkbox-2" data-universityId="${uniId}" data-name="${step}" class="checkboxStepbox"
@@ -2162,8 +2230,8 @@ $(document).on("change", ".checkboxStepbox", function(){
 				$checkbox.parents(".form-checkbox").find(".checkbox-text").addClass("bg-green");
 				var splitdate = formattedDateTime.split(" ");
 				$checkbox.parents(".form-checkbox").find(".checkbox-text").find(".applied_at").text(splitdate[0]);
-				$checkbox.parents(".universitydatablock").find(".all-done-alert").css("display","flex");
-
+				$checkbox.parents(".universitydatablock").find(".all-done-alert").css({"display":"flex"});
+				$checkbox.parents(".universitydatablock").css({"box-shadow": "0 0 2px 2px #11ac90"});
 			}
 
 			// alert("Checkbox is checked");
@@ -2174,7 +2242,8 @@ $(document).on("change", ".checkboxStepbox", function(){
 			// alert("Checkbox is unchecked");
 			$checkbox.parents(".form-checkbox").find(".checkbox-text").removeClass("bg-green");
 			$checkbox.parents(".form-checkbox").find(".checkbox-text").find(".applied_at").text("");
-			$checkbox.parents(".universitydatablock").find(".all-done-alert").css("display","none");
+			$checkbox.parents(".universitydatablock").find(".all-done-alert").css({"display":"none"});
+			$checkbox.parents(".universitydatablock").css({"box-shadow": "0 0 1px 1px rgba(0, 0, 0, .33)"})
 			formattedDateTime = "";
 		}
 
@@ -2270,3 +2339,13 @@ $(".profile-btn").on('click', function () {
 	$(".continue-section").addClass("hide");
 	$("#registration_splash_screen").removeClass("hide");
 })
+
+function userDataGet(user_id){
+	db.collection("Users")
+	.doc(user_id)
+	.get()
+	.then((querySnapshot) => {
+		var userfbdata = querySnapshot.data();
+		localStorage.setItem("userfbdata", JSON.stringify(userfbdata));
+	})
+}
