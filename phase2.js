@@ -506,14 +506,16 @@ $("#add_university_button").on("click", function (e) {
 		} 
 	});
 
-	userUniversities.forEach((item) => {
-		// console.log(universitydata);
-		if(item.university_info == univeristy_name ) {
-			alreadyexsistUniversity = true;
-			console.log("Exist university");
-			return false;
-		} 
-	});
+  if(userUniversities) {
+    userUniversities.forEach((item) => {
+      // console.log(universitydata);
+      if(item.university_info == univeristy_name ) {
+        alreadyexsistUniversity = true;
+        console.log("Exist university");
+        return false;
+      } 
+    });
+  }
 	university_array.forEach((item) => {
 		// console.log(universitydata);
 		if(item.university_info == univeristy_name ) {
@@ -588,7 +590,7 @@ $("#submit_university_program_button").on("click", function (e) {
 	var userdatacheck = localStorage.getItem("userfbdata");
 	userdata = JSON.parse(userdatacheck);
 	// console.log(univeristy_object); return false;
-	var university_array = userdata.university;
+	var university_array = (userdata.university) ? userdata.university : [];
 	var temp_uni_ar = localStorage.getItem("temp_university_array");
 	temp_uni_ar = JSON.parse(temp_uni_ar);
 
